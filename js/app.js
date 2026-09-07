@@ -79,7 +79,8 @@
       geoFail: 'Wala makuha ang imong lokasyon. Ablihi ang GPS ug sulayi pag-usab.',
       geoOutside: 'Wala ka sa sulod sa Butuan City.', youAreIn: 'Naa ka sa Brgy. {bgy}', geoUnsupported: 'Dili suportado ang GPS sa browser nimo.',
       detailedFail: 'Dili ma-load ang detalyadong mapa. Kinahanglan og internet.',
-      expandMap: 'Padak-a ang mapa', collapseMap: 'Isira ang dako nga mapa'
+      expandMap: 'Padak-a ang mapa', collapseMap: 'Isira ang dako nga mapa',
+      phTime: 'oras sa Butuan'
     },
     en: {
       offline: 'You are offline. Showing the last saved data.',
@@ -147,7 +148,8 @@
       geoFail: 'Could not get your location. Turn on GPS and try again.',
       geoOutside: 'You are outside Butuan City.', youAreIn: 'You are in Brgy. {bgy}', geoUnsupported: 'Your browser does not support GPS.',
       detailedFail: 'Could not load the detailed map. It needs internet.',
-      expandMap: 'Expand map', collapseMap: 'Close the large map'
+      expandMap: 'Expand map', collapseMap: 'Close the large map',
+      phTime: 'Butuan time'
     }
   };
   const MONTHS = { ceb: ['Enero', 'Pebrero', 'Marso', 'Abril', 'Mayo', 'Hunyo', 'Hulyo', 'Agosto', 'Septyembre', 'Oktubre', 'Nobyembre', 'Disyembre'], en: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'] };
@@ -182,8 +184,14 @@
 
   /* ---------------- dates ---------------- */
   const pad = (n) => String(n).padStart(2, '0');
-  const todayKey = () => { const d = new Date(); return d.getFullYear() + '-' + pad(d.getMonth() + 1) + '-' + pad(d.getDate()); };
-  const nowMin = () => { const d = new Date(); return d.getHours() * 60 + d.getMinutes(); };
+  // Butuan runs on Philippine Standard Time (UTC+8, no daylight saving). Every "now",
+  // "today" and open/closed check uses that clock, not the device's, so the site reads
+  // the same for someone checking from abroad or with a wrong phone timezone.
+  const PH_OFFSET_MIN = 8 * 60;
+  const nowPH = () => { const d = new Date(); return new Date(d.getTime() + (d.getTimezoneOffset() + PH_OFFSET_MIN) * 60000); };
+  const todayKey = () => { const d = nowPH(); return d.getFullYear() + '-' + pad(d.getMonth() + 1) + '-' + pad(d.getDate()); };
+  const nowMin = () => { const d = nowPH(); return d.getHours() * 60 + d.getMinutes(); };
+  const nowClock = () => { const d = nowPH(); return fmtTime(pad(d.getHours()) + ':' + pad(d.getMinutes())); };
   const toMin = (hhmm) => { const p = String(hhmm || '0:0').split(':').map(Number); return (p[0] || 0) * 60 + (p[1] || 0); };
   function fmtDate(iso, withDay) {
     if (!iso) return '—';
@@ -208,7 +216,7 @@
     catch (e) { return fallback; }
   }
   function todaysStops() {
-    const key = todayKey(), dow = DOW[new Date().getDay()];
+    const key = todayKey(), dow = DOW[nowPH().getDay()];
     return ((state.schedule && state.schedule.stops) || [])
       .map((st) => Object.assign({}, st, { _bgy: resolveBgy(st.barangay) }))
       .filter((st) => st._bgy && st.start && (st.date === key || st.repeat === 'daily' || (Array.isArray(st.days) && st.days.map((x) => String(x).toLowerCase().slice(0, 3)).includes(dow))))
@@ -274,7 +282,7 @@
   }
   function renderSchedule() {
     const body = $('#schedBody'), sel = state.selected, stops = todaysStops();
-    $('#todayLabel').textContent = fmtDate(todayKey(), true);
+    $('#todayLabel').textContent = fmtDate(todayKey(), true) + ' · ' + nowClock() + ' ' + t('phTime');
     if (!sel) {
       body.innerHTML = '<div class="empty">' + esc(t('pickFirst')) + '</div>';
     } else {
@@ -329,6 +337,7 @@
         (bgyId ? '<button type="button" class="btn sm ghost" data-zoom="' + bgyId + '">' + esc(t('showOnMap')) + '</button>' : '') + '</div>' +
         '</div>';
     }).join('');
+    $('#stationsClock').textContent = nowClock() + ' ' + t('phTime');
     $('#stationsSource').innerHTML = sc.source ? t('stationsSource', { src: sc.sourceUrl ? '<a href="' + esc(sc.sourceUrl) + '" target="_blank" rel="noopener">' + esc(sc.source) + ' ↗</a>' : esc(sc.source), date: fmtDate(sc.updated) }) : '';
     $$('#stationsList [data-zoom]').forEach((b) => b.addEventListener('click', () => { selectBgy(b.dataset.zoom, true); $('#map').scrollIntoView({ behavior: 'smooth', block: 'start' }); }));
   }
@@ -500,7 +509,8 @@
     $('#reportWhere').addEventListener('input', updateReport);
     window.addEventListener('online', setOnline); window.addEventListener('offline', setOnline); setOnline();
     watchTabs();
-    setInterval(() => { renderSchedule(); renderStations(); if (mapReady) { updateMapLayers(); renderMapInfo(); } }, 60000);
+    setInterval(() => { renderSchedule(); renderStations(); if (mapReady) { updateMapLayers(); renderMapInfo(); } }, 30000);
+    document.addEventListener('visibilitychange', () => { if (!document.hidden) { renderSchedule(); renderStations(); if (mapReady) { updateMapLayers(); renderMapInfo(); } } });
     if ('serviceWorker' in navigator && location.protocol !== 'file:' && !window.TB_DATA) navigator.serviceWorker.register('sw.js').catch(() => { });
   }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot); else boot();
