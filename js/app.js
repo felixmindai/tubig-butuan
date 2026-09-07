@@ -428,7 +428,7 @@
     const wrap = $('#mapWrap'), btn = $('#expandMap');
     wrap.classList.toggle('expanded', on);
     document.body.classList.toggle('map-expanded', on);
-    $('.ic-expand', btn).hidden = on; $('.ic-close', btn).hidden = !on;
+    $('.ic-expand', btn).toggleAttribute('hidden', on); $('.ic-close', btn).toggleAttribute('hidden', !on); // SVG has no .hidden property
     btn.setAttribute('aria-label', t(on ? 'collapseMap' : 'expandMap')); btn.title = btn.getAttribute('aria-label');
     window.TubigMap.resize();
     if (!on) $('#map').scrollIntoView({ block: 'start' });
