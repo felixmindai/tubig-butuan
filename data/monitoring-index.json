@@ -19,7 +19,7 @@
       "tanker": "EPCC Tanker 1",
       "name": "17Equiparco September 7, 2026 ",
       "stops": 4,
-      "incomplete": true
+      "incomplete": false
     },
     "2131167005": {
       "date": "2026-09-07",
@@ -32,14 +32,14 @@
       "date": "2026-09-07",
       "tanker": "BCWD Tanker",
       "name": "BCWD September 7, 2026",
-      "stops": 5,
+      "stops": 7,
       "incomplete": false
     },
     "730712240": {
       "date": "2026-09-07",
       "tanker": "CDRRMD Tanker",
       "name": "CDRRMD September 7, 2026",
-      "stops": 5,
+      "stops": 7,
       "incomplete": false
     },
     "608597546": {
@@ -398,6 +398,13 @@
       "tanker": null,
       "stops": null,
       "incomplete": false
+    },
+    "798139961": {
+      "date": "2026-09-08",
+      "tanker": "CDRRMD Tanker",
+      "name": "CDRRMD September 8, 2026",
+      "stops": 4,
+      "incomplete": true
     }
   }
 }
