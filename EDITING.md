@@ -37,7 +37,7 @@ Kini ang pinakasagad nga i-update, matag adlaw human mo-post ang PIO. This is th
 | `repeat` | `"daily"` kung matag adlaw. Gamita imbis `date`. | `"daily"` for every day. Use instead of `date`. |
 | `days` | Optional: `["mon","wed","fri"]` | Optional: which weekdays |
 | `barangay` | Ngalan sa barangay, sama sa PIO post (pananglitan `"Villa Kananga"`, `"Bit-os"`, `"Baan KM 3"`). | Barangay name as the PIO writes it. |
-| `where` | Purok, landmark, o dalan. | Purok, landmark, or street. |
+| `where` | Purok, landmark, o dalan. Kung isulat ang ngalan sa landmark (pananglitan `Barangay Hall`, `Montevista`, `Mercado`, `Purok 2`), ang site mo-pin sa eksaktong lugar kung nahibal-an kini sa mapa. | Purok, landmark, or street. Name the landmark (e.g. `Barangay Hall`, `Montevista`, `Mercado`, `Purok 2`) and the site pins the exact place when the map knows it. |
 | `start`, `end` | Oras sa 24-hour format, `"HH:MM"`. | 24-hour time, `"HH:MM"`. |
 | `tanker` | Ngalan sa tanker (optional). | Tanker name (optional). |
 | `lat`, `lng` | Coordinates kung nahibal-an; kung `null`, ibutang sa sentro sa barangay. | Coordinates if known; if `null`, pinned at the barangay centre. |
@@ -45,6 +45,8 @@ Kini ang pinakasagad nga i-update, matag adlaw human mo-post ang PIO. This is th
 Tan-awa ang `data/schedule.example.json` para sa mas daghang pananglitan. See `data/schedule.example.json` for more examples.
 
 Pag-kuha og coordinates / Getting coordinates: sa Google Maps, i-long-press ang lugar; makita ang numero sama sa `8.9557, 125.5470`. Ang una `lat`, ang ikaduha `lng`.
+
+Mga landmark / Landmarks: ang `data/landmarks.json` naglista sa mga barangay hall, merkado, eskwelahan, kapilya, subdivision ug purok gikan sa OpenStreetMap (gimugna sa `tools/build-landmarks.py`, ayaw usba). Kung naay landmark nga wala didto, idugang sa `data/landmarks.extra.json` uban ang `bgy` (id sa barangay, pananglitan `villa-kananga`), `kind`, `name`, `lat`, `lng`, dayon padagana ang build script. Lists halls, markets, schools, chapels, subdivisions and puroks from OpenStreetMap (generated, do not hand-edit). Add missing places to `data/landmarks.extra.json` and re-run the build script.
 
 ---
 

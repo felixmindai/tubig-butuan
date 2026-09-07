@@ -20,7 +20,7 @@ fragment = "--fragment" in sys.argv
 html = read("index.html")
 css = read("css/style.css")
 js = read("js/map.js") + "\n" + read("js/app.js")
-data = {f"data/{n}.json": json.loads(read(f"data/{n}.json")) for n in ("barangays", "status", "stations", "schedule", "hotlines")}
+data = {f"data/{n}.json": json.loads(read(f"data/{n}.json")) for n in ("barangays", "status", "stations", "schedule", "hotlines", "landmarks")}
 
 head_extra = '<style>\n' + css + '\n</style>'
 html = re.sub(r'<link rel="stylesheet" href="css/style.css">', lambda m: head_extra, html)

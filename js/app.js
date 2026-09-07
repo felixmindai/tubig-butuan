@@ -43,7 +43,7 @@
       noSchedBgy: 'Walay gi-post nga iskedyul sa tanker para sa Brgy. {bgy} karong adlawa.',
       noSchedAll: 'Wala pay iskedyul sa tanker nga na-post para karong adlawa.',
       checkPio: 'Susiha ang Butuan City PIO →',
-      stopNow: 'KARON', stopPast: 'nahuman na', stopApprox: 'gibanabana ang lokasyon',
+      stopNow: 'KARON', stopPast: 'nahuman na', stopApprox: 'gibanabana ang lokasyon (sentro sa barangay)', stopLandmark: 'pin: {name} (OpenStreetMap)',
       share: 'Ipaambit', copy: 'Kopyaha', copied: 'Nakopya na!', preview: 'Tan-awa ang mensahe nga ipaambit',
       schedSource: 'Tinubdan: {src} · gi-update {date}',
       shareSched: 'Iskedyul sa tanker, Brgy. {bgy}:', shareNoSched: 'walay iskedyul nga na-post karong adlawa',
@@ -122,7 +122,7 @@
       noSchedBgy: 'No tanker schedule has been posted for Brgy. {bgy} today.',
       noSchedAll: 'No tanker schedule has been posted for today yet.',
       checkPio: 'Check Butuan City PIO →',
-      stopNow: 'NOW', stopPast: 'done', stopApprox: 'approximate location',
+      stopNow: 'NOW', stopPast: 'done', stopApprox: 'approximate location (barangay centre)', stopLandmark: 'pin: {name} (OpenStreetMap)',
       share: 'Share', copy: 'Copy', copied: 'Copied!', preview: 'Preview the message to share',
       schedSource: 'Source: {src} · updated {date}',
       shareSched: 'Tanker schedule, Brgy. {bgy}:', shareNoSched: 'no schedule posted for today',
@@ -187,7 +187,44 @@
   const esc = (s) => String(s == null ? '' : s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 
   /* ---------------- state ---------------- */
-  const state = { bgys: null, status: null, stations: null, schedule: null, hotlines: null, selected: LS.get('tb.bgy', ''), hall: LS.get('tb.hall', ''), viewDate: null };
+  const state = { bgys: null, status: null, stations: null, schedule: null, hotlines: null, landmarks: null, selected: LS.get('tb.bgy', ''), hall: LS.get('tb.hall', ''), viewDate: null };
+
+  /* ---------------- landmarks: pin a stop to a named place inside its barangay ---------------- */
+  const GENERIC = /\b(subdivision|subd|homes?|village|hoai|sitio|barangay|brgy|bgy|station|purok|the|of|and|&|de|del|ii|iii|iv)\b/gi;
+  const core = (s) => String(s || '').toLowerCase().replace(/['’.]/g, '').replace(/-/g, ' ').replace(/\s+/g, ' ').trim();
+  const reEsc = (s) => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  function landmarkFor(bgyId, where) {
+    const all = (state.landmarks && state.landmarks.landmarks) || [];
+    const mine = all.filter((l) => l.bgy === bgyId);
+    if (!mine.length || !where) return null;
+    const w = core(where);
+    if (/\b(barangay|brgy|bgy|bgry)\.? ?hall\b/.test(w)) {
+      const halls = mine.filter((l) => l.kind === 'townhall');
+      const old = /\bold\b/.test(w) ? halls.find((l) => /\bold\b/i.test(l.name)) : null;
+      const hit = old || halls.find((l) => !/\bold\b/i.test(l.name)) || halls[0];
+      if (hit) return hit;
+    }
+    if (/\b(mercado|market|merkado)\b/.test(w)) { const m = mine.find((l) => l.kind === 'marketplace'); if (m) return m; }
+    // "Purok 2, 3 & 3A" -> ["2","3","3a"]; a landmark "Purok 3" matches 3 and 3a
+    const pm = w.match(/purok\s*([0-9][0-9a-z ,&\-]*)/);
+    const puroks = pm ? pm[1].split(/[ ,&\-]+/).filter(Boolean) : [];
+    let best = null;
+    for (const l of mine) {
+      const name = core(l.name);
+      const pk = name.match(/^purok\s*([0-9]+[a-z]?)$/);
+      if (pk) {
+        const n = pk[1];
+        if (puroks.some((x) => x === n || (x.length === n.length + 1 && x.startsWith(n) && /[a-z]$/.test(x)))) { if (!best || best.c.length < 8) best = { l, c: 'purok ' + n }; }
+        continue;
+      }
+      const c = name.replace(GENERIC, ' ').replace(/\s+/g, ' ').trim();
+      if (c.length < 3) continue;
+      const hit = new RegExp('(^|[^a-z0-9])' + reEsc(c) + '($|[^a-z0-9])').test(w) ||
+        (c.length >= 5 && w.replace(/\s/g, '').includes(c.replace(/\s/g, '')));   // "Monte Vista" vs "Montevista"
+      if (hit && (!best || c.length > best.c.length)) best = { l, c };
+    }
+    return best ? best.l : null;
+  }
   const normIndex = new Map();
   const norm = (s) => String(s || '').toLowerCase().replace(/ñ/g, 'n').replace(/[^a-z0-9]/g, '');
   const ALIASES = { villakanangga: 'villakananga', stonino: 'santonino', stonio: 'santonino', portpoyohon: 'portpoyohonnewasia', newasia: 'portpoyohonnewasia', baankm3: 'baankm3', baan: 'baankm3', agusanpeq: 'agusanpequeno' };
@@ -283,6 +320,15 @@
     $('#daySummary').innerHTML = parts.join('');
   }
   const todaysStops = () => displaySchedule().stops;
+  // Where a stop is drawn: its own coordinates, else a named landmark in its barangay
+  // that the stop text mentions, else the barangay centre (flagged approximate).
+  function stopLocation(st) {
+    if (st.lat != null && st.lng != null) return { lat: st.lat, lng: st.lng, approx: false, landmark: null };
+    const lm = landmarkFor(st._bgy, st.where);
+    if (lm) return { lat: lm.lat, lng: lm.lng, approx: false, landmark: lm.name };
+    const c = mapReady ? window.TubigMap.centroidLL(st._bgy) : null;
+    return c ? { lat: c.lat, lng: c.lng, approx: true, landmark: null } : null;
+  }
   const stopStatus = (st) => { if (!displaySchedule().isToday) return ''; const now = nowMin(), a = toMin(st.start), b = st.end ? toMin(st.end) : a + 30; return now > b ? 'past' : (now >= a ? 'now' : ''); };
   function isOpen(x) {
     const now = nowMin();
@@ -360,8 +406,9 @@
           (ds.chosen && !ds.isToday ? '' : '<br><a href="' + esc(pioUrl()) + '" target="_blank" rel="noopener">' + esc(t('checkPio')) + '</a>') + '</div>';
       } else {
         body.innerHTML = stale + '<ul class="stops">' + mine.map((st) => {
-          const cls = stopStatus(st);
-          const meta = [st.tanker, cls === 'now' ? t('stopNow') : (cls === 'past' ? t('stopPast') : ''), (st.lat == null || st.lng == null) ? t('stopApprox') : ''].filter(Boolean).join(' · ');
+          const cls = stopStatus(st), loc = stopLocation(st);
+          const locText = (st.lat != null && st.lng != null) ? '' : (loc && loc.landmark ? t('stopLandmark', { name: loc.landmark }) : t('stopApprox'));
+          const meta = [st.tanker, cls === 'now' ? t('stopNow') : (cls === 'past' ? t('stopPast') : ''), locText].filter(Boolean).join(' · ');
           return '<li class="stop ' + cls + '"><time>' + fmtRange(st.start, st.end) + '</time><span class="where">' + esc(st.where || '') + '</span><span class="meta">' + esc(meta) + '</span></li>';
         }).join('') + '</ul>';
       }
@@ -481,9 +528,8 @@
       pins.push({ type: 'station', lat, lng, approx, title: x.name, sub: 'Brgy. ' + x.barangay + ' · ' + hoursText(x), name: x.name, barangay: x.barangay });
     }
     for (const st of todaysStops()) {
-      let lat = st.lat, lng = st.lng, approx = false;
-      if (lat == null || lng == null) { const c = window.TubigMap.centroidLL(st._bgy); if (!c) continue; lat = c.lat; lng = c.lng; approx = true; }
-      pins.push({ type: 'stop', lat, lng, approx, past: stopStatus(st) === 'past', title: fmtRange(st.start, st.end) + ' · ' + (st.where || ''), sub: 'Brgy. ' + bgyName(st._bgy) + (st.tanker ? ' · ' + st.tanker : ''), where: st.where, barangay: bgyName(st._bgy) });
+      const loc = stopLocation(st); if (!loc) continue;
+      pins.push({ type: 'stop', lat: loc.lat, lng: loc.lng, approx: loc.approx, past: stopStatus(st) === 'past', title: fmtRange(st.start, st.end) + ' · ' + (st.where || ''), sub: 'Brgy. ' + bgyName(st._bgy) + (st.tanker ? ' · ' + st.tanker : '') + (loc.landmark ? ' · ' + loc.landmark : ''), where: st.where, barangay: bgyName(st._bgy) });
     }
     return pins;
   }
@@ -562,12 +608,12 @@
 
   /* ---------------- boot ---------------- */
   async function boot() {
-    const [bgys, status, stations, schedule, hotlines] = await Promise.all([
+    const [bgys, status, stations, schedule, hotlines, landmarks] = await Promise.all([
       loadJSON('data/barangays.json', null), loadJSON('data/status.json', null), loadJSON('data/stations.json', { stations: [] }),
-      loadJSON('data/schedule.json', { stops: [] }), loadJSON('data/hotlines.json', { groups: [] })
+      loadJSON('data/schedule.json', { stops: [] }), loadJSON('data/hotlines.json', { groups: [] }), loadJSON('data/landmarks.json', { landmarks: [] })
     ]);
     if (!bgys) { const ld = $('#mapLoading'); if (ld) ld.textContent = 'Map data unavailable'; return; }
-    Object.assign(state, { bgys, status, stations, schedule, hotlines });
+    Object.assign(state, { bgys, status, stations, schedule, hotlines, landmarks });
     buildIndex();
     if (state.selected && !resolveBgy(state.selected)) state.selected = '';
     renderAll();

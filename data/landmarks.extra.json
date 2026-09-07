@@ -1,0 +1,48 @@
+{
+  "_comment": "Hand-added landmarks that OpenStreetMap lacks. Merged into landmarks.json by tools/build-landmarks.py. Coordinates decoded from Google Maps plus codes.",
+  "landmarks": [
+    {
+      "bgy": "ambago",
+      "kind": "townhall",
+      "name": "Ambago Barangay Hall",
+      "lat": 8.96071,
+      "lng": 125.50365,
+      "src": "google-maps plus code XG63+7H3"
+    },
+    {
+      "bgy": "pangabugan",
+      "kind": "townhall",
+      "name": "Pangabugan Barangay Hall",
+      "lat": 8.92881,
+      "lng": 125.54799,
+      "src": "google-maps plus code WGHX+CQ2",
+      "note": "Listed as permanently closed on Google Maps; the barangay may have moved its hall"
+    },
+    {
+      "bgy": "cabcabon",
+      "kind": "townhall",
+      "name": "Cabcabon Barangay Hall",
+      "lat": 8.98885,
+      "lng": 125.57998,
+      "src": "google-maps plus code XHQH+HQH"
+    },
+    {
+      "bgy": "lumbocan",
+      "kind": "townhall",
+      "name": "Lumbocan Barangay Hall",
+      "lat": 9.00345,
+      "lng": 125.50029,
+      "src": "google-maps plus code 2G32+6VH",
+      "note": "Listed as permanently closed on Google Maps; the barangay may have moved its hall"
+    },
+    {
+      "bgy": "ambago",
+      "kind": "sitio",
+      "name": "Suatan",
+      "lat": 8.97417,
+      "lng": 125.50215,
+      "src": "osm Suatan Bridge (Nominatim)",
+      "note": "Sitio located by its bridge; the purok itself may be a few hundred metres away"
+    }
+  ]
+}
