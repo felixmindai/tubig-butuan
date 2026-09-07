@@ -39,6 +39,9 @@
       suffNotLogged: 'Brgy. {bgy}: {pop} ka tawo. Wala pa natala sa BCWD ang gidaghanon sa tubig nga nahatod karong adlawa.',
       suffNoStops: 'Brgy. {bgy}: {pop} ka tawo. Walay tanker stop niining adlawa.',
       thBgy: 'Barangay', thPop: 'Populasyon', thLpp: 'L/tawo', notLogged: 'wala pa natala',
+      chipPop: 'ka tawo (2020)', chipLpp: 'L/tawo karon', bgyNoTanker: 'walay tanker niining adlawa', noTanker: 'walay tanker',
+      servedShare: 'Naabot sa tanker: {n} ka barangay, {served} sa {total} ka tawo ({pct}%). {m} ka barangay ang walay tanker niining adlawa.',
+      showUnserved: 'Ipakita ang {n} ka barangay nga walay tanker', hideUnserved: 'Tagoi ang mga barangay nga walay tanker',
       suffNote: 'Tubig gikan sa tanker lang ang giihap, gibahin sa tanang residente sa barangay. Wala apil ang tubig sa gripo (kung naa pa) ug ang sag-ob. Mga marka: 15 L matag tawo matag adlaw ang labing gamay aron mabuhi (Sphere), 20 L ang gikinahanglan sa WHO para sa inom, luto ug kalimpyo, 50 L ang normal nga konsumo.',
       arrived: 'miabot {time}', left: 'mibiya {time}', delivered: '{n} cu.m nahatod', tankCap: 'static tank {n} L',
       noSchedBgyLast: 'Walay tanker stop para sa Brgy. {bgy} sa kataposang iskedyul ({date}).',
@@ -51,7 +54,7 @@
       noSchedBgy: 'Walay gi-post nga iskedyul sa tanker para sa Brgy. {bgy} karong adlawa.',
       noSchedAll: 'Wala pay iskedyul sa tanker nga na-post para karong adlawa.',
       checkPio: 'Susiha ang Butuan City PIO →',
-      stopNow: 'KARON', stopPast: 'nahuman na', stopApprox: 'gibanabana ang lokasyon (sentro sa barangay)', stopLandmark: 'pin: {name} (OpenStreetMap)',
+      stopNow: 'KARON', stopPast: 'nahuman na', stopCancelled: 'KANSELADO', stopApprox: 'gibanabana ang lokasyon (sentro sa barangay)', stopLandmark: 'pin: {name} (OpenStreetMap)',
       share: 'Ipaambit', copy: 'Kopyaha', copied: 'Nakopya na!', preview: 'Tan-awa ang mensahe nga ipaambit',
       schedSource: 'Tinubdan: {src} · gi-update {date}',
       shareSched: 'Iskedyul sa tanker, Brgy. {bgy}:', shareNoSched: 'walay iskedyul nga na-post karong adlawa',
@@ -126,6 +129,9 @@
       suffNotLogged: 'Brgy. {bgy}: {pop} people. BCWD has not yet logged how much water was delivered today.',
       suffNoStops: 'Brgy. {bgy}: {pop} people. No tanker stop on this day.',
       thBgy: 'Barangay', thPop: 'Population', thLpp: 'L/person', notLogged: 'not logged yet',
+      chipPop: 'people (2020)', chipLpp: 'L/person today', bgyNoTanker: 'no tanker on this day', noTanker: 'no tanker',
+      servedShare: 'Reached by tanker: {n} barangays, {served} of {total} people ({pct}%). {m} barangays had no tanker on this day.',
+      showUnserved: 'Show the {n} barangays with no tanker', hideUnserved: 'Hide the barangays with no tanker',
       suffNote: 'Counts tanker water only, spread over every resident of the barangay. Piped supply (where any remains) and fetching stations are not included. Marks: 15 L per person per day is the survival minimum (Sphere), 20 L is what WHO says basic drinking, cooking and hygiene need, 50 L is normal use.',
       arrived: 'arrived {time}', left: 'left {time}', delivered: '{n} cu.m delivered', tankCap: 'static tank {n} L',
       noSchedBgyLast: 'No tanker stop for Brgy. {bgy} in the last schedule ({date}).',
@@ -138,7 +144,7 @@
       noSchedBgy: 'No tanker schedule has been posted for Brgy. {bgy} today.',
       noSchedAll: 'No tanker schedule has been posted for today yet.',
       checkPio: 'Check Butuan City PIO →',
-      stopNow: 'NOW', stopPast: 'done', stopApprox: 'approximate location (barangay centre)', stopLandmark: 'pin: {name} (OpenStreetMap)',
+      stopNow: 'NOW', stopPast: 'done', stopCancelled: 'CANCELLED', stopApprox: 'approximate location (barangay centre)', stopLandmark: 'pin: {name} (OpenStreetMap)',
       share: 'Share', copy: 'Copy', copied: 'Copied!', preview: 'Preview the message to share',
       schedSource: 'Source: {src} · updated {date}',
       shareSched: 'Tanker schedule, Brgy. {bgy}:', shareNoSched: 'no schedule posted for today',
@@ -336,7 +342,7 @@
     $('#dayNext').disabled = !dates.some((d) => d > ds.key);
     $('#dayToday').hidden = !ds.chosen; // only offered once the reader has picked a date
     const st = ds.stops;
-    if (!st.length) { $('#daySummary').innerHTML = '<span>' + esc(t('sumNone', { date: fmtDate(ds.key) })) + '</span>'; return; }
+    if (!st.length) { $('#daySummary').innerHTML = '<span>' + esc(t('sumNone', { date: fmtDate(ds.key) })) + '</span>'; renderBgyFacts(ds); renderSufficiency(ds); return; }
     const bgys = new Set(st.map((s) => s._bgy)).size, tankers = new Set(st.map((s) => s.tanker).filter(Boolean)).size;
     const first = st[0].start, last = st.reduce((m, s) => (toMin(s.end || s.start) > toMin(m) ? (s.end || s.start) : m), st[0].end || st[0].start);
     const parts = ['<span><b>' + st.length + '</b> ' + esc(t('sumStops')) + '</span>', '<span><b>' + bgys + '</b> ' + esc(t('sumBgys')) + '</span>'];
@@ -346,6 +352,7 @@
     parts.push('<span>' + esc(fmtTime(first)) + ' – ' + esc(fmtTime(last)) + '</span>');
     if (state.selected) { const n = st.filter((s) => s._bgy === state.selected).length; parts.push('<span>Brgy. ' + esc(bgyName(state.selected)) + ': <b>' + n + '</b> ' + esc(t('sumStops')) + '</span>'); }
     $('#daySummary').innerHTML = parts.join('');
+    renderBgyFacts(ds);
     renderSufficiency(ds);
   }
   function lppBar(lpp) {
@@ -353,11 +360,33 @@
     const cls = lpp == null ? '' : (lpp < THRESH[0] ? 'bad' : (lpp < THRESH[1] ? 'warn' : 'ok'));
     return '<div class="lpp"><i class="' + cls + '" style="width:' + w + '%"></i>' + THRESH.map((v) => '<b style="left:' + ((v / 60) * 100) + '%" title="' + v + ' L"></b>').join('') + '</div>';
   }
+  function bgyFacts(ds, id) {
+    const rows = sufficiency(ds.stops), r = rows.find((x) => x.id === id) || null, pop = popOf(id);
+    return { pop, stops: r ? r.stops : 0, logged: r ? r.logged : 0, cum: r ? Math.round(r.cum * 10) / 10 : 0, lpp: r && r.lpp != null ? Math.round(r.lpp * 10) / 10 : null, served: !!r };
+  }
+  function renderBgyFacts(ds) {
+    const box = $('#bgyFacts'); if (!box) return;
+    if (!state.selected || !state.population) { box.hidden = true; box.innerHTML = ''; return; }
+    const f = bgyFacts(ds, state.selected);
+    const chips = ['<span class="chip"><b>' + (f.pop ? fmtNum(f.pop) : '—') + '</b> ' + esc(t('chipPop')) + '</span>'];
+    if (!f.served) chips.push('<span class="chip warn">' + esc(t('bgyNoTanker')) + '</span>');
+    else {
+      chips.push('<span class="chip"><b>' + f.stops + '</b> ' + esc(t('sumStops')) + '</span>');
+      chips.push(f.logged ? '<span class="chip"><b>' + f.cum + '</b> cu.m</span>' : '<span class="chip">' + esc(t('notLogged')) + '</span>');
+      if (f.lpp != null) chips.push('<span class="chip ' + (f.lpp < THRESH[0] ? 'bad' : (f.lpp < THRESH[1] ? 'warn' : 'ok')) + '"><b>' + f.lpp + '</b> ' + esc(t('chipLpp')) + '</span>');
+    }
+    box.hidden = false;
+    box.innerHTML = '<div class="row">' + chips.join('') + '</div>' + (f.lpp != null ? lppBar(f.lpp) : '');
+  }
   function renderSufficiency(ds) {
     const box = $('#suffBody'); if (!box) return;
+    if (!state.population) { box.innerHTML = ''; $('#suff').hidden = true; return; }
     const rows = sufficiency(ds.stops);
-    if (!state.population || !rows.length) { box.innerHTML = ''; $('#suff').hidden = true; return; }
+    if (!rows.length && !ds.stops.length) { box.innerHTML = ''; $('#suff').hidden = true; return; }
     $('#suff').hidden = false;
+    const servedIds = new Set(rows.map((r) => r.id));
+    const unserved = state.bgys.features.filter((f) => !servedIds.has(f.id)).map((f) => ({ id: f.id, pop: popOf(f.id) || 0 })).sort((a, b) => b.pop - a.pop);
+    const servedPop = rows.reduce((s, r) => s + (r.pop || 0), 0), total = state.population.cityTotal2020 || 0;
     const sel = state.selected && rows.find((r) => r.id === state.selected);
     let head = '';
     if (state.selected) {
@@ -366,11 +395,17 @@
         '<p class="sub">' + esc(t('suffLine', { bgy: bgyName(state.selected), pop: fmtNum(pop), cum: Math.round(sel.cum * 10) / 10, n: sel.logged, stops: sel.stops })) + '</p></div>';
       else head = '<p class="sub">' + esc(t(sel ? 'suffNotLogged' : 'suffNoStops', { bgy: bgyName(state.selected), pop: pop ? fmtNum(pop) : '—' })) + '</p>';
     }
+    const share = total ? '<p class="share-line">' + esc(t('servedShare', { served: fmtNum(servedPop), total: fmtNum(total), pct: Math.round((servedPop / total) * 100), n: rows.length, m: unserved.length })) + '</p>' : '';
+    const row = (r, cls) => '<tr class="' + cls + (r.id === state.selected ? ' is-sel' : '') + '"><td><a href="#schedule" data-bgy="' + r.id + '">' + esc(bgyName(r.id)) + '</a></td><td class="num">' + (r.pop ? fmtNum(r.pop) : '—') + '</td>';
     const table = '<div class="tbl"><table><thead><tr><th>' + esc(t('thBgy')) + '</th><th class="num">' + esc(t('thPop')) + '</th><th class="num">cu.m</th><th class="num">' + esc(t('thLpp')) + '</th><th></th></tr></thead><tbody>' +
-      rows.map((r) => '<tr' + (r.id === state.selected ? ' class="is-sel"' : '') + '><td><a href="#schedule" data-bgy="' + r.id + '">' + esc(bgyName(r.id)) + '</a></td><td class="num">' + (r.pop ? fmtNum(r.pop) : '—') + '</td><td class="num">' + (r.logged ? Math.round(r.cum * 10) / 10 : '<span class="note">' + esc(t('notLogged')) + '</span>') + '</td><td class="num">' + (r.lpp != null ? '<b>' + (Math.round(r.lpp * 10) / 10) + '</b>' : '—') + '</td><td class="barcell">' + lppBar(r.lpp) + '</td></tr>').join('') +
-      '</tbody></table></div>';
-    box.innerHTML = head + table + '<p class="note">' + esc(t('suffNote')) + ' ' + esc(t('factSrc')) + ': <a href="' + esc(state.population.sourceUrl) + '" target="_blank" rel="noopener">' + esc(state.population.source) + ' ↗</a></p>';
+      rows.map((r) => row(r, '') + '<td class="num">' + (r.logged ? Math.round(r.cum * 10) / 10 : '<span class="note">' + esc(t('notLogged')) + '</span>') + '</td><td class="num">' + (r.lpp != null ? '<b>' + (Math.round(r.lpp * 10) / 10) + '</b>' : '—') + '</td><td class="barcell">' + lppBar(r.lpp) + '</td></tr>').join('') +
+      '</tbody><tbody id="unservedRows"' + (state.showAll ? '' : ' hidden') + '>' +
+      unserved.map((r) => row(r, 'unserved') + '<td class="num">0</td><td class="num"><b>0</b></td><td class="barcell"><span class="note">' + esc(t('noTanker')) + '</span></td></tr>').join('') +
+      '</tbody></table></div>' +
+      (unserved.length ? '<button type="button" class="btn sm ghost" id="toggleUnserved">' + esc(t(state.showAll ? 'hideUnserved' : 'showUnserved', { n: unserved.length })) + '</button>' : '');
+    box.innerHTML = head + share + table + '<p class="note">' + esc(t('suffNote')) + ' ' + esc(t('factSrc')) + ': <a href="' + esc(state.population.sourceUrl) + '" target="_blank" rel="noopener">' + esc(state.population.source) + ' ↗</a></p>';
     $$('#suffBody a[data-bgy]').forEach((a) => a.addEventListener('click', (e) => { e.preventDefault(); selectBgy(a.dataset.bgy, true); }));
+    const tg = $('#toggleUnserved'); if (tg) tg.addEventListener('click', () => { state.showAll = !state.showAll; renderSufficiency(ds); });
   }
   const todaysStops = () => displaySchedule().stops;
   // Where a stop is drawn: its own coordinates, else a named landmark in its barangay
@@ -383,6 +418,7 @@
     return c ? { lat: c.lat, lng: c.lng, approx: true, landmark: null } : null;
   }
   const stopStatus = (st) => {
+    if (st.remarks && /cancel/i.test(st.remarks) && !st.actualStart) return 'cancelled';
     if (st.actualEnd) return 'past';                       // BCWD logged the tanker leaving
     if (st.actualStart) return 'now';                      // logged arriving, not yet leaving
     if (!displaySchedule().isToday) return '';
@@ -466,7 +502,7 @@
         body.innerHTML = stale + '<ul class="stops">' + mine.map((st) => {
           const cls = stopStatus(st), loc = stopLocation(st);
           const locText = (st.lat != null && st.lng != null) ? '' : (loc && loc.landmark ? t('stopLandmark', { name: loc.landmark }) : t('stopApprox'));
-          const meta = [st.tanker, st.actualStart ? '' : (cls === 'now' ? t('stopNow') : (cls === 'past' ? t('stopPast') : '')), locText].filter(Boolean).join(' · ');
+          const meta = [st.tanker, st.actualStart ? '' : (cls === 'now' ? t('stopNow') : (cls === 'past' ? t('stopPast') : (cls === 'cancelled' ? t('stopCancelled') : ''))), locText].filter(Boolean).join(' · ');
           const actual = st.actualStart ? '<span class="actual">' + esc(t('arrived', { time: fmtTime(st.actualStart) })) + (st.actualEnd ? ' · ' + esc(t('left', { time: fmtTime(st.actualEnd) })) : ' · ' + esc(t('stopNow'))) +
             (st.delivered != null ? ' · ' + esc(t('delivered', { n: st.delivered })) : '') + (st.tankCap ? ' · ' + esc(t('tankCap', { n: fmtNum(st.tankCap) })) : '') + '</span>' : '';
           const remarks = st.remarks ? '<span class="remarks">' + esc(st.remarks) + '</span>' : '';
@@ -569,8 +605,9 @@
       return;
     }
     if (!state.selected) { box.innerHTML = '<span>' + esc(t('mapHint')) + '</span>'; return; }
-    const ds = displaySchedule(), n = ds.stops.filter((st) => st._bgy === state.selected).length;
-    box.innerHTML = '<b>' + esc(bgyName(state.selected)) + '</b>' + esc(n ? t(ds.isToday ? 'stopsInBgy' : 'stopsInBgyLast', { n, date: fmtDate(ds.key) }) : t('noStopsInBgy')) +
+    const ds = displaySchedule(), n = ds.stops.filter((st) => st._bgy === state.selected).length, f = state.population ? bgyFacts(ds, state.selected) : null;
+    const facts = f ? '<br><span class="note">' + esc((f.pop ? fmtNum(f.pop) + ' ' + t('chipPop') : '') + (f.lpp != null ? ' · ' + f.lpp + ' ' + t('chipLpp') : (f.served && !f.logged ? ' · ' + t('notLogged') : ''))) + '</span>' : '';
+    box.innerHTML = '<b>' + esc(bgyName(state.selected)) + '</b>' + esc(n ? t(ds.isToday ? 'stopsInBgy' : 'stopsInBgyLast', { n, date: fmtDate(ds.key) }) : t('noStopsInBgy')) + facts +
       '<br><button type="button" class="btn sm water" id="goSched">' + esc(t('viewSched')) + '</button>';
     $('#goSched').addEventListener('click', () => $('#schedule').scrollIntoView({ behavior: 'smooth', block: 'start' }));
   }
@@ -590,7 +627,7 @@
     }
     for (const st of todaysStops()) {
       const loc = stopLocation(st); if (!loc) continue;
-      pins.push({ type: 'stop', lat: loc.lat, lng: loc.lng, approx: loc.approx, past: stopStatus(st) === 'past', title: fmtRange(st.start, st.end) + ' · ' + (st.where || ''), sub: 'Brgy. ' + bgyName(st._bgy) + (st.tanker ? ' · ' + st.tanker : '') + (loc.landmark ? ' · ' + loc.landmark : ''), where: st.where, barangay: bgyName(st._bgy) });
+      pins.push({ type: 'stop', lat: loc.lat, lng: loc.lng, approx: loc.approx, past: stopStatus(st) === 'past', cancelled: stopStatus(st) === 'cancelled', title: fmtRange(st.start, st.end) + ' · ' + (st.where || ''), sub: 'Brgy. ' + bgyName(st._bgy) + (st.tanker ? ' · ' + st.tanker : '') + (loc.landmark ? ' · ' + loc.landmark : ''), where: st.where, barangay: bgyName(st._bgy) });
     }
     return pins;
   }

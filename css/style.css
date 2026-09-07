@@ -248,6 +248,9 @@ body.map-expanded .tabs { visibility: hidden; }
 .stop.now .actual { color: var(--water); }
 .stop .remarks { grid-column: 2; font-size: .82rem; color: var(--warn); font-style: italic; }
 .stop.logged.past { opacity: .8; }
+.stop.cancelled { opacity: .7; }
+.stop.cancelled time, .stop.cancelled .where { text-decoration: line-through; text-decoration-color: var(--bad); }
+.pin.stop.cancelled .halo { fill: var(--bad); }
 .stop.now { background: var(--water-soft); }
 .stop.now time { color: var(--water); }
 .stop.past { opacity: .55; }
@@ -255,6 +258,19 @@ body.map-expanded .tabs { visibility: hidden; }
 .stale { margin: 10px 0 4px; padding: 8px 12px; border-left: 4px solid var(--warn); background: var(--paper); font-size: .86rem; color: var(--ink-2); border-radius: 0 var(--radius) var(--radius) 0; }
 .stale a { font-weight: 700; }
 .empty a { font-weight: 700; }
+
+/* ---------- barangay facts under the picker ---------- */
+.bgy-facts { margin: 8px 0 4px; }
+.bgy-facts[hidden] { display: none; }
+.chip { display: inline-block; padding: 4px 10px; border: 1.5px solid var(--rule); border-radius: 999px; font-size: .8rem; color: var(--ink-2); background: var(--paper); }
+.chip b { font-family: var(--mono); color: var(--ink); }
+.chip.ok { border-color: var(--ok); color: var(--ok); } .chip.warn { border-color: var(--warn); color: var(--warn); } .chip.bad { border-color: var(--bad); color: var(--bad); }
+.chip.ok b, .chip.warn b, .chip.bad b { color: inherit; }
+.bgy-facts .lpp { margin-top: 8px; }
+.share-line { font-size: .88rem; margin: 8px 0 0; padding: 8px 12px; border-left: 4px solid var(--water); background: var(--paper); border-radius: 0 var(--radius) var(--radius) 0; }
+.tbl tr.unserved td { color: var(--muted); }
+.tbl tbody[hidden] { display: none; }
+.suff .btn { margin-top: 6px; }
 
 /* ---------- sufficiency ---------- */
 .suff h3 { font-family: var(--display); font-weight: 400; font-size: 1.15rem; margin: 0 0 10px; }

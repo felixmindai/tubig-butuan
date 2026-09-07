@@ -137,7 +137,7 @@
     for (const p of list) {
       if (p.lat == null || p.lng == null) continue;
       const [x, y] = proj.toXY(p.lng, p.lat);
-      const cls = [p.type, p.approx ? 'approx' : '', p.past ? 'past' : ''].filter(Boolean).join(' ');
+      const cls = [p.type, p.approx ? 'approx' : '', p.past ? 'past' : '', p.cancelled ? 'cancelled' : ''].filter(Boolean).join(' ');
       const g = makePin(p, cls);
       gPins.appendChild(g);
       pinList.push({ el: g, x, y, data: p });
