@@ -67,10 +67,12 @@ python tools/archive-sources.py
 
 ## Deploy (Cloudflare Pages)
 
-1. Push this folder to a GitHub repository. Put it under a shared organization, not a personal account, so it can be handed over later.
-2. In Cloudflare Pages, choose **Connect to Git**, pick the repo, leave the build command empty, and set the output directory to `/`.
-3. Every push to `main` deploys in about a minute. Branches get preview URLs.
-4. Add a custom domain under **Custom domains**. HTTPS is automatic. HTTPS is required for GPS and home-screen install.
+Source: https://github.com/felixmindai/tubig-butuan
+
+1. In Cloudflare Pages, choose **Connect to Git**, pick the `felixmindai/tubig-butuan` repo, leave the build command empty, and set the output directory to `/`.
+2. Every push to `main` deploys in about a minute. Branches get preview URLs.
+3. Add a custom domain under **Custom domains**. HTTPS is automatic. HTTPS is required for GPS and home-screen install.
+4. In the GitHub repo, open **Settings → Actions → General** and make sure workflows have **Read and write permissions**, so the import and archive workflows can commit their results.
 
 GitHub Pages or Netlify work the same way, since this is plain static files.
 

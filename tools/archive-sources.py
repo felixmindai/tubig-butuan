@@ -22,7 +22,7 @@ DATA_FILES = [p for p in glob.glob(os.path.join(ROOT, "data", "*.json"))
               if os.path.basename(p) not in ("barangays.json", "schedule.example.json")]
 SKIP_HOSTS = ("facebook.com", "fb.com", "google.com", "goo.gl")
 MAX_AGE_DAYS = 30
-UA = "tubig-butuan-archiver/0.1 (community water info hub, Butuan City; +https://github.com/)"
+UA = "tubig-butuan-archiver/0.1 (community water info hub, Butuan City; +https://github.com/felixmindai/tubig-butuan)"
 DRY = "--dry-run" in sys.argv
 FORCE = "--force" in sys.argv
 PAUSE_BETWEEN_SAVES = 8  # seconds; Save Page Now rate-limits anonymous callers

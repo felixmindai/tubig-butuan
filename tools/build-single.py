@@ -25,7 +25,6 @@ data = {f"data/{n}.json": json.loads(read(f"data/{n}.json")) for n in ("barangay
 head_extra = '<style>\n' + css + '\n</style>'
 html = re.sub(r'<link rel="stylesheet" href="css/style.css">', lambda m: head_extra, html)
 html = re.sub(r'\s*<link rel="(manifest|icon|apple-touch-icon)"[^>]*>', '', html)
-html = re.sub(r'\s*<a id="editLink"[^>]*>.*?</a>\s*·', '', html)  # no EDITING.md next to a single file
 inline = ('<script>window.TB_DATA=' + json.dumps(data, ensure_ascii=False, separators=(",", ":")) + ';</script>\n'
           '<script>\n' + js.replace('</script', '<\\/script') + '\n</script>')
 html = re.sub(r'<script src="js/map.js" defer></script>\s*<script src="js/app.js" defer></script>', lambda m: inline, html)
