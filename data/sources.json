@@ -1,0 +1,48 @@
+{
+  "_comment": "Inline citations. Each key is rendered as a small link beside the figure it supports. Keep URLs pointing at the exact page or document, not a homepage.",
+  "population": {
+    "label": { "ceb": "PSA, 2020 Census of Population and Housing, ihap matag barangay (pinaagi sa PhilAtlas)", "en": "PSA, 2020 Census of Population and Housing, barangay counts (via PhilAtlas)" },
+    "url": "https://www.philatlas.com/mindanao/caraga/butuan.html"
+  },
+  "householdSize": {
+    "label": { "ceb": "PSA, 2020 CPH: Household Population, Number of Households, and Average Household Size (Caraga 4.2, Pilipinas 4.1)", "en": "PSA, 2020 CPH: Household Population, Number of Households, and Average Household Size (Caraga 4.2, Philippines 4.1)" },
+    "url": "https://psa.gov.ph/content/household-population-number-households-and-average-household-size-philippines-2020-census",
+    "note": { "ceb": "Butuan 2015: 4.40 (76,216 ka panimalay, 335,377 ka tawo), PSA pinaagi sa PhilAtlas", "en": "Butuan 2015: 4.40 (76,216 households, 335,377 household population), PSA via PhilAtlas" }
+  },
+  "householdButuan2015": {
+    "label": { "ceb": "PSA 2015 Census, Butuan: 76,216 ka panimalay, 4.40 ka tawo matag panimalay (PhilAtlas, seksyon Households)", "en": "PSA 2015 Census, Butuan: 76,216 households, 4.40 persons per household (PhilAtlas, Households section)" },
+    "url": "https://www.philatlas.com/mindanao/caraga/butuan.html"
+  },
+  "sphereWater": {
+    "label": { "ceb": "Sphere Handbook 2018, WASH, Water supply standard 2.1 (Access and water quantity): 15 L matag tawo matag adlaw, 2.5–3 L niini para sa inom", "en": "Sphere Handbook 2018, WASH chapter, Water supply standard 2.1 (Access and water quantity): 15 L per person per day minimum, 2.5–3 L of it for drinking" },
+    "url": "https://handbook.spherestandards.org/en/sphere/#ch006"
+  },
+  "whoQuantity": {
+    "label": { "ceb": "WHO, Domestic water quantity, service level and health, 2nd ed. (2020): 20 L matag tawo matag adlaw = basic access, 50 L = intermediate", "en": "WHO, Domestic water quantity, service level and health, 2nd ed. (2020): 20 L per person per day = basic access, 50 L = intermediate access" },
+    "url": "https://www.who.int/publications/i/item/9789240015241"
+  },
+  "tankerLoad": {
+    "label": { "ceb": "BCWD Water Tankers Hourly Monitoring sheet: kapasidad sa matag tanker (5–14 cu.m)", "en": "BCWD Water Tankers Hourly Monitoring sheet: capacity of each tanker (5–14 cu.m)" },
+    "url": "https://docs.google.com/spreadsheets/d/e/2PACX-1vT0s2vnge5UM4HZN6uMQuuNoRHQWTCSHX9S93R8rGPCF21_JmfxgxWVSNJWG3Nk3uYi7634kCTAD64G/pubhtml"
+  },
+  "whoBoil": {
+    "label": { "ceb": "WHO Technical Brief: Boil Water (WHO/FWC/WSH/15.02): pabukala og maayo, 1 minuto igo na", "en": "WHO Technical Brief: Boil Water (WHO/FWC/WSH/15.02): a rolling boil for 1 minute is enough" },
+    "url": "https://www.who.int/publications/i/item/WHO-FWC-WSH-15.02"
+  },
+  "cdcChlorine": {
+    "label": { "ceb": "US CDC, Making Water Safe in an Emergency: 8 ka tulo sa 6% bleach matag galon (3.8 L), hulata og 30 minuto", "en": "US CDC, Making Water Safe in an Emergency: 8 drops of 6% bleach per gallon (3.8 L), wait 30 minutes" },
+    "url": "https://www.cdc.gov/water-emergency/about/making-water-safe-in-an-emergency.html"
+  },
+  "whoDiarrhoea": {
+    "label": { "ceb": "WHO fact sheet: Diarrhoeal disease (ORS, zinc, dayon nga pagpatambal)", "en": "WHO fact sheet: Diarrhoeal disease (ORS, zinc, prompt treatment)" },
+    "url": "https://www.who.int/news-room/fact-sheets/detail/diarrhoeal-disease"
+  },
+  "epaLeak": {
+    "label": { "ceb": "US EPA WaterSense, Fix a Leak Week: ang gripo nga nagtulo kausa matag segundo mawad-an og kapin 3,000 galon sa usa ka tuig (mga 30 L matag adlaw)", "en": "US EPA WaterSense, Fix a Leak Week: a faucet dripping once per second wastes over 3,000 gallons a year (about 30 L a day)" },
+    "url": "https://www.epa.gov/watersense/fix-leak-week"
+  },
+  "epaShower": {
+    "label": { "ceb": "US EPA WaterSense, Showerheads: standard showerhead 2.5 galon matag minuto (mga 9.5 L/min)", "en": "US EPA WaterSense, Showerheads: a standard showerhead uses 2.5 gallons per minute (about 9.5 L/min)" },
+    "url": "https://www.epa.gov/watersense/showerheads"
+  }
+}

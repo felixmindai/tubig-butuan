@@ -259,6 +259,12 @@ body.map-expanded .tabs { visibility: hidden; }
 .stale a { font-weight: 700; }
 .empty a { font-weight: 700; }
 
+/* ---------- inline citations ---------- */
+.cite { font-family: var(--mono); font-size: .68rem; font-weight: 600; color: var(--water); text-decoration: none; white-space: nowrap; border-bottom: 1px dotted var(--water); }
+.cite:hover { background: var(--water-soft); }
+.big .cite, .mid .cite { font-size: .22em; vertical-align: super; font-family: var(--mono); letter-spacing: 0; }
+.steps li .cite { font-size: .66rem; }
+
 /* ---------- barangay facts under the picker ---------- */
 .bgy-facts { margin: 8px 0 4px; }
 .bgy-facts[hidden] { display: none; }

@@ -43,12 +43,14 @@
       servedShare: 'Naabot sa tanker: {n} ka barangay, {served} sa {total} ka tawo ({pct}%). {m} ka barangay ang walay tanker niining adlawa.',
       showUnserved: 'Ipakita ang {n} ka barangay nga walay tanker', hideUnserved: 'Tagoi ang mga barangay nga walay tanker',
       cityNeed: 'Tibuok syudad: {need} cu.m matag adlaw ang gikinahanglan sa 15 L matag tawo, mga {loads} ka biyahe sa tanker ({load} cu.m matag biyahe). Nahatod niining adlawa: {got} cu.m, {pct}% niana.',
-      needTitle: 'Panginahanglan sa Brgy. {bgy} matag adlaw', needIntro: '{pop} ka tawo, mga {hh} ka panimalay (banabana, {size} ka tawo matag panimalay). Usa ka biyahe sa tanker = mga {load} cu.m.',
+      needTitle: 'Panginahanglan sa Brgy. {bgy} matag adlaw',
+      needIntroPop: '{pop} ka tawo.', needIntroHh: 'Mga {hh} ka panimalay (banabana, {size} ka tawo matag panimalay).', needIntroLoad: 'Usa ka biyahe sa tanker = mga {load} cu.m.',
+      marks15: 'Marka: 15 L matag tawo matag adlaw ang labing gamay aron mabuhi.', marks20: '20 L ang batakang panginahanglan.', marks50: '50 L ang normal nga konsumo.', citeWord: 'tinubdan',
       thPerPerson: 'matag tawo', thPerDay: 'matag adlaw', thLoads: 'biyahe sa tanker', thNeed: 'Kinahanglan (15 L) cu.m',
       needDrinking: 'Inom lang', needSurvival: 'Labing gamay aron mabuhi (inom, luto, kalimpyo)', needBasic: 'Batakang panginahanglan (WHO)',
       needGot: 'Nahatod sa tanker niining adlawa: {got} cu.m, {pct}% sa labing gamay nga gikinahanglan.',
       needBasis: 'Gidak-on sa panimalay: {size} ka tawo.', copyReport: 'Kopyaha ang report (CSV)',
-      suffNote: 'Tubig gikan sa tanker lang ang giihap, gibahin sa tanang residente sa barangay. Wala apil ang tubig sa gripo (kung naa pa) ug ang sag-ob. Mga marka: 15 L matag tawo matag adlaw ang labing gamay aron mabuhi (Sphere), 20 L ang gikinahanglan sa WHO para sa inom, luto ug kalimpyo, 50 L ang normal nga konsumo.',
+      suffNote: 'Tubig gikan sa tanker lang ang giihap, gibahin sa tanang residente sa barangay. Wala apil ang tubig sa gripo (kung naa pa) ug ang sag-ob.',
       arrived: 'miabot {time}', left: 'mibiya {time}', delivered: '{n} cu.m nahatod', tankCap: 'static tank {n} L',
       noSchedBgyLast: 'Walay tanker stop para sa Brgy. {bgy} sa kataposang iskedyul ({date}).',
       stopsInBgyLast: '{n} ka tanker stop sa iskedyul sa {date}',
@@ -76,18 +78,18 @@
       hallPlaceholder: 'pananglitan 0917 123 4567', save: 'I-save', saved: 'Na-save na.',
       guideTitle: 'Giya sa luwas nga tubig', boilTitle: 'Pabukala ang tubig', conserveTitle: 'Daginota ang tubig',
       boilSteps: [
-        { b: 'Sala-a una kung lubog', s: 'Ipaagi sa limpyo nga panapton aron matangtang ang lapok ug hugaw.' },
-        { b: 'Pabukala og maayo', s: 'Kung mobukal na og kusog, ipadayon og 2 ka minuto. Kini ang giya sa DOH.' },
-        { b: 'Ipabugnaw nga natakpan', s: 'Ayaw butangi og yelo nga gikan sa tubig nga wala pabukala.' },
-        { b: 'Tipigi sa limpyo nga sudlanan nga naay taklob', s: 'Gamita og kabo nga naay kuptanan. Ayaw isawom ang kamot. Gamita sulod sa 24 ka oras.' },
-        { b: 'Walay gas o kahoy? Gamit og chlorine', s: '2 ka tulo sa ordinaryo nga household bleach (5%) sa matag 1 litro, kutawa, ug hulata og 30 minuto. Ayaw gamita ang bleach nga naay pahumot.' },
-        { b: 'Bantayi ang kalibanga', s: 'Labi na sa mga bata ug tigulang. Hatagi og ORS (o tubig nga naay asin ug asukar) ug adto dayon sa barangay health station.' }
+        { b: 'Sala-a una kung lubog', s: 'Ipaagi sa limpyo nga panapton aron matangtang ang lapok ug hugaw.', src: 'whoBoil' },
+        { b: 'Pabukala og maayo', s: 'Kung mobukal na og kusog, ipadayon og 1 ka minuto (WHO). Daghang advisory sa DOH moingon og 2 ka minuto; walay daot ang mas dugay.', src: 'whoBoil' },
+        { b: 'Ipabugnaw nga natakpan', s: 'Ayaw butangi og yelo nga gikan sa tubig nga wala pabukala.', src: 'whoBoil' },
+        { b: 'Tipigi sa limpyo nga sudlanan nga naay taklob', s: 'Gamita og kabo nga naay kuptanan. Ayaw isawom ang kamot. Gamita sulod sa 24 ka oras.', src: 'whoBoil' },
+        { b: 'Walay gas o kahoy? Gamit og chlorine', s: '2 ka tulo sa ordinaryo nga household bleach (5–6%) sa matag 1 litro (8 ka tulo matag galon), kutawa, ug hulata og 30 minuto. Ayaw gamita ang bleach nga naay pahumot.', src: 'cdcChlorine' },
+        { b: 'Bantayi ang kalibanga', s: 'Labi na sa mga bata ug tigulang. Hatagi og ORS (o tubig nga naay asin ug asukar) ug adto dayon sa barangay health station.', src: 'whoDiarrhoea' }
       ],
       conserveSteps: [
-        { b: 'Unaha ang inom, luto, ug hugas sa kamot', s: 'Kini ang dili pwede kuhaan. Dinhi una gamita ang limpyo nga tubig.' },
-        { b: 'Timba, dili shower', s: 'Ang usa ka timba (10 L) igo na sa usa ka ligo. Ang shower mokonsumo og 60 L o kapin.' },
+        { b: 'Unaha ang inom, luto, ug hugas sa kamot', s: 'Kini ang dili pwede kuhaan. Dinhi una gamita ang limpyo nga tubig.', src: 'sphereWater' },
+        { b: 'Timba, dili shower', s: 'Ang usa ka timba (10 L) igo na sa usa ka ligo. Ang 5 ka minuto sa shower mokonsumo og mga 45 L.', src: 'epaShower' },
         { b: 'Gamita pag-usab ang tubig sa hugas', s: 'Tubig gikan sa hugas sa bugas, panapton, ug plato pwede sa kasilyas ug sa tanom.' },
-        { b: 'Ayoha ang mga tulo', s: 'Ang usa ka gripo nga nagtulo mawad-an og mga 20 L sa usa ka adlaw. Isumbong sa BCWD ang leak sa dalan.' },
+        { b: 'Ayoha ang mga tulo', s: 'Ang usa ka gripo nga nagtulo kausa matag segundo mawad-an og mga 30 L sa usa ka adlaw. Isumbong sa BCWD ang leak sa dalan.', src: 'epaLeak' },
         { b: 'Pun-a ang sudlanan kung naay presyon, apan ayaw pasobra', s: 'Ang sobra nga pag-imbak makapahinay sa tubig sa mga silingan nga mas layo sa linya.' },
         { b: 'Tabangi ang dili makapila', s: 'Tigulang, dialysis patients, ug pamilya nga naay gagmay nga bata. Isulti sa barangay kung kinahanglan nila og tanker stop.' }
       ],
@@ -139,12 +141,14 @@
       servedShare: 'Reached by tanker: {n} barangays, {served} of {total} people ({pct}%). {m} barangays had no tanker on this day.',
       showUnserved: 'Show the {n} barangays with no tanker', hideUnserved: 'Hide the barangays with no tanker',
       cityNeed: 'Whole city: {need} cu.m a day is needed at 15 L per person, about {loads} tanker trips ({load} cu.m per trip). Delivered on this day: {got} cu.m, {pct}% of that.',
-      needTitle: 'What Brgy. {bgy} needs each day', needIntro: '{pop} people, about {hh} households (estimate at {size} people per household). One tanker trip = about {load} cu.m.',
+      needTitle: 'What Brgy. {bgy} needs each day',
+      needIntroPop: '{pop} people.', needIntroHh: 'About {hh} households (estimate at {size} people per household).', needIntroLoad: 'One tanker trip = about {load} cu.m.',
+      marks15: 'Marks: 15 L per person per day is the survival minimum.', marks20: '20 L is basic access.', marks50: '50 L is normal use.', citeWord: 'source',
       thPerPerson: 'per person', thPerDay: 'per day', thLoads: 'tanker trips', thNeed: 'Need (15 L) cu.m',
       needDrinking: 'Drinking only', needSurvival: 'Survival minimum (drinking, cooking, hygiene)', needBasic: 'Basic needs (WHO)',
       needGot: 'Delivered by tanker on this day: {got} cu.m, {pct}% of the survival minimum.',
       needBasis: 'Household size: {size} people.', copyReport: 'Copy report (CSV)',
-      suffNote: 'Counts tanker water only, spread over every resident of the barangay. Piped supply (where any remains) and fetching stations are not included. Marks: 15 L per person per day is the survival minimum (Sphere), 20 L is what WHO says basic drinking, cooking and hygiene need, 50 L is normal use.',
+      suffNote: 'Counts tanker water only, spread over every resident of the barangay. Piped supply (where any remains) and fetching stations are not included.',
       arrived: 'arrived {time}', left: 'left {time}', delivered: '{n} cu.m delivered', tankCap: 'static tank {n} L',
       noSchedBgyLast: 'No tanker stop for Brgy. {bgy} in the last schedule ({date}).',
       stopsInBgyLast: '{n} tanker stop(s) in the {date} schedule',
@@ -172,18 +176,18 @@
       hallPlaceholder: 'e.g. 0917 123 4567', save: 'Save', saved: 'Saved.',
       guideTitle: 'Safe water guide', boilTitle: 'Boil your water', conserveTitle: 'Save water',
       boilSteps: [
-        { b: 'Filter first if cloudy', s: 'Pass it through a clean cloth to remove mud and grit.' },
-        { b: 'Bring to a rolling boil', s: 'Once it boils hard, keep it boiling for 2 minutes. This is the DOH guidance.' },
-        { b: 'Cool it covered', s: 'Do not add ice made from unboiled water.' },
-        { b: 'Store in a clean, covered container', s: 'Use a ladle with a handle. Never dip hands in. Use within 24 hours.' },
-        { b: 'No fuel? Use chlorine', s: '2 drops of plain household bleach (5%) per litre, stir, and wait 30 minutes. Never use scented bleach.' },
-        { b: 'Watch for diarrhea', s: 'Especially in children and the elderly. Give ORS (or water with salt and sugar) and go to the barangay health station right away.' }
+        { b: 'Filter first if cloudy', s: 'Pass it through a clean cloth to remove mud and grit.', src: 'whoBoil' },
+        { b: 'Bring to a rolling boil', s: 'Once it boils hard, keep it boiling for 1 minute (WHO). Many DOH advisories say 2 minutes; longer does no harm.', src: 'whoBoil' },
+        { b: 'Cool it covered', s: 'Do not add ice made from unboiled water.', src: 'whoBoil' },
+        { b: 'Store in a clean, covered container', s: 'Use a ladle with a handle. Never dip hands in. Use within 24 hours.', src: 'whoBoil' },
+        { b: 'No fuel? Use chlorine', s: '2 drops of plain household bleach (5–6%) per litre (8 drops per gallon), stir, and wait 30 minutes. Never use scented bleach.', src: 'cdcChlorine' },
+        { b: 'Watch for diarrhea', s: 'Especially in children and the elderly. Give ORS (or water with salt and sugar) and go to the barangay health station right away.', src: 'whoDiarrhoea' }
       ],
       conserveSteps: [
-        { b: 'Drinking, cooking and handwashing come first', s: 'These are the uses you never cut. Use clean water here before anything else.' },
-        { b: 'Bucket, not shower', s: 'One bucket (10 L) is enough for a bath. A shower uses 60 L or more.' },
+        { b: 'Drinking, cooking and handwashing come first', s: 'These are the uses you never cut. Use clean water here before anything else.', src: 'sphereWater' },
+        { b: 'Bucket, not shower', s: 'One bucket (10 L) is enough for a bath. A 5-minute shower uses about 45 L.', src: 'epaShower' },
         { b: 'Reuse rinse water', s: 'Water from rinsing rice, laundry and dishes can flush toilets and water plants.' },
-        { b: 'Fix the drips', s: 'One dripping tap wastes about 20 L a day. Report street leaks to BCWD.' },
+        { b: 'Fix the drips', s: 'A tap dripping once a second wastes about 30 L a day. Report street leaks to BCWD.', src: 'epaLeak' },
         { b: 'Fill containers when there is pressure, but do not hoard', s: 'Over-storing drains pressure for neighbours further down the line.' },
         { b: 'Help those who cannot queue', s: 'The elderly, dialysis patients and families with infants. Tell the barangay if they need a tanker stop.' }
       ],
@@ -395,7 +399,7 @@
     const box = $('#bgyFacts'); if (!box) return;
     if (!state.selected || !state.population) { box.hidden = true; box.innerHTML = ''; return; }
     const f = bgyFacts(ds, state.selected);
-    const chips = ['<span class="chip"><b>' + (f.pop ? fmtNum(f.pop) : '—') + '</b> ' + esc(t('chipPop')) + '</span>'];
+    const chips = ['<span class="chip"><b>' + (f.pop ? fmtNum(f.pop) : '—') + '</b> ' + esc(t('chipPop')) + cite('population', 'PSA') + '</span>'];
     if (!f.served) chips.push('<span class="chip warn">' + esc(t('bgyNoTanker')) + '</span>');
     else {
       chips.push('<span class="chip"><b>' + f.stops + '</b> ' + esc(t('sumStops')) + '</span>');
@@ -419,34 +423,33 @@
     if (state.selected) {
       const pop = popOf(state.selected);
       if (sel && sel.lpp != null) head = '<div class="suff-hero"><div class="big">' + (Math.round(sel.lpp * 10) / 10) + '<small>' + esc(t('perPerson')) + '</small></div>' + lppBar(sel.lpp) +
-        '<p class="sub">' + esc(t('suffLine', { bgy: bgyName(state.selected), pop: fmtNum(pop), cum: Math.round(sel.cum * 10) / 10, n: sel.logged, stops: sel.stops })) + '</p></div>';
-      else head = '<p class="sub">' + esc(t(sel ? 'suffNotLogged' : 'suffNoStops', { bgy: bgyName(state.selected), pop: pop ? fmtNum(pop) : '—' })) + '</p>';
+        '<p class="sub">' + esc(t('suffLine', { bgy: bgyName(state.selected), pop: fmtNum(pop), cum: Math.round(sel.cum * 10) / 10, n: sel.logged, stops: sel.stops })) + cite('population', 'PSA') + cite('tankerLoad', 'BCWD') + '</p></div>';
+      else head = '<p class="sub">' + esc(t(sel ? 'suffNotLogged' : 'suffNoStops', { bgy: bgyName(state.selected), pop: pop ? fmtNum(pop) : '—' })) + cite('population', 'PSA') + '</p>';
     }
     const cityNeed = total ? needs(total) : null, deliveredAll = rows.reduce((s, r) => s + r.cum, 0);
-    const share = total ? '<p class="share-line">' + esc(t('servedShare', { served: fmtNum(servedPop), total: fmtNum(total), pct: Math.round((servedPop / total) * 100), n: rows.length, m: unserved.length })) +
-      '<br>' + esc(t('cityNeed', { need: fmtNum(Math.round(cityNeed.survival)), loads: fmtNum(cityNeed.loads(cityNeed.survival)), load: r1(cityNeed.load), got: r1(deliveredAll), pct: (deliveredAll / cityNeed.survival * 100).toFixed(1) })) + '</p>' : '';
+    const share = total ? '<p class="share-line">' + esc(t('servedShare', { served: fmtNum(servedPop), total: fmtNum(total), pct: Math.round((servedPop / total) * 100), n: rows.length, m: unserved.length })) + cite('population', 'PSA') +
+      '<br>' + esc(t('cityNeed', { need: fmtNum(Math.round(cityNeed.survival)), loads: fmtNum(cityNeed.loads(cityNeed.survival)), load: r1(cityNeed.load), got: r1(deliveredAll), pct: (deliveredAll / cityNeed.survival * 100).toFixed(1) })) + cite('sphereWater', 'Sphere') + cite('tankerLoad', 'BCWD') + '</p>' : '';
     // selected barangay: what it needs each day, in tanker loads an agency can act on
     let needBox = '';
     if (state.selected && popOf(state.selected)) {
       const pop = popOf(state.selected), nd = needs(pop), got = sel ? sel.cum : 0;
-      const line = (label, l, c) => '<tr><td>' + esc(label) + '</td><td class="num">' + l + ' L</td><td class="num">' + fmtNum(Math.round(l * pop)) + ' L</td><td class="num"><b>' + r1(c) + '</b> cu.m</td><td class="num">' + nd.loads(c) + '</td></tr>';
+      const line = (label, l, c, src) => '<tr><td>' + esc(label) + cite(src) + '</td><td class="num">' + l + ' L</td><td class="num">' + fmtNum(Math.round(l * pop)) + ' L</td><td class="num"><b>' + r1(c) + '</b> cu.m</td><td class="num">' + nd.loads(c) + '</td></tr>';
       needBox = '<div class="needs"><h4>' + esc(t('needTitle', { bgy: bgyName(state.selected) })) + '</h4>' +
-        '<p class="sub">' + esc(t('needIntro', { pop: fmtNum(pop), hh: fmtNum(nd.households), size: hhSize(), load: r1(nd.load) })) + '</p>' +
+        '<p class="sub">' + esc(t('needIntroPop', { pop: fmtNum(pop) })) + cite('population', 'PSA') + ' ' + esc(t('needIntroHh', { hh: fmtNum(nd.households), size: hhSize() })) + cite('householdSize', 'PSA') + ' ' + esc(t('needIntroLoad', { load: r1(nd.load) })) + cite('tankerLoad', 'BCWD') + '</p>' +
         '<div class="tbl"><table><thead><tr><th></th><th class="num">' + esc(t('thPerPerson')) + '</th><th class="num">' + esc(t('thPerDay')) + '</th><th class="num">cu.m</th><th class="num">' + esc(t('thLoads')) + '</th></tr></thead><tbody>' +
-        line(t('needDrinking'), needL('drinking'), nd.drinking) + line(t('needSurvival'), needL('survival'), nd.survival) + line(t('needBasic'), needL('basic'), nd.basic) +
+        line(t('needDrinking'), needL('drinking'), nd.drinking, 'sphereWater') + line(t('needSurvival'), needL('survival'), nd.survival, 'sphereWater') + line(t('needBasic'), needL('basic'), nd.basic, 'whoQuantity') +
         '</tbody></table></div>' +
         '<p class="sub"><b>' + esc(t('needGot', { got: r1(got), pct: nd.survival ? (got / nd.survival * 100).toFixed(1) : '0' })) + '</b></p></div>';
     }
     const row = (r, cls) => '<tr class="' + cls + (r.id === state.selected ? ' is-sel' : '') + '"><td><a href="#schedule" data-bgy="' + r.id + '">' + esc(bgyName(r.id)) + '</a></td><td class="num">' + (r.pop ? fmtNum(r.pop) : '—') + '</td>';
-    const table = '<div class="tbl"><table><thead><tr><th>' + esc(t('thBgy')) + '</th><th class="num">' + esc(t('thPop')) + '</th><th class="num">' + esc(t('thNeed')) + '</th><th class="num">cu.m</th><th class="num">' + esc(t('thLpp')) + '</th><th class="num">%</th><th></th></tr></thead><tbody>' +
+    const table = '<div class="tbl"><table><thead><tr><th>' + esc(t('thBgy')) + '</th><th class="num">' + esc(t('thPop')) + cite('population', 'PSA') + '</th><th class="num">' + esc(t('thNeed')) + cite('sphereWater', 'Sphere') + '</th><th class="num">cu.m' + cite('tankerLoad', 'BCWD') + '</th><th class="num">' + esc(t('thLpp')) + '</th><th class="num">%</th><th></th></tr></thead><tbody>' +
       rows.map((r) => { const nd = r.pop ? needs(r.pop) : null; return row(r, '') + '<td class="num">' + (nd ? r1(nd.survival) : '—') + '</td><td class="num">' + (r.logged ? r1(r.cum) : '<span class="note">' + esc(t('notLogged')) + '</span>') + '</td><td class="num">' + (r.lpp != null ? '<b>' + r1(r.lpp) + '</b>' : '—') + '</td><td class="num">' + (nd && r.logged ? (r.cum / nd.survival * 100).toFixed(1) : '—') + '</td><td class="barcell">' + lppBar(r.lpp) + '</td></tr>'; }).join('') +
       '</tbody></table></div>' +
       '<div class="row"><button type="button" class="btn sm ghost" id="copyReport">' + esc(t('copyReport')) + '</button></div>' +
       (unserved.length ? '<button type="button" class="btn sm ghost" id="toggleUnserved">' + esc(t(state.showAll ? 'hideUnserved' : 'showUnserved', { n: unserved.length })) + '</button>' +
         '<div class="unserved-cloud" id="unservedRows"' + (state.showAll ? '' : ' hidden') + '>' +
         unserved.map((r) => '<a href="#schedule" class="chip' + (r.id === state.selected ? ' sel' : '') + '" data-bgy="' + r.id + '">' + esc(bgyName(r.id)) + (r.pop ? ' <b>' + fmtNum(r.pop) + '</b>' : '') + '</a>').join('') + '</div>' : '');
-    const basis = state.population.household ? ' ' + esc(t('needBasis', { size: hhSize() })) + ' ' + esc(state.population.household.basis || '') + ' ' + esc((state.population.needs || {}).basis || '') : '';
-    box.innerHTML = head + needBox + share + table + '<p class="note">' + esc(t('suffNote')) + basis + ' ' + esc(t('factSrc')) + ': <a href="' + esc(state.population.sourceUrl) + '" target="_blank" rel="noopener">' + esc(state.population.source) + ' ↗</a></p>';
+    box.innerHTML = head + needBox + share + table + '<p class="note">' + esc(t('suffNote')) + ' ' + esc(t('marks15')) + cite('sphereWater', 'Sphere') + ' ' + esc(t('marks20')) + cite('whoQuantity', 'WHO') + ' ' + esc(t('marks50')) + cite('whoQuantity', 'WHO') + '</p>';
     $$('#suffBody a[data-bgy]').forEach((a) => a.addEventListener('click', (e) => { e.preventDefault(); selectBgy(a.dataset.bgy, true); }));
     const tg = $('#toggleUnserved'); if (tg) tg.addEventListener('click', () => { state.showAll = !state.showAll; renderSufficiency(ds); });
     const cp = $('#copyReport'); if (cp) cp.addEventListener('click', () => copyText(buildReportCsv(ds, rows, unserved)));
@@ -493,6 +496,12 @@
     return 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent('Barangay ' + (o.barangay || '') + ', Butuan City');
   }
   const bcwdGroup = () => ((state.hotlines && state.hotlines.groups) || []).find((g) => g.id === 'bcwd');
+  // Inline citation: a small link placed right beside the figure it supports (data/sources.json).
+  function cite(key, extra) {
+    const s = state.sources && state.sources[key]; if (!s) return '';
+    const label = pick(s.label) || s.url;
+    return ' <a class="cite" href="' + esc(s.url) + '" target="_blank" rel="noopener" title="' + esc(label + (s.note ? ' — ' + pick(s.note) : '')) + '">' + esc(extra || t('citeWord')) + ' ↗</a>';
+  }
   const archiveLink = (url) => (url ? ' · <a href="' + esc(url) + '" target="_blank" rel="noopener" title="Wayback Machine">' + esc(t('archive')) + ' ↗</a>' : '');
   const pioUrl = () => (state.hotlines && state.hotlines.pioUrl) || (state.schedule && state.schedule.sourceUrl) || 'https://www.facebook.com/';
 
@@ -625,7 +634,7 @@
     $('#hallSave').addEventListener('click', () => { state.hall = $('#hallInput').value.replace(/[^\d+]/g, ''); LS.set('tb.hall', state.hall); renderHotlines(); toast(t('saved')); });
   }
   function renderGuide() {
-    const card = (title, steps) => '<div class="card"><h3>' + esc(title) + '</h3><ol class="steps">' + steps.map((s) => '<li><div><b>' + esc(s.b) + '</b><span>' + esc(s.s) + '</span></div></li>').join('') + '</ol></div>';
+    const card = (title, steps) => '<div class="card"><h3>' + esc(title) + '</h3><ol class="steps">' + steps.map((s) => '<li><div><b>' + esc(s.b) + '</b><span>' + esc(s.s) + (s.src ? cite(s.src) : '') + '</span></div></li>').join('') + '</ol></div>';
     $('#guideBody').innerHTML = card(t('boilTitle'), t('boilSteps')) + card(t('conserveTitle'), t('conserveSteps'));
   }
   function renderReport() {
@@ -761,13 +770,13 @@
 
   /* ---------------- boot ---------------- */
   async function boot() {
-    const [bgys, status, stations, schedule, hotlines, landmarks, population] = await Promise.all([
+    const [bgys, status, stations, schedule, hotlines, landmarks, population, sources] = await Promise.all([
       loadJSON('data/barangays.json', null), loadJSON('data/status.json', null), loadJSON('data/stations.json', { stations: [] }),
       loadJSON('data/schedule.json', { stops: [] }), loadJSON('data/hotlines.json', { groups: [] }), loadJSON('data/landmarks.json', { landmarks: [] }),
-      loadJSON('data/population.json', null)
+      loadJSON('data/population.json', null), loadJSON('data/sources.json', {})
     ]);
     if (!bgys) { const ld = $('#mapLoading'); if (ld) ld.textContent = 'Map data unavailable'; return; }
-    Object.assign(state, { bgys, status, stations, schedule, hotlines, landmarks, population });
+    Object.assign(state, { bgys, status, stations, schedule, hotlines, landmarks, population, sources });
     buildIndex();
     if (state.selected && !resolveBgy(state.selected)) state.selected = '';
     renderAll();
