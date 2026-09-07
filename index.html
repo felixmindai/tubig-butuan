@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="ceb">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Tubig Butuan · Water Info Hub</title>
+<meta name="description" content="Community water information hub for Butuan City: supply status, Oplan Sag-Ob fetching stations, tanker schedules per barangay, hotlines, and boil-water guidance. Bisaya and English.">
+<meta name="theme-color" content="#0B5FA5">
+<meta property="og:title" content="Tubig Butuan · Water Info Hub">
+<meta property="og:description" content="Asa ang tubig karon? Sag-ob stations, iskedyul sa tanker matag barangay, hotlines, ug giya sa luwas nga tubig.">
+<meta property="og:type" content="website">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icons/icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="icons/icon-192.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo+Black&display=swap">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div class="offline" id="offline" data-i18n="offline">Offline ka karon. Gipakita ang kataposang na-save nga datos.</div>
+
+<header class="topbar">
+  <a class="brand" href="#top" aria-label="Tubig Butuan">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5C8.5 8 5.5 11.3 5.5 15a6.5 6.5 0 0 0 13 0c0-3.7-3-7-6.5-12.5Z" fill="currentColor"/></svg>
+    <span>Tubig<b>Butuan</b></span>
+  </a>
+  <div class="topbar-right">
+    <button class="pill" id="langBtn" type="button" aria-label="Switch language">EN</button>
+  </div>
+</header>
+
+<main id="top">
+  <section class="bulletin" id="status" aria-labelledby="statusTitle">
+    <p class="kicker" data-i18n="kicker">Kahimtang sa suplay sa tubig</p>
+    <h1 id="statusTitle">Butuan City ubos sa State of Calamity tungod sa kakulang sa tubig</h1>
+    <div class="stamp hidden" id="stamp">State of Calamity<small id="stampSince"></small></div>
+    <div class="metrics">
+      <div class="metric">
+        <p class="label" data-i18n="supplyLabel">Suplay karon sa BCWD</p>
+        <div class="big"><span id="supplyNum">—</span><small>MLD</small></div>
+        <div class="gauge"><i id="supplyBar"></i><span class="mark" id="supplyMark" style="left:calc(100% - 2px)" data-label="normal"></span></div>
+        <p class="sub" id="supplySub"></p>
+      </div>
+      <div class="metric">
+        <p class="label" data-i18n="damLabel">Lebel sa dam sa Taguibo</p>
+        <div class="mid"><span id="damNum">—</span><small>m</small></div>
+        <div class="gauge"><i id="damBar"></i><span class="mark" id="damMark" data-label="critical"></span></div>
+        <p class="sub" id="damSub"></p>
+      </div>
+    </div>
+    <div class="facts" id="facts"></div>
+  </section>
+
+  <nav class="tabs" aria-label="Sections" id="tabs">
+    <a href="#map" data-i18n="tabMap">Mapa</a>
+    <a href="#schedule" data-i18n="tabSchedule">Iskedyul</a>
+    <a href="#stations" data-i18n="tabStations">Estasyon</a>
+    <a href="#hotlines" data-i18n="tabHotlines">Hotline</a>
+    <a href="#guide" data-i18n="tabGuide">Giya</a>
+    <a href="#report" data-i18n="tabReport">Isumbong</a>
+  </nav>
+
+  <div class="layout">
+    <div class="map-col">
+      <section id="map">
+        <h2><span data-i18n="mapTitle">Mapa sa Butuan</span> <span class="n">86 BRGY</span></h2>
+        <div class="map-wrap" id="mapWrap">
+          <div class="map-loading" id="mapLoading" data-i18n="loading">Nagkarga sa mapa…</div>
+          <div class="leaflet-host" id="leafletHost"></div>
+          <div class="map-ctl">
+            <button type="button" id="zoomIn" aria-label="Zoom in" title="Zoom in">+</button>
+            <button type="button" id="zoomOut" aria-label="Zoom out" title="Zoom out">−</button>
+            <button type="button" id="zoomReset" aria-label="Reset view" title="Reset view">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg>
+            </button>
+            <button type="button" id="locateMe" aria-label="Find my barangay" title="Find my barangay">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="6"/><path d="M12 2v4M12 18v4M2 12h4M18 12h4"/><circle cx="12" cy="12" r="1.5" fill="currentColor"/></svg>
+            </button>
+            <button type="button" id="toggleDetail" aria-label="Detailed street map" title="Detailed street map">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 6l6-3 6 3 6-3v15l-6 3-6-3-6 3z"/><path d="M9 3v15M15 6v15"/></svg>
+            </button>
+          </div>
+          <div class="map-info" id="mapInfo"><span data-i18n="mapHint">I-tap ang barangay aron makita ang iskedyul niini.</span></div>
+        </div>
+        <div class="legend" id="legend"></div>
+      </section>
+    </div>
+
+    <div class="content-col">
+      <section id="schedule">
+        <h2><span data-i18n="schedTitle">Iskedyul sa tanker</span> <span class="today" id="todayLabel"></span></h2>
+        <div class="card">
+          <label for="bgySelect" data-i18n="pickBgy">Pilia ang imong barangay</label>
+          <select id="bgySelect"></select>
+          <div id="schedBody"></div>
+          <div class="row" id="schedActions" style="margin-top:12px">
+            <button class="btn water" id="shareBtn" type="button">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 13.5l6.8 4M15.4 6.5l-6.8 4"/></svg>
+              <span data-i18n="share">Ipaambit</span>
+            </button>
+            <button class="btn ghost" id="copyBtn" type="button"><span data-i18n="copy">Kopyaha</span></button>
+          </div>
+          <details style="margin-top:10px"><summary data-i18n="preview">Tan-awa ang mensahe</summary><pre class="share-box" id="shareBox"></pre></details>
+          <p class="note" id="schedSource"></p>
+        </div>
+      </section>
+
+      <section id="stations">
+        <h2><span data-i18n="stationsTitle">Sag-ob stations</span> <span class="n">OPLAN SAG-OB</span></h2>
+        <p class="note" data-i18n="stationsIntro">Oplan Sag-Ob sa BCWD: pwede ka mokuha og tubig dinhi kung walay suplay sa inyong lugar.</p>
+        <div id="stationsList"></div>
+        <p class="note" id="stationsSource"></p>
+      </section>
+
+      <section id="hotlines">
+        <h2><span data-i18n="hotTitle">Mga hotline</span></h2>
+        <div class="hot" id="hotlinesList"></div>
+      </section>
+
+      <section id="guide">
+        <h2><span data-i18n="guideTitle">Giya sa luwas nga tubig</span></h2>
+        <div class="guide-grid" id="guideBody"></div>
+      </section>
+
+      <section id="report" class="report">
+        <h2><span data-i18n="reportTitle">Isumbong ang leak o walay tubig</span></h2>
+        <div class="card">
+          <p class="note" data-i18n="reportIntro">Ang matag leak nga naayo, suplay nga nabawi. Ang mensahe ipadala sa BCWD gikan sa imong telepono.</p>
+          <label for="reportType" data-i18n="reportTypeLabel">Unsa ang isumbong?</label>
+          <select id="reportType"></select>
+          <label for="reportWhere" data-i18n="reportWhereLabel">Asa? (purok, landmark, dalan)</label>
+          <textarea id="reportWhere" rows="2"></textarea>
+          <pre class="preview" id="reportPreview"></pre>
+          <div class="row">
+            <a class="btn water" id="reportSms" href="#">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 21l1.9-5.4A8 8 0 1 1 21 12z"/></svg>
+              <span data-i18n="sendSms">Ipadala sa SMS</span>
+            </a>
+            <a class="btn ghost" id="reportCall" href="#"><span data-i18n="callBcwd">Tawagan ang BCWD</span></a>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <p class="disc" data-i18n="disc">Dili opisyal nga site sa BCWD o sa City Government. Gimugna sa mga taga-Butuan para sa mga taga-Butuan.</p>
+  <p data-i18n="sources">Tinubdan sa datos: BCWD, Butuan City PIO, City Government of Butuan, PSA/NAMRIA (mapa).</p>
+  <p><span data-i18n="dataUpdated">Datos gi-update</span>: <span class="mono" id="footUpdated">—</span> · <a id="editLink" href="EDITING.md" data-i18n="editLink">Unsaon pag-update sa datos</a> · <a id="pioLink" href="#" target="_blank" rel="noopener">Butuan City PIO</a></p>
+</footer>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script src="js/map.js" defer></script>
+<script src="js/app.js" defer></script>
+</body>
+</html>

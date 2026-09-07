@@ -1,0 +1,50 @@
+{
+  "updated": "2026-09-07",
+  "pioUrl": "https://www.facebook.com/ButuanCityPIO",
+  "groups": [
+    {
+      "id": "bcwd",
+      "name": "BCWD · Butuan City Water District",
+      "note": { "ceb": "Leak, walay tubig, Oplan Sag-Ob, iskedyul sa tanker", "en": "Leaks, no water, Oplan Sag-Ob, tanker schedules" },
+      "numbers": [
+        { "label": "Globe", "tel": "09171888726", "sms": true },
+        { "label": "Smart", "tel": "09189304234", "sms": true },
+        { "label": "Landline", "tel": "0858176635" },
+        { "label": "Landline", "tel": "0858176736" }
+      ],
+      "source": "BCWD advisory, Aug 24, 2026"
+    },
+    {
+      "id": "cdrrmd",
+      "urgent": true,
+      "name": "CDRRMD Butuan · Operation Center",
+      "note": { "ceb": "Emergency, medikal, ug disaster response", "en": "Emergency, medical and disaster response" },
+      "numbers": [
+        { "label": { "ceb": "Emergency / medikal", "en": "Emergency / medical" }, "tel": "09217687287" },
+        { "label": { "ceb": "Disaster response", "en": "Disaster response" }, "tel": "09638167159" }
+      ],
+      "source": "City Government of Butuan hotline poster, Nov 7, 2025"
+    },
+    {
+      "id": "911",
+      "urgent": true,
+      "name": "911 · National Emergency Hotline",
+      "note": { "ceb": "Libre ang tawag sa bisan unsang network", "en": "Free to call on any network" },
+      "numbers": [ { "label": "911", "tel": "911" } ]
+    },
+    {
+      "id": "bcps",
+      "name": "Butuan City Police Stations",
+      "numbers": [
+        { "label": "BCPS 1", "tel": "09985987293" },
+        { "label": "BCPS 2", "tel": "09985987296" },
+        { "label": "BCPS 2", "tel": "09985687295" },
+        { "label": "BCPS 3", "tel": "09985987297" },
+        { "label": "BCPS 4", "tel": "09985987300" },
+        { "label": "BCPS 5", "tel": "09985987302" },
+        { "label": "BCMFC", "tel": "09302970041" }
+      ],
+      "source": "City Government of Butuan hotline poster, Nov 7, 2025"
+    }
+  ]
+}

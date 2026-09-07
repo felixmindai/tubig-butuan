@@ -1,0 +1,17 @@
+{
+  "_comment": "EXAMPLE ONLY. This is the BCWD rationing schedule of April 30, 2026, kept here to show volunteers the format. Copy the shape of these entries into schedule.json with today's real schedule.",
+  "updated": "2026-04-30",
+  "source": "BCWD Water Rationing Schedule, April 30, 2026",
+  "sourceUrl": "https://bcwd.gov.ph/services_news_article.php?a=748",
+  "operatingHours": "08:00-17:00",
+  "stops": [
+    { "date": "2026-04-30", "barangay": "Lumbocan", "where": "Station 1 (Purok 1)", "start": "09:00", "end": "09:40", "tanker": "Equiparco Tanker 2", "lat": null, "lng": null },
+    { "date": "2026-04-30", "barangay": "Lumbocan", "where": "Station 2 (Purok 2)", "start": "09:40", "end": "10:20", "tanker": "Equiparco Tanker 2", "lat": null, "lng": null },
+    { "date": "2026-04-30", "barangay": "Masao", "where": "Station 1", "start": "13:50", "end": "14:25", "tanker": "Equiparco Tanker 2", "lat": null, "lng": null },
+    { "date": "2026-04-30", "barangay": "Ambago", "where": "Stations 1-4", "start": "09:30", "end": "11:00", "tanker": "Equiparco Tanker 1", "lat": null, "lng": null },
+    { "date": "2026-04-30", "barangay": "Bancasi", "where": "Barangay hall", "start": "13:40", "end": "14:15", "tanker": "Equiparco Tanker 1", "lat": null, "lng": null },
+    { "date": "2026-04-30", "barangay": "Bit-os", "where": "Purok 3 chapel", "start": "09:40", "end": "10:05", "tanker": "Phil-Chinese Tanker 1", "lat": null, "lng": null },
+    { "date": "2026-04-30", "barangay": "Villa Kananga", "where": "Camella Homes gate", "start": "10:10", "end": "11:00", "tanker": "ADFIL Tanker 1", "lat": 8.9557, "lng": 125.5470 },
+    { "repeat": "daily", "barangay": "Maon", "where": "Barangay hall", "start": "08:30", "end": "10:00", "tanker": "CDRRMD Tanker 1", "lat": null, "lng": null }
+  ]
+}

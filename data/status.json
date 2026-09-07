@@ -1,0 +1,17 @@
+{
+  "updated": "2026-09-07",
+  "asOf": "2026-09-04",
+  "supplyMld": 37.36,
+  "normalMld": 55,
+  "damLevelM": 3.58,
+  "damAsOf": "2026-08-24",
+  "damCriticalM": 4,
+  "calamity": true,
+  "calamitySince": "2026-09-05",
+  "resolution": "SP Resolution No. 17-444-2026",
+  "affectedBarangays": 58,
+  "affectedResidents": 91425,
+  "affectedList": [],
+  "source": "BCWD report of Sept 4, 2026 (as published by Inquirer and Manila Times); BCWD advisory of Aug 24, 2026 for the dam level",
+  "sourceUrl": "https://newsinfo.inquirer.net/2300086/butuan-declares-state-of-calamity-as-water-crisis-worsens"
+}
