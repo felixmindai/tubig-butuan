@@ -82,7 +82,7 @@ css/style.css         all styling, light and dark
 js/app.js             app logic, strings, rendering
 js/map.js             vector map, pan/zoom, pins, locate, optional Leaflet layer
 data/*.json           the data volunteers edit
-sw.js                 service worker: offline shell, network-first data
+sw.js                 service worker: network-first page/code/data with offline fallback, cache-first static assets
 manifest.webmanifest  install-to-home-screen metadata
 icons/                app icons
 ```
