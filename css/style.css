@@ -225,6 +225,8 @@ label { display: block; font-weight: 700; font-size: .88rem; margin: 8px 0 4px; 
 .map-wrap.expanded .map-info { bottom: max(10px, env(safe-area-inset-bottom)); max-width: 420px; }
 body.map-expanded { overflow: hidden; }
 body.map-expanded main { z-index: 100; } /* lift main above the sticky top bar while the map is expanded */
+body.map-expanded .map-col { z-index: 100; } /* the sticky column is its own layer; lift it above the tabs */
+body.map-expanded .tabs { visibility: hidden; }
 #expandMap svg[hidden] { display: none; }
 
 /* ---------- schedule ---------- */
