@@ -221,8 +221,12 @@
   }
   const hoursText = (x) => (x.hours && x.hours.length) ? x.hours.map(([a, b]) => fmtRange(a, b)).join(', ') : t('byArrangement');
   function gmapsUrl(o) {
-    if (o.lat != null && o.lng != null) return 'https://www.google.com/maps/search/?api=1&query=' + o.lat + ',' + o.lng;
-    return 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent((o.name || o.where || '') + ', ' + (o.barangay || '') + ', Butuan City');
+    // With coordinates: turn-by-turn directions to that point. Without: fall back to the
+    // barangay centre if the map knows it, and only then to a place-name search.
+    let lat = o.lat, lng = o.lng;
+    if ((lat == null || lng == null) && mapReady) { const id = resolveBgy(o.barangay); const c = id && window.TubigMap.centroidLL(id); if (c) { lat = c.lat; lng = c.lng; } }
+    if (lat != null && lng != null) return 'https://www.google.com/maps/dir/?api=1&destination=' + lat.toFixed(5) + ',' + lng.toFixed(5) + '&travelmode=driving';
+    return 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent('Barangay ' + (o.barangay || '') + ', Butuan City');
   }
   const bcwdGroup = () => ((state.hotlines && state.hotlines.groups) || []).find((g) => g.id === 'bcwd');
   const pioUrl = () => (state.hotlines && state.hotlines.pioUrl) || (state.schedule && state.schedule.sourceUrl) || 'https://www.facebook.com/';
@@ -316,7 +320,7 @@
         '<div><h3>' + esc(x.name) + '</h3><div class="note">Brgy. ' + esc(x.barangay) + (x.note ? ' · ' + esc(pick(x.note)) : '') + '</div></div>' + badge +
         '<div class="hours">' + esc(t('hours')) + ': ' + esc(hoursText(x)) + '</div>' +
         (x.type === 'fetch' ? '<ul>' + t('bringItems').map((li) => '<li>' + esc(li) + '</li>').join('') + '</ul>' : '') +
-        ((x.lat == null || x.lng == null) ? '<div class="note" style="grid-column:1/-1">' + esc(t('approxNote')) + '</div>' : '') +
+        ((x.approx || x.lat == null || x.lng == null) ? '<div class="note" style="grid-column:1/-1">' + esc(x.locNote ? pick(x.locNote) : t('approxNote')) + '</div>' : '') +
         '<div class="row"><a class="btn sm ghost" href="' + esc(gmapsUrl(x)) + '" target="_blank" rel="noopener">' + esc(t('directions')) + '</a>' +
         (bgyId ? '<button type="button" class="btn sm ghost" data-zoom="' + bgyId + '">' + esc(t('showOnMap')) + '</button>' : '') + '</div>' +
         '</div>';
@@ -389,7 +393,7 @@
   function buildPins() {
     const pins = [];
     for (const x of ((state.stations && state.stations.stations) || [])) {
-      let lat = x.lat, lng = x.lng, approx = false;
+      let lat = x.lat, lng = x.lng, approx = !!x.approx;
       if (lat == null || lng == null) { const id = resolveBgy(x.barangay); const c = id && window.TubigMap.centroidLL(id); if (!c) continue; lat = c.lat; lng = c.lng; approx = true; }
       pins.push({ type: 'station', lat, lng, approx, title: x.name, sub: 'Brgy. ' + x.barangay + ' · ' + hoursText(x), name: x.name, barangay: x.barangay });
     }
@@ -412,6 +416,7 @@
     const ld = $('#mapLoading'); if (ld) ld.remove();
     mapReady = true;
     updateMapLayers();
+    renderStations(); // direction links can now use barangay centres
     if (state.selected) { window.TubigMap.setSelected(state.selected); window.TubigMap.zoomTo(state.selected); }
     renderMapInfo();
     $('#expandMap').addEventListener('click', () => setExpanded(!$('#mapWrap').classList.contains('expanded')));

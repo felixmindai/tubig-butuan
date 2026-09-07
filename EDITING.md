@@ -85,7 +85,8 @@ Pag-kuha og coordinates / Getting coordinates: sa Google Maps, i-long-press ang 
 
 - `type` — `"fetch"` para sa sag-ob, `"bulk"` para sa bulk sales.
 - `hours` — listahan sa mga oras nga abli, pananglitan `[["06:00","12:00"],["14:00","18:00"]]`. Wala nga hours = "sumala sa kasabotan".
-- Kung naa kay tukma nga `lat`/`lng`, ibutang aron sakto ang pin sa mapa. Add exact coordinates when known so the pin is accurate.
+- Kung naa kay tukma nga `lat`/`lng`, ibutang aron sakto ang pin sa mapa ug ang "Direksyon". Add exact coordinates when known so the pin and the Directions link are accurate.
+- `approx: true` — ipakita nga gibanabana pa ang lokasyon. `locNote` — mubo nga pagpasabot asa gikan ang pin. Kuhaa ang duha kung sigurado na ang lokasyon. Mark the pin as approximate and explain where it came from; remove both once the spot is confirmed.
 
 ---
 

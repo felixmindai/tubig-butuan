@@ -1,0 +1,8 @@
+[out:json][timeout:30];
+(
+  nwr["name"~"Pump|BCWD|Water District|Pumping|Filtration|Reservoir|Sag-?ob",i](8.85,125.45,9.06,125.75);
+  nwr["man_made"~"pumping_station|water_works|reservoir_covered|water_tower"](8.85,125.45,9.06,125.75);
+  nwr["operator"~"BCWD|Water District",i](8.85,125.45,9.06,125.75);
+  nwr["name"~"Alviola",i](8.85,125.45,9.06,125.75);
+);
+out center tags;

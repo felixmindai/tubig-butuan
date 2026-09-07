@@ -1,0 +1,118 @@
+{
+  "version": 0.6,
+  "generator": "Overpass API 0.7.62.11 87bfad18",
+  "osm3s": {
+    "timestamp_osm_base": "2026-09-07T06:47:50Z",
+    "copyright": "The data included in this document is from www.openstreetmap.org. The data is made available under ODbL."
+  },
+  "elements": [
+
+{
+  "type": "node",
+  "id": 5435202822,
+  "lat": 8.9545100,
+  "lon": 125.4999395,
+  "tags": {
+    "man_made": "water_tower"
+  }
+},
+{
+  "type": "node",
+  "id": 14017143165,
+  "lat": 8.9229351,
+  "lon": 125.5445425,
+  "tags": {
+    "man_made": "water_tower"
+  }
+},
+{
+  "type": "way",
+  "id": 435765349,
+  "center": {
+    "lat": 8.9538630,
+    "lon": 125.5856953
+  },
+  "tags": {
+    "is_in:village": "Baan",
+    "landuse": "residential",
+    "name": "Alviola Village",
+    "phone": "+632 918-8188",
+    "website": "http://www.filinvest.com.ph/filinvest-homes-butuan"
+  }
+},
+{
+  "type": "way",
+  "id": 835392562,
+  "center": {
+    "lat": 8.9475289,
+    "lon": 125.5305981
+  },
+  "tags": {
+    "landuse": "commercial",
+    "name": "Butuan City Water District",
+    "office": "company"
+  }
+},
+{
+  "type": "way",
+  "id": 1241334180,
+  "center": {
+    "lat": 8.9591205,
+    "lon": 125.5871035
+  },
+  "tags": {
+    "building": "yes",
+    "name": "BCWD Warehouse"
+  }
+},
+{
+  "type": "relation",
+  "id": 14333024,
+  "center": {
+    "lat": 8.9512054,
+    "lon": 125.5880395
+  },
+  "tags": {
+    "addr:city": "Butuan",
+    "addr:neighbourhood": "Alviola Village",
+    "addr:province": "Agusan del Norte",
+    "amenity": "school",
+    "isced:level": "2;3",
+    "name": "Alviola Integrated Secondary School",
+    "operator": "Central Butuan District I Butuan City Schools Division, DepEd",
+    "operator:type": "government",
+    "operator:wikidata": "Q3550346",
+    "population:pupils": "369",
+    "population:pupils:date": "2015",
+    "ref": "317517",
+    "start_date": "2009",
+    "type": "multipolygon"
+  }
+},
+{
+  "type": "relation",
+  "id": 14333025,
+  "center": {
+    "lat": 8.9519653,
+    "lon": 125.5878251
+  },
+  "tags": {
+    "addr:city": "Butuan",
+    "addr:neighbourhood": "Alviola Village",
+    "addr:province": "Agusan del Norte",
+    "amenity": "school",
+    "isced:level": "0;1",
+    "name": "Alviola Central Elementary School",
+    "operator": "Southeast I Butuan District Butuan City Schools Division, DepEd",
+    "operator:type": "government",
+    "operator:wikidata": "Q3550346",
+    "population:pupils": "734",
+    "population:pupils:date": "2015",
+    "ref": "132060",
+    "start_date": "1970",
+    "type": "multipolygon"
+  }
+}
+
+  ]
+}
