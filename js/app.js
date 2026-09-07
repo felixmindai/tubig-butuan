@@ -291,7 +291,7 @@
       }
     }
     const sc = state.schedule || {};
-    $('#schedSource').textContent = (sc.source ? t('schedSource', { src: sc.source, date: fmtDate(sc.updated) }) : '') + (sc.note ? ' · ' + pick(sc.note) : '');
+    $('#schedSource').innerHTML = (sc.source ? t('schedSource', { src: sc.sourceUrl ? '<a href="' + esc(sc.sourceUrl) + '" target="_blank" rel="noopener">' + esc(sc.source) + ' ↗</a>' : esc(sc.source), date: fmtDate(sc.updated) }) : '') + (sc.note ? ' · ' + esc(pick(sc.note)) : '');
     $('#shareBox').textContent = buildShareText();
   }
   function buildShareText() {
@@ -311,22 +311,25 @@
     return lines.join('\n');
   }
   function renderStations() {
-    const list = (state.stations && state.stations.stations) || [];
+    const sc = state.stations || {};
+    const list = sc.stations || [];
+    const rules = sc.rules ? pick(sc.rules) : t('bringItems');
     $('#stationsList').innerHTML = list.map((x) => {
+      const srcUrl = x.sourceUrl || sc.sourceUrl;
       const open = x.type === 'fetch' ? isOpen(x) : null;
       const badge = x.type === 'bulk' ? '<span class="badge bulk">' + esc(t('bulk')) + '</span>' : '<span class="badge ' + (open ? 'open' : 'closed') + '">' + esc(t(open ? 'open' : 'closed')) + '</span>';
       const bgyId = resolveBgy(x.barangay);
       return '<div class="card station">' +
         '<div><h3>' + esc(x.name) + '</h3><div class="note">' + (x.address ? esc(x.address) + ', ' : '') + 'Brgy. ' + esc(x.barangay) + (x.note ? ' · ' + esc(pick(x.note)) : '') + '</div></div>' + badge +
         '<div class="hours">' + esc(t('hours')) + ': ' + esc(hoursText(x)) + '</div>' +
-        (x.type === 'fetch' ? '<ul>' + t('bringItems').map((li) => '<li>' + esc(li) + '</li>').join('') + '</ul>' : '') +
+        (x.type === 'fetch' ? '<ul>' + rules.map((li) => '<li>' + esc(li) + '</li>').join('') + '</ul>' : '') +
         ((x.approx || x.lat == null || x.lng == null) ? '<div class="note" style="grid-column:1/-1">' + esc(x.locNote ? pick(x.locNote) : t('approxNote')) + '</div>' : '') +
+        (srcUrl ? '<div class="note mono" style="grid-column:1/-1;font-size:.72rem">' + esc(t('factSrc')) + ': <a href="' + esc(srcUrl) + '" target="_blank" rel="noopener">' + esc(x.source || sc.source || srcUrl) + ' ↗</a></div>' : '') +
         '<div class="row"><a class="btn sm ghost" href="' + esc(gmapsUrl(x)) + '" target="_blank" rel="noopener">' + esc(t('directions')) + '</a>' +
         (bgyId ? '<button type="button" class="btn sm ghost" data-zoom="' + bgyId + '">' + esc(t('showOnMap')) + '</button>' : '') + '</div>' +
         '</div>';
     }).join('');
-    const sc = state.stations || {};
-    $('#stationsSource').innerHTML = sc.source ? t('stationsSource', { src: sc.sourceUrl ? '<a href="' + esc(sc.sourceUrl) + '" target="_blank" rel="noopener">' + esc(sc.source) + '</a>' : esc(sc.source), date: fmtDate(sc.updated) }) : '';
+    $('#stationsSource').innerHTML = sc.source ? t('stationsSource', { src: sc.sourceUrl ? '<a href="' + esc(sc.sourceUrl) + '" target="_blank" rel="noopener">' + esc(sc.source) + ' ↗</a>' : esc(sc.source), date: fmtDate(sc.updated) }) : '';
     $$('#stationsList [data-zoom]').forEach((b) => b.addEventListener('click', () => { selectBgy(b.dataset.zoom, true); $('#map').scrollIntoView({ behavior: 'smooth', block: 'start' }); }));
   }
   function renderHotlines() {

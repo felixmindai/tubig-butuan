@@ -2,6 +2,22 @@
   "updated": "2026-09-07",
   "source": "BCWD Water Status Update & Advisory, Aug 24, 2026",
   "sourceUrl": "https://bcwd.gov.ph/services_news_article.php?a=781",
+  "rules": {
+    "ceb": [
+      "Maximum 1 cubic meter (1 cu. m.) o usa ka sag-ob matag adlaw matag account",
+      "Ipakita ang updated nga Statement of Account (SOA), water bill, o opisyal nga resibo",
+      "Kung inactive ang account: adto una sa BCWD Commercial Office sa Gov. J.A. Rosales Avenue para sa reactivation",
+      "Pabukala ang tanang tubig nga gisag-ob o gitipigan una imnon o gamiton sa pagluto",
+      "Daginota gayod ang tubig"
+    ],
+    "en": [
+      "Maximum of 1 cubic meter (1 cu. m.) or one fetch per day per account",
+      "Present an updated Statement of Account (SOA), water bill, or official receipt",
+      "Inactive accounts: visit the BCWD Commercial Office on Gov. J.A. Rosales Avenue for reactivation before fetching",
+      "Boil all fetched or stored water before using it for drinking or cooking",
+      "Practice strict water conservation"
+    ]
+  },
   "stations": [
     {
       "id": "ps1",
@@ -10,6 +26,8 @@
       "address": "Km. 5, Alviola Village",
       "type": "fetch",
       "hours": [["06:00", "18:00"]],
+      "source": "BCWD advisory, Aug 24, 2026",
+      "sourceUrl": "https://bcwd.gov.ph/services_news_article.php?a=781",
       "lat": 8.95912,
       "lng": 125.5871,
       "approx": true,
@@ -23,6 +41,8 @@
       "address": "Purok 4, Buhangin Barangay Hall (probable)",
       "type": "fetch",
       "hours": [["18:00", "22:00"]],
+      "source": "BCWD advisory, Aug 24, 2026",
+      "sourceUrl": "https://bcwd.gov.ph/services_news_article.php?a=781",
       "lat": 8.94644,
       "lng": 125.54939,
       "approx": true,
@@ -35,6 +55,8 @@
       "barangay": "Taguibo",
       "type": "bulk",
       "hours": [],
+      "source": "BCWD advisory, Aug 24, 2026",
+      "sourceUrl": "https://bcwd.gov.ph/services_news_article.php?a=781",
       "lat": 8.97816,
       "lng": 125.62596,
       "approx": true,
