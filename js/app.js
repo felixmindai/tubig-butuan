@@ -317,7 +317,7 @@
       const badge = x.type === 'bulk' ? '<span class="badge bulk">' + esc(t('bulk')) + '</span>' : '<span class="badge ' + (open ? 'open' : 'closed') + '">' + esc(t(open ? 'open' : 'closed')) + '</span>';
       const bgyId = resolveBgy(x.barangay);
       return '<div class="card station">' +
-        '<div><h3>' + esc(x.name) + '</h3><div class="note">Brgy. ' + esc(x.barangay) + (x.note ? ' · ' + esc(pick(x.note)) : '') + '</div></div>' + badge +
+        '<div><h3>' + esc(x.name) + '</h3><div class="note">' + (x.address ? esc(x.address) + ', ' : '') + 'Brgy. ' + esc(x.barangay) + (x.note ? ' · ' + esc(pick(x.note)) : '') + '</div></div>' + badge +
         '<div class="hours">' + esc(t('hours')) + ': ' + esc(hoursText(x)) + '</div>' +
         (x.type === 'fetch' ? '<ul>' + t('bringItems').map((li) => '<li>' + esc(li) + '</li>').join('') + '</ul>' : '') +
         ((x.approx || x.lat == null || x.lng == null) ? '<div class="note" style="grid-column:1/-1">' + esc(x.locNote ? pick(x.locNote) : t('approxNote')) + '</div>' : '') +

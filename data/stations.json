@@ -7,12 +7,13 @@
       "id": "ps1",
       "name": "Pump Station No. 1 – Alviola Village",
       "barangay": "Baan KM 3",
+      "address": "Km. 5, Alviola Village",
       "type": "fetch",
       "hours": [["06:00", "18:00"]],
       "lat": 8.95912,
       "lng": 125.5871,
       "approx": true,
-      "locNote": { "ceb": "Pin: BCWD compound sa Alviola Village (gikan sa OpenStreetMap). Kumpirmaha ang eksaktong gate sa BCWD.", "en": "Pin: BCWD compound in Alviola Village (from OpenStreetMap). Confirm the exact gate with BCWD." },
+      "locNote": { "ceb": "Pin: BCWD compound sa Km. 5, Alviola Village, kung asa sab ang BCWD property office ug supply warehouse. Amihanan nga kilid sa highway, mga 300 m sa kasadpan sa Bombo Radyo. Kumpirmaha ang eksaktong gate.", "en": "Pin: the BCWD compound at Km. 5, Alviola Village, which also holds the BCWD property office and supply warehouse. North side of the highway, about 300 m west of Bombo Radyo. Confirm the exact gate." },
       "note": { "ceb": "Para sa residential consumers", "en": "For residential consumers" }
     },
     {
