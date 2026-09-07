@@ -42,6 +42,12 @@
       chipPop: 'ka tawo (2020)', chipLpp: 'L/tawo karon', bgyNoTanker: 'walay tanker niining adlawa', noTanker: 'walay tanker',
       servedShare: 'Naabot sa tanker: {n} ka barangay, {served} sa {total} ka tawo ({pct}%). {m} ka barangay ang walay tanker niining adlawa.',
       showUnserved: 'Ipakita ang {n} ka barangay nga walay tanker', hideUnserved: 'Tagoi ang mga barangay nga walay tanker',
+      cityNeed: 'Tibuok syudad: {need} cu.m matag adlaw ang gikinahanglan sa 15 L matag tawo, mga {loads} ka biyahe sa tanker ({load} cu.m matag biyahe). Nahatod niining adlawa: {got} cu.m, {pct}% niana.',
+      needTitle: 'Panginahanglan sa Brgy. {bgy} matag adlaw', needIntro: '{pop} ka tawo, mga {hh} ka panimalay (banabana, {size} ka tawo matag panimalay). Usa ka biyahe sa tanker = mga {load} cu.m.',
+      thPerPerson: 'matag tawo', thPerDay: 'matag adlaw', thLoads: 'biyahe sa tanker', thNeed: 'Kinahanglan (15 L) cu.m',
+      needDrinking: 'Inom lang', needSurvival: 'Labing gamay aron mabuhi (inom, luto, kalimpyo)', needBasic: 'Batakang panginahanglan (WHO)',
+      needGot: 'Nahatod sa tanker niining adlawa: {got} cu.m, {pct}% sa labing gamay nga gikinahanglan.',
+      needBasis: 'Gidak-on sa panimalay: {size} ka tawo.', copyReport: 'Kopyaha ang report (CSV)',
       suffNote: 'Tubig gikan sa tanker lang ang giihap, gibahin sa tanang residente sa barangay. Wala apil ang tubig sa gripo (kung naa pa) ug ang sag-ob. Mga marka: 15 L matag tawo matag adlaw ang labing gamay aron mabuhi (Sphere), 20 L ang gikinahanglan sa WHO para sa inom, luto ug kalimpyo, 50 L ang normal nga konsumo.',
       arrived: 'miabot {time}', left: 'mibiya {time}', delivered: '{n} cu.m nahatod', tankCap: 'static tank {n} L',
       noSchedBgyLast: 'Walay tanker stop para sa Brgy. {bgy} sa kataposang iskedyul ({date}).',
@@ -132,6 +138,12 @@
       chipPop: 'people (2020)', chipLpp: 'L/person today', bgyNoTanker: 'no tanker on this day', noTanker: 'no tanker',
       servedShare: 'Reached by tanker: {n} barangays, {served} of {total} people ({pct}%). {m} barangays had no tanker on this day.',
       showUnserved: 'Show the {n} barangays with no tanker', hideUnserved: 'Hide the barangays with no tanker',
+      cityNeed: 'Whole city: {need} cu.m a day is needed at 15 L per person, about {loads} tanker trips ({load} cu.m per trip). Delivered on this day: {got} cu.m, {pct}% of that.',
+      needTitle: 'What Brgy. {bgy} needs each day', needIntro: '{pop} people, about {hh} households (estimate at {size} people per household). One tanker trip = about {load} cu.m.',
+      thPerPerson: 'per person', thPerDay: 'per day', thLoads: 'tanker trips', thNeed: 'Need (15 L) cu.m',
+      needDrinking: 'Drinking only', needSurvival: 'Survival minimum (drinking, cooking, hygiene)', needBasic: 'Basic needs (WHO)',
+      needGot: 'Delivered by tanker on this day: {got} cu.m, {pct}% of the survival minimum.',
+      needBasis: 'Household size: {size} people.', copyReport: 'Copy report (CSV)',
       suffNote: 'Counts tanker water only, spread over every resident of the barangay. Piped supply (where any remains) and fetching stations are not included. Marks: 15 L per person per day is the survival minimum (Sphere), 20 L is what WHO says basic drinking, cooking and hygiene need, 50 L is normal use.',
       arrived: 'arrived {time}', left: 'left {time}', delivered: '{n} cu.m delivered', tankCap: 'static tank {n} L',
       noSchedBgyLast: 'No tanker stop for Brgy. {bgy} in the last schedule ({date}).',
@@ -360,6 +372,21 @@
     const cls = lpp == null ? '' : (lpp < THRESH[0] ? 'bad' : (lpp < THRESH[1] ? 'warn' : 'ok'));
     return '<div class="lpp"><i class="' + cls + '" style="width:' + w + '%"></i>' + THRESH.map((v) => '<b style="left:' + ((v / 60) * 100) + '%" title="' + v + ' L"></b>').join('') + '</div>';
   }
+  /* ---------------- daily need per barangay ---------------- */
+  const hhSize = () => (state.population && state.population.household && state.population.household.size) || 4.2;
+  const needL = (k) => (state.population && state.population.needs && state.population.needs[k]) || { drinking: 3, survival: 15, basic: 20 }[k];
+  function tankerLoad() {
+    const caps = ((state.schedule && state.schedule.stops) || []).map((s) => s.tankerCapacity).filter((c) => typeof c === 'number' && c > 0);
+    const uniq = {}; caps.forEach((c, i) => { uniq[((state.schedule.stops[i] || {}).tanker || '') + c] = c; });
+    const vals = Object.values(uniq);
+    return vals.length ? vals.reduce((a, b) => a + b, 0) / vals.length : ((state.population && state.population.tankerLoadCum) || 10);
+  }
+  function needs(pop) {
+    const load = tankerLoad();
+    const cum = (l) => (pop * l) / 1000;
+    return { households: Math.round(pop / hhSize()), drinking: cum(needL('drinking')), survival: cum(needL('survival')), basic: cum(needL('basic')), load, loads: (c) => Math.ceil(c / load) };
+  }
+  const r1 = (x) => Math.round(x * 10) / 10;
   function bgyFacts(ds, id) {
     const rows = sufficiency(ds.stops), r = rows.find((x) => x.id === id) || null, pop = popOf(id);
     return { pop, stops: r ? r.stops : 0, logged: r ? r.logged : 0, cum: r ? Math.round(r.cum * 10) / 10 : 0, lpp: r && r.lpp != null ? Math.round(r.lpp * 10) / 10 : null, served: !!r };
@@ -395,17 +422,45 @@
         '<p class="sub">' + esc(t('suffLine', { bgy: bgyName(state.selected), pop: fmtNum(pop), cum: Math.round(sel.cum * 10) / 10, n: sel.logged, stops: sel.stops })) + '</p></div>';
       else head = '<p class="sub">' + esc(t(sel ? 'suffNotLogged' : 'suffNoStops', { bgy: bgyName(state.selected), pop: pop ? fmtNum(pop) : '—' })) + '</p>';
     }
-    const share = total ? '<p class="share-line">' + esc(t('servedShare', { served: fmtNum(servedPop), total: fmtNum(total), pct: Math.round((servedPop / total) * 100), n: rows.length, m: unserved.length })) + '</p>' : '';
+    const cityNeed = total ? needs(total) : null, deliveredAll = rows.reduce((s, r) => s + r.cum, 0);
+    const share = total ? '<p class="share-line">' + esc(t('servedShare', { served: fmtNum(servedPop), total: fmtNum(total), pct: Math.round((servedPop / total) * 100), n: rows.length, m: unserved.length })) +
+      '<br>' + esc(t('cityNeed', { need: fmtNum(Math.round(cityNeed.survival)), loads: fmtNum(cityNeed.loads(cityNeed.survival)), load: r1(cityNeed.load), got: r1(deliveredAll), pct: (deliveredAll / cityNeed.survival * 100).toFixed(1) })) + '</p>' : '';
+    // selected barangay: what it needs each day, in tanker loads an agency can act on
+    let needBox = '';
+    if (state.selected && popOf(state.selected)) {
+      const pop = popOf(state.selected), nd = needs(pop), got = sel ? sel.cum : 0;
+      const line = (label, l, c) => '<tr><td>' + esc(label) + '</td><td class="num">' + l + ' L</td><td class="num">' + fmtNum(Math.round(l * pop)) + ' L</td><td class="num"><b>' + r1(c) + '</b> cu.m</td><td class="num">' + nd.loads(c) + '</td></tr>';
+      needBox = '<div class="needs"><h4>' + esc(t('needTitle', { bgy: bgyName(state.selected) })) + '</h4>' +
+        '<p class="sub">' + esc(t('needIntro', { pop: fmtNum(pop), hh: fmtNum(nd.households), size: hhSize(), load: r1(nd.load) })) + '</p>' +
+        '<div class="tbl"><table><thead><tr><th></th><th class="num">' + esc(t('thPerPerson')) + '</th><th class="num">' + esc(t('thPerDay')) + '</th><th class="num">cu.m</th><th class="num">' + esc(t('thLoads')) + '</th></tr></thead><tbody>' +
+        line(t('needDrinking'), needL('drinking'), nd.drinking) + line(t('needSurvival'), needL('survival'), nd.survival) + line(t('needBasic'), needL('basic'), nd.basic) +
+        '</tbody></table></div>' +
+        '<p class="sub"><b>' + esc(t('needGot', { got: r1(got), pct: nd.survival ? (got / nd.survival * 100).toFixed(1) : '0' })) + '</b></p></div>';
+    }
     const row = (r, cls) => '<tr class="' + cls + (r.id === state.selected ? ' is-sel' : '') + '"><td><a href="#schedule" data-bgy="' + r.id + '">' + esc(bgyName(r.id)) + '</a></td><td class="num">' + (r.pop ? fmtNum(r.pop) : '—') + '</td>';
-    const table = '<div class="tbl"><table><thead><tr><th>' + esc(t('thBgy')) + '</th><th class="num">' + esc(t('thPop')) + '</th><th class="num">cu.m</th><th class="num">' + esc(t('thLpp')) + '</th><th></th></tr></thead><tbody>' +
-      rows.map((r) => row(r, '') + '<td class="num">' + (r.logged ? Math.round(r.cum * 10) / 10 : '<span class="note">' + esc(t('notLogged')) + '</span>') + '</td><td class="num">' + (r.lpp != null ? '<b>' + (Math.round(r.lpp * 10) / 10) + '</b>' : '—') + '</td><td class="barcell">' + lppBar(r.lpp) + '</td></tr>').join('') +
+    const table = '<div class="tbl"><table><thead><tr><th>' + esc(t('thBgy')) + '</th><th class="num">' + esc(t('thPop')) + '</th><th class="num">' + esc(t('thNeed')) + '</th><th class="num">cu.m</th><th class="num">' + esc(t('thLpp')) + '</th><th class="num">%</th><th></th></tr></thead><tbody>' +
+      rows.map((r) => { const nd = r.pop ? needs(r.pop) : null; return row(r, '') + '<td class="num">' + (nd ? r1(nd.survival) : '—') + '</td><td class="num">' + (r.logged ? r1(r.cum) : '<span class="note">' + esc(t('notLogged')) + '</span>') + '</td><td class="num">' + (r.lpp != null ? '<b>' + r1(r.lpp) + '</b>' : '—') + '</td><td class="num">' + (nd && r.logged ? (r.cum / nd.survival * 100).toFixed(1) : '—') + '</td><td class="barcell">' + lppBar(r.lpp) + '</td></tr>'; }).join('') +
       '</tbody></table></div>' +
+      '<div class="row"><button type="button" class="btn sm ghost" id="copyReport">' + esc(t('copyReport')) + '</button></div>' +
       (unserved.length ? '<button type="button" class="btn sm ghost" id="toggleUnserved">' + esc(t(state.showAll ? 'hideUnserved' : 'showUnserved', { n: unserved.length })) + '</button>' +
         '<div class="unserved-cloud" id="unservedRows"' + (state.showAll ? '' : ' hidden') + '>' +
         unserved.map((r) => '<a href="#schedule" class="chip' + (r.id === state.selected ? ' sel' : '') + '" data-bgy="' + r.id + '">' + esc(bgyName(r.id)) + (r.pop ? ' <b>' + fmtNum(r.pop) + '</b>' : '') + '</a>').join('') + '</div>' : '');
-    box.innerHTML = head + share + table + '<p class="note">' + esc(t('suffNote')) + ' ' + esc(t('factSrc')) + ': <a href="' + esc(state.population.sourceUrl) + '" target="_blank" rel="noopener">' + esc(state.population.source) + ' ↗</a></p>';
+    const basis = state.population.household ? ' ' + esc(t('needBasis', { size: hhSize() })) + ' ' + esc(state.population.household.basis || '') + ' ' + esc((state.population.needs || {}).basis || '') : '';
+    box.innerHTML = head + needBox + share + table + '<p class="note">' + esc(t('suffNote')) + basis + ' ' + esc(t('factSrc')) + ': <a href="' + esc(state.population.sourceUrl) + '" target="_blank" rel="noopener">' + esc(state.population.source) + ' ↗</a></p>';
     $$('#suffBody a[data-bgy]').forEach((a) => a.addEventListener('click', (e) => { e.preventDefault(); selectBgy(a.dataset.bgy, true); }));
     const tg = $('#toggleUnserved'); if (tg) tg.addEventListener('click', () => { state.showAll = !state.showAll; renderSufficiency(ds); });
+    const cp = $('#copyReport'); if (cp) cp.addEventListener('click', () => copyText(buildReportCsv(ds, rows, unserved)));
+  }
+  function buildReportCsv(ds, rows, unserved) {
+    const head = ['date', 'barangay', 'population_2020', 'households_est', 'need_drinking_3L_cum', 'need_survival_15L_cum', 'need_basic_20L_cum', 'tanker_loads_for_15L', 'stops', 'stops_logged', 'delivered_cum', 'litres_per_person', 'pct_of_15L_need'];
+    const lines = [head.join(',')];
+    const all = rows.map((r) => ({ id: r.id, pop: r.pop, stops: r.stops, logged: r.logged, cum: r.cum, lpp: r.lpp })).concat(unserved.map((u) => ({ id: u.id, pop: u.pop, stops: 0, logged: 0, cum: 0, lpp: 0 })));
+    for (const r of all) {
+      const nd = r.pop ? needs(r.pop) : null;
+      lines.push([ds.key, '"' + bgyName(r.id).replace(/"/g, '""') + '"', r.pop || '', nd ? nd.households : '', nd ? r1(nd.drinking) : '', nd ? r1(nd.survival) : '', nd ? r1(nd.basic) : '', nd ? nd.loads(nd.survival) : '', r.stops, r.logged, r.logged ? r1(r.cum) : '', r.lpp != null ? r1(r.lpp) : '', nd && r.logged ? (r.cum / nd.survival * 100).toFixed(1) : ''].join(','));
+    }
+    lines.push('', '# Tubig Butuan ' + APP_URL + ' | population: PSA 2020 CPH via PhilAtlas | household size ' + hhSize() + ' | needs per Sphere/WHO | deliveries: BCWD tanker monitoring sheet');
+    return lines.join('\n');
   }
   const todaysStops = () => displaySchedule().stops;
   // Where a stop is drawn: its own coordinates, else a named landmark in its barangay

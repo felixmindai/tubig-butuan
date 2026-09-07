@@ -434,5 +434,19 @@
    "pop2020": 12407,
    "pop2015": 11173
   }
- }
+ },
+ "household": {
+  "size": 4.2,
+  "basis": "Average household size, Region XIII Caraga, 2020 Census of Population and Housing (PSA). Butuan City's own 2015 figure was 4.40 persons (76,216 households, 335,377 household population). National 2020 average: 4.1.",
+  "butuan2015": 4.4,
+  "caraga2020": 4.2,
+  "philippines2020": 4.1
+ },
+ "needs": {
+  "drinking": 3,
+  "survival": 15,
+  "basic": 20,
+  "basis": "Sphere Handbook (2018): 2.5 to 3 L per person per day for drinking, 15 L per person per day as the minimum for survival (drinking, cooking, basic hygiene). WHO: 20 L per person per day for basic access."
+ },
+ "tankerLoadCum": 10
 }

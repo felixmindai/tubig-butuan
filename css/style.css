@@ -268,6 +268,10 @@ body.map-expanded .tabs { visibility: hidden; }
 .chip.ok b, .chip.warn b, .chip.bad b { color: inherit; }
 .bgy-facts .lpp { margin-top: 8px; }
 .share-line { font-size: .88rem; margin: 8px 0 0; padding: 8px 12px; border-left: 4px solid var(--water); background: var(--paper); border-radius: 0 var(--radius) var(--radius) 0; }
+.needs { margin: 12px 0 4px; padding: 10px 12px; border: 2px dashed var(--rule); border-radius: var(--radius); }
+.needs h4 { margin: 0 0 4px; font-family: var(--display); font-weight: 400; font-size: 1rem; }
+.needs .tbl { margin: 6px 0; }
+.needs td:first-child { white-space: normal; }
 .unserved-cloud { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
 .unserved-cloud[hidden] { display: none; }
 .unserved-cloud .chip { text-decoration: none; color: var(--muted); }
