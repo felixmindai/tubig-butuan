@@ -33,6 +33,8 @@
       viewingDate: 'Gipakita ang iskedyul sa {date}.', dayToday: 'Karon',
       noSchedDate: 'Walay iskedyul nga narekord para sa {date}.',
       sumStops: 'ka stop', sumBgys: 'ka barangay', sumTankers: 'ka tanker', sumNone: 'Walay narekord nga tanker stop sa {date}.',
+      sumDelivered: 'cu.m nga nahatod ({n} ka stop nga natala sa BCWD)',
+      arrived: 'miabot {time}', left: 'mibiya {time}', delivered: '{n} cu.m nahatod', tankCap: 'static tank {n} L',
       noSchedBgyLast: 'Walay tanker stop para sa Brgy. {bgy} sa kataposang iskedyul ({date}).',
       stopsInBgyLast: '{n} ka tanker stop sa iskedyul sa {date}',
       shareSchedLast: 'Kataposang iskedyul sa tanker ({date}), Brgy. {bgy}:',
@@ -112,6 +114,8 @@
       viewingDate: 'Showing the schedule for {date}.', dayToday: 'Today',
       noSchedDate: 'No schedule on record for {date}.',
       sumStops: 'stops', sumBgys: 'barangays', sumTankers: 'tankers', sumNone: 'No tanker stops on record for {date}.',
+      sumDelivered: 'cu.m delivered ({n} stops logged by BCWD)',
+      arrived: 'arrived {time}', left: 'left {time}', delivered: '{n} cu.m delivered', tankCap: 'static tank {n} L',
       noSchedBgyLast: 'No tanker stop for Brgy. {bgy} in the last schedule ({date}).',
       stopsInBgyLast: '{n} tanker stop(s) in the {date} schedule',
       shareSchedLast: 'Last tanker schedule ({date}), Brgy. {bgy}:',
@@ -315,6 +319,8 @@
     const first = st[0].start, last = st.reduce((m, s) => (toMin(s.end || s.start) > toMin(m) ? (s.end || s.start) : m), st[0].end || st[0].start);
     const parts = ['<span><b>' + st.length + '</b> ' + esc(t('sumStops')) + '</span>', '<span><b>' + bgys + '</b> ' + esc(t('sumBgys')) + '</span>'];
     if (tankers) parts.push('<span><b>' + tankers + '</b> ' + esc(t('sumTankers')) + '</span>');
+    const delivered = st.reduce((sum, s) => sum + (s.delivered || 0), 0), logged = st.filter((s) => s.actualEnd).length;
+    if (delivered) parts.push('<span><b>' + (Math.round(delivered * 10) / 10) + '</b> ' + esc(t('sumDelivered', { n: logged })) + '</span>');
     parts.push('<span>' + esc(fmtTime(first)) + ' – ' + esc(fmtTime(last)) + '</span>');
     if (state.selected) { const n = st.filter((s) => s._bgy === state.selected).length; parts.push('<span>Brgy. ' + esc(bgyName(state.selected)) + ': <b>' + n + '</b> ' + esc(t('sumStops')) + '</span>'); }
     $('#daySummary').innerHTML = parts.join('');
@@ -329,7 +335,12 @@
     const c = mapReady ? window.TubigMap.centroidLL(st._bgy) : null;
     return c ? { lat: c.lat, lng: c.lng, approx: true, landmark: null } : null;
   }
-  const stopStatus = (st) => { if (!displaySchedule().isToday) return ''; const now = nowMin(), a = toMin(st.start), b = st.end ? toMin(st.end) : a + 30; return now > b ? 'past' : (now >= a ? 'now' : ''); };
+  const stopStatus = (st) => {
+    if (st.actualEnd) return 'past';                       // BCWD logged the tanker leaving
+    if (st.actualStart) return 'now';                      // logged arriving, not yet leaving
+    if (!displaySchedule().isToday) return '';
+    const now = nowMin(), a = toMin(st.start), b = st.end ? toMin(st.end) : a + 30; return now > b ? 'past' : (now >= a ? 'now' : '');
+  };
   function isOpen(x) {
     const now = nowMin();
     return (x.hours || []).some(([a, b]) => { const A = toMin(a), B = toMin(b); return B >= A ? (now >= A && now < B) : (now >= A || now < B); });
@@ -408,8 +419,11 @@
         body.innerHTML = stale + '<ul class="stops">' + mine.map((st) => {
           const cls = stopStatus(st), loc = stopLocation(st);
           const locText = (st.lat != null && st.lng != null) ? '' : (loc && loc.landmark ? t('stopLandmark', { name: loc.landmark }) : t('stopApprox'));
-          const meta = [st.tanker, cls === 'now' ? t('stopNow') : (cls === 'past' ? t('stopPast') : ''), locText].filter(Boolean).join(' · ');
-          return '<li class="stop ' + cls + '"><time>' + fmtRange(st.start, st.end) + '</time><span class="where">' + esc(st.where || '') + '</span><span class="meta">' + esc(meta) + '</span></li>';
+          const meta = [st.tanker, st.actualStart ? '' : (cls === 'now' ? t('stopNow') : (cls === 'past' ? t('stopPast') : '')), locText].filter(Boolean).join(' · ');
+          const actual = st.actualStart ? '<span class="actual">' + esc(t('arrived', { time: fmtTime(st.actualStart) })) + (st.actualEnd ? ' · ' + esc(t('left', { time: fmtTime(st.actualEnd) })) : ' · ' + esc(t('stopNow'))) +
+            (st.delivered != null ? ' · ' + esc(t('delivered', { n: st.delivered })) : '') + (st.tankCap ? ' · ' + esc(t('tankCap', { n: fmtNum(st.tankCap) })) : '') + '</span>' : '';
+          const remarks = st.remarks ? '<span class="remarks">' + esc(st.remarks) + '</span>' : '';
+          return '<li class="stop ' + cls + (st.actualStart ? ' logged' : '') + '"><time>' + fmtRange(st.start, st.end) + '</time><span class="where">' + esc(st.where || '') + '</span>' + actual + remarks + '<span class="meta">' + esc(meta) + '</span></li>';
         }).join('') + '</ul>';
       }
     }

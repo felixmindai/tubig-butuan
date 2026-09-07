@@ -41,6 +41,16 @@ Everything a volunteer needs to change lives in `data/`. See [EDITING.md](EDITIN
 
 A tanker stop with no coordinates is pinned to a landmark its text names ("Barangay Hall", "Montevista", "Purok 2") when one exists in its barangay, and to the barangay centre otherwise, flagged as approximate.
 
+## Live tanker data from BCWD's monitoring sheet
+
+BCWD keeps an hourly "Water Tankers Monitoring" Google Sheet, one tab per tanker per day, linked from the Butuan City PIO's daily rationing post. Each tab has the scheduled and actual arrival and departure at every stop, cubic metres delivered, the static tank size at the stop, and remarks.
+
+```bash
+python tools/import-bcwd-monitoring.py
+```
+
+reads the published sheet (id in `data/monitoring-source.json`), discovers the recent tabs from their names, and writes the stops into `data/schedule.json` with `actualStart`, `actualEnd`, `delivered`, `tankCap`, `remarks` and `tankerCapacity`. It replaces every stop for a day it imports, so hand-typed entries for those days are superseded. `--days N` reaches further back, `--dry-run` only reports. The workflow in `.github/workflows/import-monitoring.yml` runs it every 30 minutes during rationing hours and commits the result, which is what keeps the site current without volunteers. If BCWD publishes a new workbook (a new quarter), update the id in `data/monitoring-source.json`.
+
 ## Archived copies of every source
 
 Official pages move, go blank, or get deleted. `tools/archive-sources.py` saves every `sourceUrl` in `data/` to the Wayback Machine and writes the snapshot address back as `archiveUrl`, which the site shows as an "archived copy" link beside the live one.

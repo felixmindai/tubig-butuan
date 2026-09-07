@@ -1,0 +1,6 @@
+{
+  "_comment": "Published Google Sheet id of BCWD's 'Water Tankers Hourly Monitoring' workbook, as linked from the Butuan City PIO daily rationing post. Used by tools/import-bcwd-monitoring.py.",
+  "pubId": "2PACX-1vT0s2vnge5UM4HZN6uMQuuNoRHQWTCSHX9S93R8rGPCF21_JmfxgxWVSNJWG3Nk3uYi7634kCTAD64G",
+  "title": "Water Tankers Monitoring 2026-3rdQ",
+  "foundOn": "Butuan City PIO Facebook post of Sept 6, 2026 (Water Rationing Schedule), 'Monitoring Schedule' links"
+}

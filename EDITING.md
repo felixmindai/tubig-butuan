@@ -16,7 +16,9 @@ Importante / Important:
 
 ## 1. `data/schedule.json` — iskedyul sa tanker / tanker schedule
 
-Kini ang pinakasagad nga i-update, matag adlaw human mo-post ang PIO. This is the file updated most often, every day after the PIO posts.
+**Awtomatik na kini.** Ang site mokuha sa iskedyul ug sa aktwal nga oras sa tanker gikan sa "Water Tankers Monitoring" nga Google Sheet sa BCWD matag 30 minuto (tan-awa ang README). Ayaw na i-type ang mga adlaw nga naa na sa sheet; mapapas ra ang imong gi-type sa sunod nga import. I-type lang ang mga adlaw nga wala sa sheet, o ang mga stop nga gikan sa laing tinubdan.
+
+**This is now automatic.** The site pulls the schedule and the actual tanker times from BCWD's "Water Tankers Monitoring" Google Sheet every 30 minutes (see the README). Do not retype days that are in the sheet; the next import replaces them. Type only days the sheet lacks, or stops from another source.
 
 ```json
 {
