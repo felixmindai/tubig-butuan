@@ -285,6 +285,7 @@
     zoomOut() { detailed ? leafletZoom(-1) : zoomCenter(1 / 1.5); },
     fitAll() { if (detailed && lmap) { const [x0, y0, x1, y1] = data.bbox; lmap.fitBounds([[y0, x0], [y1, x1]]); } else fitAll(); },
     toggleDetailed, isDetailed: () => detailed,
+    resize() { layoutOverlays(); if (lmap) setTimeout(() => { lmap.invalidateSize(); layoutOverlays(); }, 60); },
     feature(id) { return F[id] || null; },
     ids() { return Object.keys(F); }
   };

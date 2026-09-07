@@ -216,6 +216,16 @@ label { display: block; font-weight: 700; font-size: .88rem; margin: 8px 0 4px; 
 .map-wrap.detailed .leaflet-host { display: block; }
 .map-wrap.detailed > svg, .map-wrap.detailed .map-info { display: none; }
 .map-wrap.detailed .map-ctl { z-index: 6; }
+/* expanded: the map takes the whole screen */
+.map-wrap.expanded {
+  position: fixed; inset: 0; z-index: 90; height: 100vh; height: 100dvh; min-height: 0;
+  border: 0; border-radius: 0;
+}
+.map-wrap.expanded .map-ctl { top: max(10px, env(safe-area-inset-top)); right: max(10px, env(safe-area-inset-right)); }
+.map-wrap.expanded .map-info { bottom: max(10px, env(safe-area-inset-bottom)); max-width: 420px; }
+body.map-expanded { overflow: hidden; }
+body.map-expanded main { z-index: 100; } /* lift main above the sticky top bar while the map is expanded */
+#expandMap svg[hidden] { display: none; }
 
 /* ---------- schedule ---------- */
 .today { font-family: var(--mono); font-size: .8rem; color: var(--muted); }

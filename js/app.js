@@ -78,7 +78,8 @@
       dataUpdated: 'Datos gi-update', editLink: 'Unsaon pag-update sa datos',
       geoFail: 'Wala makuha ang imong lokasyon. Ablihi ang GPS ug sulayi pag-usab.',
       geoOutside: 'Wala ka sa sulod sa Butuan City.', youAreIn: 'Naa ka sa Brgy. {bgy}', geoUnsupported: 'Dili suportado ang GPS sa browser nimo.',
-      detailedFail: 'Dili ma-load ang detalyadong mapa. Kinahanglan og internet.'
+      detailedFail: 'Dili ma-load ang detalyadong mapa. Kinahanglan og internet.',
+      expandMap: 'Padak-a ang mapa', collapseMap: 'Isira ang dako nga mapa'
     },
     en: {
       offline: 'You are offline. Showing the last saved data.',
@@ -145,7 +146,8 @@
       dataUpdated: 'Data updated', editLink: 'How to update the data',
       geoFail: 'Could not get your location. Turn on GPS and try again.',
       geoOutside: 'You are outside Butuan City.', youAreIn: 'You are in Brgy. {bgy}', geoUnsupported: 'Your browser does not support GPS.',
-      detailedFail: 'Could not load the detailed map. It needs internet.'
+      detailedFail: 'Could not load the detailed map. It needs internet.',
+      expandMap: 'Expand map', collapseMap: 'Close the large map'
     }
   };
   const MONTHS = { ceb: ['Enero', 'Pebrero', 'Marso', 'Abril', 'Mayo', 'Hunyo', 'Hulyo', 'Agosto', 'Septyembre', 'Oktubre', 'Nobyembre', 'Disyembre'], en: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'] };
@@ -230,6 +232,7 @@
     $$('[data-i18n]').forEach((el) => { const v = t(el.dataset.i18n); if (typeof v === 'string') el.textContent = v; });
     $('#langBtn').textContent = lang === 'ceb' ? 'EN' : 'BIS';
     document.documentElement.lang = lang === 'ceb' ? 'ceb' : 'en';
+    const eb = $('#expandMap'); if (eb) { eb.setAttribute('aria-label', t($('#mapWrap').classList.contains('expanded') ? 'collapseMap' : 'expandMap')); eb.title = eb.getAttribute('aria-label'); }
     $('#supplyMark').dataset.label = t('markNormal');
     $('#damMark').dataset.label = t('markCritical');
     $('#pioLink').href = pioUrl();
@@ -411,12 +414,24 @@
     updateMapLayers();
     if (state.selected) { window.TubigMap.setSelected(state.selected); window.TubigMap.zoomTo(state.selected); }
     renderMapInfo();
+    $('#expandMap').addEventListener('click', () => setExpanded(!$('#mapWrap').classList.contains('expanded')));
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && $('#mapWrap').classList.contains('expanded')) setExpanded(false); });
+    window.addEventListener('resize', () => { if (mapReady) window.TubigMap.resize(); });
     $('#zoomIn').addEventListener('click', () => window.TubigMap.zoomIn());
     $('#zoomOut').addEventListener('click', () => window.TubigMap.zoomOut());
     $('#zoomReset').addEventListener('click', () => window.TubigMap.fitAll());
     $('#locateMe').addEventListener('click', locateMe);
     if (window.TB_NO_TILES) $('#toggleDetail').hidden = true; // hosts that block map tiles (e.g. artifact preview)
     $('#toggleDetail').addEventListener('click', () => { const b = $('#toggleDetail'); b.disabled = true; window.TubigMap.toggleDetailed((ok) => { b.disabled = false; if (!ok) toast(t('detailedFail')); }); });
+  }
+  function setExpanded(on) {
+    const wrap = $('#mapWrap'), btn = $('#expandMap');
+    wrap.classList.toggle('expanded', on);
+    document.body.classList.toggle('map-expanded', on);
+    $('.ic-expand', btn).hidden = on; $('.ic-close', btn).hidden = !on;
+    btn.setAttribute('aria-label', t(on ? 'collapseMap' : 'expandMap')); btn.title = btn.getAttribute('aria-label');
+    window.TubigMap.resize();
+    if (!on) $('#map').scrollIntoView({ block: 'start' });
   }
   function selectBgy(id, zoom) {
     if (!id || !state.bgys.features.some((f) => f.id === id)) id = '';
