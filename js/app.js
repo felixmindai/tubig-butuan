@@ -34,6 +34,12 @@
       noSchedDate: 'Walay iskedyul nga narekord para sa {date}.',
       sumStops: 'ka stop', sumBgys: 'ka barangay', sumTankers: 'ka tanker', sumNone: 'Walay narekord nga tanker stop sa {date}.',
       sumDelivered: 'cu.m nga nahatod ({n} ka stop nga natala sa BCWD)',
+      suffTitle: 'Igo ba ang tubig?', perPerson: 'L matag tawo',
+      suffLine: 'Brgy. {bgy}: {pop} ka tawo (Census 2020). {cum} cu.m nahatod sa tanker sa {n} sa {stops} ka stop nga natala.',
+      suffNotLogged: 'Brgy. {bgy}: {pop} ka tawo. Wala pa natala sa BCWD ang gidaghanon sa tubig nga nahatod karong adlawa.',
+      suffNoStops: 'Brgy. {bgy}: {pop} ka tawo. Walay tanker stop niining adlawa.',
+      thBgy: 'Barangay', thPop: 'Populasyon', thLpp: 'L/tawo', notLogged: 'wala pa natala',
+      suffNote: 'Tubig gikan sa tanker lang ang giihap, gibahin sa tanang residente sa barangay. Wala apil ang tubig sa gripo (kung naa pa) ug ang sag-ob. Mga marka: 15 L matag tawo matag adlaw ang labing gamay aron mabuhi (Sphere), 20 L ang gikinahanglan sa WHO para sa inom, luto ug kalimpyo, 50 L ang normal nga konsumo.',
       arrived: 'miabot {time}', left: 'mibiya {time}', delivered: '{n} cu.m nahatod', tankCap: 'static tank {n} L',
       noSchedBgyLast: 'Walay tanker stop para sa Brgy. {bgy} sa kataposang iskedyul ({date}).',
       stopsInBgyLast: '{n} ka tanker stop sa iskedyul sa {date}',
@@ -115,6 +121,12 @@
       noSchedDate: 'No schedule on record for {date}.',
       sumStops: 'stops', sumBgys: 'barangays', sumTankers: 'tankers', sumNone: 'No tanker stops on record for {date}.',
       sumDelivered: 'cu.m delivered ({n} stops logged by BCWD)',
+      suffTitle: 'Is it enough?', perPerson: 'L per person',
+      suffLine: 'Brgy. {bgy}: {pop} people (2020 census). {cum} cu.m delivered by tanker across {n} of {stops} logged stops.',
+      suffNotLogged: 'Brgy. {bgy}: {pop} people. BCWD has not yet logged how much water was delivered today.',
+      suffNoStops: 'Brgy. {bgy}: {pop} people. No tanker stop on this day.',
+      thBgy: 'Barangay', thPop: 'Population', thLpp: 'L/person', notLogged: 'not logged yet',
+      suffNote: 'Counts tanker water only, spread over every resident of the barangay. Piped supply (where any remains) and fetching stations are not included. Marks: 15 L per person per day is the survival minimum (Sphere), 20 L is what WHO says basic drinking, cooking and hygiene need, 50 L is normal use.',
       arrived: 'arrived {time}', left: 'left {time}', delivered: '{n} cu.m delivered', tankCap: 'static tank {n} L',
       noSchedBgyLast: 'No tanker stop for Brgy. {bgy} in the last schedule ({date}).',
       stopsInBgyLast: '{n} tanker stop(s) in the {date} schedule',
@@ -191,7 +203,17 @@
   const esc = (s) => String(s == null ? '' : s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 
   /* ---------------- state ---------------- */
-  const state = { bgys: null, status: null, stations: null, schedule: null, hotlines: null, landmarks: null, selected: LS.get('tb.bgy', ''), hall: LS.get('tb.hall', ''), viewDate: null };
+  const state = { bgys: null, status: null, stations: null, schedule: null, hotlines: null, landmarks: null, population: null, selected: LS.get('tb.bgy', ''), hall: LS.get('tb.hall', ''), viewDate: null };
+  const popOf = (id) => { const p = state.population && state.population.barangays && state.population.barangays[id]; return p ? p.pop2020 : null; };
+  // Litres of tanker water per person for one day, per barangay, from BCWD's logged deliveries.
+  // Thresholds: 15 L/person/day survival minimum (Sphere), 20 L basic needs (WHO), 50 L normal use.
+  const THRESH = [15, 20, 50];
+  function sufficiency(stops) {
+    const by = {};
+    for (const s of stops) { const o = by[s._bgy] || (by[s._bgy] = { id: s._bgy, stops: 0, logged: 0, cum: 0 }); o.stops++; if (s.delivered != null) { o.logged++; o.cum += s.delivered; } }
+    return Object.values(by).map((o) => { o.pop = popOf(o.id); o.lpp = (o.pop && o.logged) ? (o.cum * 1000) / o.pop : null; return o; })
+      .sort((a, b) => (a.lpp == null) - (b.lpp == null) || (a.lpp || 0) - (b.lpp || 0) || (b.pop || 0) - (a.pop || 0));
+  }
 
   /* ---------------- landmarks: pin a stop to a named place inside its barangay ---------------- */
   const GENERIC = /\b(subdivision|subd|homes?|village|hoai|sitio|barangay|brgy|bgy|station|purok|the|of|and|&|de|del|ii|iii|iv)\b/gi;
@@ -324,6 +346,31 @@
     parts.push('<span>' + esc(fmtTime(first)) + ' – ' + esc(fmtTime(last)) + '</span>');
     if (state.selected) { const n = st.filter((s) => s._bgy === state.selected).length; parts.push('<span>Brgy. ' + esc(bgyName(state.selected)) + ': <b>' + n + '</b> ' + esc(t('sumStops')) + '</span>'); }
     $('#daySummary').innerHTML = parts.join('');
+    renderSufficiency(ds);
+  }
+  function lppBar(lpp) {
+    const w = lpp == null ? 0 : Math.min(100, (lpp / 60) * 100);
+    const cls = lpp == null ? '' : (lpp < THRESH[0] ? 'bad' : (lpp < THRESH[1] ? 'warn' : 'ok'));
+    return '<div class="lpp"><i class="' + cls + '" style="width:' + w + '%"></i>' + THRESH.map((v) => '<b style="left:' + ((v / 60) * 100) + '%" title="' + v + ' L"></b>').join('') + '</div>';
+  }
+  function renderSufficiency(ds) {
+    const box = $('#suffBody'); if (!box) return;
+    const rows = sufficiency(ds.stops);
+    if (!state.population || !rows.length) { box.innerHTML = ''; $('#suff').hidden = true; return; }
+    $('#suff').hidden = false;
+    const sel = state.selected && rows.find((r) => r.id === state.selected);
+    let head = '';
+    if (state.selected) {
+      const pop = popOf(state.selected);
+      if (sel && sel.lpp != null) head = '<div class="suff-hero"><div class="big">' + (Math.round(sel.lpp * 10) / 10) + '<small>' + esc(t('perPerson')) + '</small></div>' + lppBar(sel.lpp) +
+        '<p class="sub">' + esc(t('suffLine', { bgy: bgyName(state.selected), pop: fmtNum(pop), cum: Math.round(sel.cum * 10) / 10, n: sel.logged, stops: sel.stops })) + '</p></div>';
+      else head = '<p class="sub">' + esc(t(sel ? 'suffNotLogged' : 'suffNoStops', { bgy: bgyName(state.selected), pop: pop ? fmtNum(pop) : '—' })) + '</p>';
+    }
+    const table = '<div class="tbl"><table><thead><tr><th>' + esc(t('thBgy')) + '</th><th class="num">' + esc(t('thPop')) + '</th><th class="num">cu.m</th><th class="num">' + esc(t('thLpp')) + '</th><th></th></tr></thead><tbody>' +
+      rows.map((r) => '<tr' + (r.id === state.selected ? ' class="is-sel"' : '') + '><td><a href="#schedule" data-bgy="' + r.id + '">' + esc(bgyName(r.id)) + '</a></td><td class="num">' + (r.pop ? fmtNum(r.pop) : '—') + '</td><td class="num">' + (r.logged ? Math.round(r.cum * 10) / 10 : '<span class="note">' + esc(t('notLogged')) + '</span>') + '</td><td class="num">' + (r.lpp != null ? '<b>' + (Math.round(r.lpp * 10) / 10) + '</b>' : '—') + '</td><td class="barcell">' + lppBar(r.lpp) + '</td></tr>').join('') +
+      '</tbody></table></div>';
+    box.innerHTML = head + table + '<p class="note">' + esc(t('suffNote')) + ' ' + esc(t('factSrc')) + ': <a href="' + esc(state.population.sourceUrl) + '" target="_blank" rel="noopener">' + esc(state.population.source) + ' ↗</a></p>';
+    $$('#suffBody a[data-bgy]').forEach((a) => a.addEventListener('click', (e) => { e.preventDefault(); selectBgy(a.dataset.bgy, true); }));
   }
   const todaysStops = () => displaySchedule().stops;
   // Where a stop is drawn: its own coordinates, else a named landmark in its barangay
@@ -622,12 +669,13 @@
 
   /* ---------------- boot ---------------- */
   async function boot() {
-    const [bgys, status, stations, schedule, hotlines, landmarks] = await Promise.all([
+    const [bgys, status, stations, schedule, hotlines, landmarks, population] = await Promise.all([
       loadJSON('data/barangays.json', null), loadJSON('data/status.json', null), loadJSON('data/stations.json', { stations: [] }),
-      loadJSON('data/schedule.json', { stops: [] }), loadJSON('data/hotlines.json', { groups: [] }), loadJSON('data/landmarks.json', { landmarks: [] })
+      loadJSON('data/schedule.json', { stops: [] }), loadJSON('data/hotlines.json', { groups: [] }), loadJSON('data/landmarks.json', { landmarks: [] }),
+      loadJSON('data/population.json', null)
     ]);
     if (!bgys) { const ld = $('#mapLoading'); if (ld) ld.textContent = 'Map data unavailable'; return; }
-    Object.assign(state, { bgys, status, stations, schedule, hotlines, landmarks });
+    Object.assign(state, { bgys, status, stations, schedule, hotlines, landmarks, population });
     buildIndex();
     if (state.selected && !resolveBgy(state.selected)) state.selected = '';
     renderAll();

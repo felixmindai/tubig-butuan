@@ -1,0 +1,438 @@
+{
+ "source": "Philippine Statistics Authority, 2020 Census of Population and Housing (barangay counts), as republished by PhilAtlas",
+ "sourceUrl": "https://www.philatlas.com/mindanao/caraga/butuan.html",
+ "year": 2020,
+ "cityTotal2020": 372910,
+ "barangays": {
+  "agao": {
+   "name": "Agao Poblacion",
+   "pop2020": 490,
+   "pop2015": 778
+  },
+  "agusan-pequeno": {
+   "name": "Agusan Pequeño",
+   "pop2020": 5555,
+   "pop2015": 5070
+  },
+  "ambago": {
+   "name": "Ambago",
+   "pop2020": 13634,
+   "pop2015": 12656
+  },
+  "amparo": {
+   "name": "Amparo",
+   "pop2020": 3281,
+   "pop2015": 2981
+  },
+  "ampayon": {
+   "name": "Ampayon",
+   "pop2020": 13820,
+   "pop2015": 12720
+  },
+  "anticala": {
+   "name": "Anticala",
+   "pop2020": 4913,
+   "pop2015": 3864
+  },
+  "antongalon": {
+   "name": "Antongalon",
+   "pop2020": 4159,
+   "pop2015": 3643
+  },
+  "aupagan": {
+   "name": "Aupagan",
+   "pop2020": 1902,
+   "pop2015": 1660
+  },
+  "baan-km-3": {
+   "name": "Baan KM 3",
+   "pop2020": 14539,
+   "pop2015": 11308
+  },
+  "baan-riverside": {
+   "name": "Baan Riverside Poblacion",
+   "pop2020": 5478,
+   "pop2015": 5376
+  },
+  "babag": {
+   "name": "Babag",
+   "pop2020": 2016,
+   "pop2015": 1823
+  },
+  "bading": {
+   "name": "Bading Poblacion",
+   "pop2020": 5668,
+   "pop2015": 4921
+  },
+  "bancasi": {
+   "name": "Bancasi",
+   "pop2020": 5388,
+   "pop2015": 4925
+  },
+  "banza": {
+   "name": "Banza",
+   "pop2020": 4939,
+   "pop2015": 4235
+  },
+  "baobaoan": {
+   "name": "Baobaoan",
+   "pop2020": 1734,
+   "pop2015": 1438
+  },
+  "basag": {
+   "name": "Basag",
+   "pop2020": 3993,
+   "pop2015": 3786
+  },
+  "bayanihan": {
+   "name": "Bayanihan Poblacion",
+   "pop2020": 5626,
+   "pop2015": 4599
+  },
+  "bilay": {
+   "name": "Bilay",
+   "pop2020": 1354,
+   "pop2015": 1349
+  },
+  "bit-os": {
+   "name": "Bit-os",
+   "pop2020": 2955,
+   "pop2015": 3166
+  },
+  "bitan-agan": {
+   "name": "Bitan-agan",
+   "pop2020": 1300,
+   "pop2015": 1243
+  },
+  "bobon": {
+   "name": "Bobon",
+   "pop2020": 1996,
+   "pop2015": 1689
+  },
+  "bonbon": {
+   "name": "Bonbon",
+   "pop2020": 6289,
+   "pop2015": 5446
+  },
+  "bugabus": {
+   "name": "Bugabus",
+   "pop2020": 1482,
+   "pop2015": 1417
+  },
+  "bugsukan": {
+   "name": "Bugsukan",
+   "pop2020": 1946,
+   "pop2015": 1570
+  },
+  "buhangin": {
+   "name": "Buhangin Poblacion",
+   "pop2020": 5005,
+   "pop2015": 4407
+  },
+  "cabcabon": {
+   "name": "Cabcabon",
+   "pop2020": 2821,
+   "pop2015": 2326
+  },
+  "camayahan": {
+   "name": "Camayahan",
+   "pop2020": 1469,
+   "pop2015": 1258
+  },
+  "dagohoy": {
+   "name": "Dagohoy Poblacion",
+   "pop2020": 1161,
+   "pop2015": 1177
+  },
+  "dankias": {
+   "name": "Dankias",
+   "pop2020": 1385,
+   "pop2015": 1195
+  },
+  "de-oro": {
+   "name": "De Oro",
+   "pop2020": 2385,
+   "pop2015": 1968
+  },
+  "diego-silang": {
+   "name": "Diego Silang Poblacion",
+   "pop2020": 838,
+   "pop2015": 908
+  },
+  "don-francisco": {
+   "name": "Don Francisco",
+   "pop2020": 1316,
+   "pop2015": 1183
+  },
+  "doongan": {
+   "name": "Doongan",
+   "pop2020": 13814,
+   "pop2015": 13728
+  },
+  "dulag": {
+   "name": "Dulag",
+   "pop2020": 1700,
+   "pop2015": 2047
+  },
+  "dumalagan": {
+   "name": "Dumalagan",
+   "pop2020": 2932,
+   "pop2015": 2580
+  },
+  "florida": {
+   "name": "Florida",
+   "pop2020": 2752,
+   "pop2015": 2507
+  },
+  "golden-ribbon": {
+   "name": "Golden Ribbon Poblacion",
+   "pop2020": 4622,
+   "pop2015": 3833
+  },
+  "holy-redeemer": {
+   "name": "Holy Redeemer Poblacion",
+   "pop2020": 8726,
+   "pop2015": 7267
+  },
+  "humabon": {
+   "name": "Humabon Poblacion",
+   "pop2020": 139,
+   "pop2015": 137
+  },
+  "imadejas": {
+   "name": "Imadejas Poblacion",
+   "pop2020": 2198,
+   "pop2015": 1954
+  },
+  "jose-rizal": {
+   "name": "Jose Rizal Poblacion",
+   "pop2020": 4908,
+   "pop2015": 5036
+  },
+  "kinamlutan": {
+   "name": "Kinamlutan",
+   "pop2020": 3690,
+   "pop2015": 3097
+  },
+  "lapu-lapu": {
+   "name": "Lapu-lapu Poblacion",
+   "pop2020": 1458,
+   "pop2015": 1135
+  },
+  "lemon": {
+   "name": "Lemon",
+   "pop2020": 2017,
+   "pop2015": 1871
+  },
+  "leon-kilat": {
+   "name": "Leon Kilat Poblacion",
+   "pop2020": 180,
+   "pop2015": 163
+  },
+  "libertad": {
+   "name": "Libertad",
+   "pop2020": 25296,
+   "pop2015": 21703
+  },
+  "limaha": {
+   "name": "Limaha Poblacion",
+   "pop2020": 5579,
+   "pop2015": 6301
+  },
+  "los-angeles": {
+   "name": "Los Angeles",
+   "pop2020": 5661,
+   "pop2015": 5234
+  },
+  "lumbocan": {
+   "name": "Lumbocan",
+   "pop2020": 4959,
+   "pop2015": 4462
+  },
+  "maguinda": {
+   "name": "Maguinda",
+   "pop2020": 3706,
+   "pop2015": 3600
+  },
+  "mahay": {
+   "name": "Mahay",
+   "pop2020": 4874,
+   "pop2015": 4062
+  },
+  "mahogany": {
+   "name": "Mahogany Poblacion",
+   "pop2020": 6162,
+   "pop2015": 5218
+  },
+  "maibu": {
+   "name": "Maibu",
+   "pop2020": 1412,
+   "pop2015": 1492
+  },
+  "mandamo": {
+   "name": "Mandamo",
+   "pop2020": 903,
+   "pop2015": 859
+  },
+  "manila-de-bugabus": {
+   "name": "Manila de Bugabus",
+   "pop2020": 3763,
+   "pop2015": 3785
+  },
+  "maon": {
+   "name": "Maon Poblacion",
+   "pop2020": 5261,
+   "pop2015": 5072
+  },
+  "masao": {
+   "name": "Masao",
+   "pop2020": 1913,
+   "pop2015": 1786
+  },
+  "maug": {
+   "name": "Maug",
+   "pop2020": 2984,
+   "pop2015": 2778
+  },
+  "new-society-village": {
+   "name": "New Society Village Poblacion",
+   "pop2020": 955,
+   "pop2015": 1481
+  },
+  "nong-nong": {
+   "name": "Nong-nong",
+   "pop2020": 1732,
+   "pop2015": 1594
+  },
+  "obrero": {
+   "name": "Obrero Poblacion",
+   "pop2020": 8643,
+   "pop2015": 9774
+  },
+  "ong-yiu": {
+   "name": "Ong Yiu Poblacion",
+   "pop2020": 5327,
+   "pop2015": 4859
+  },
+  "pagatpatan": {
+   "name": "Pagatpatan",
+   "pop2020": 6379,
+   "pop2015": 5933
+  },
+  "pangabugan": {
+   "name": "Pangabugan",
+   "pop2020": 4438,
+   "pop2015": 2630
+  },
+  "pianing": {
+   "name": "Pianing",
+   "pop2020": 2457,
+   "pop2015": 2165
+  },
+  "pigdaulan": {
+   "name": "Pigdaulan",
+   "pop2020": 2807,
+   "pop2015": 2529
+  },
+  "pinamanculan": {
+   "name": "Pinamanculan",
+   "pop2020": 3428,
+   "pop2015": 3060
+  },
+  "port-poyohon-new-asia": {
+   "name": "Port Poyohon Poblacion",
+   "pop2020": 6607,
+   "pop2015": 4798
+  },
+  "rajah-soliman": {
+   "name": "Rajah Soliman Poblacion",
+   "pop2020": 423,
+   "pop2015": 465
+  },
+  "salvacion": {
+   "name": "Salvacion",
+   "pop2020": 1501,
+   "pop2015": 1580
+  },
+  "san-ignacio": {
+   "name": "San Ignacio Poblacion",
+   "pop2020": 1751,
+   "pop2015": 2637
+  },
+  "san-mateo": {
+   "name": "San Mateo",
+   "pop2020": 4166,
+   "pop2015": 2828
+  },
+  "san-vicente": {
+   "name": "San Vicente",
+   "pop2020": 19500,
+   "pop2015": 16187
+  },
+  "santo-nino": {
+   "name": "Santo Niño",
+   "pop2020": 3116,
+   "pop2015": 2658
+  },
+  "sikatuna": {
+   "name": "Sikatuna Poblacion",
+   "pop2020": 145,
+   "pop2015": 43
+  },
+  "silongan": {
+   "name": "Silongan Poblacion",
+   "pop2020": 632,
+   "pop2015": 661
+  },
+  "sumile": {
+   "name": "Sumile",
+   "pop2020": 2399,
+   "pop2015": 2087
+  },
+  "sumilihon": {
+   "name": "Sumilihon",
+   "pop2020": 4935,
+   "pop2015": 4989
+  },
+  "tagabaca": {
+   "name": "Tagabaca",
+   "pop2020": 3767,
+   "pop2015": 3487
+  },
+  "taguibo": {
+   "name": "Taguibo",
+   "pop2020": 5856,
+   "pop2015": 4238
+  },
+  "taligaman": {
+   "name": "Taligaman",
+   "pop2020": 4325,
+   "pop2015": 4100
+  },
+  "tandang-sora": {
+   "name": "Tandang Sora Poblacion",
+   "pop2020": 4011,
+   "pop2015": 3846
+  },
+  "tiniwisan": {
+   "name": "Tiniwisan",
+   "pop2020": 4051,
+   "pop2015": 3684
+  },
+  "tungao": {
+   "name": "Tungao",
+   "pop2020": 4607,
+   "pop2015": 5702
+  },
+  "urduja": {
+   "name": "Urduja Poblacion",
+   "pop2020": 99,
+   "pop2015": 83
+  },
+  "villa-kananga": {
+   "name": "Villa Kananga",
+   "pop2020": 12407,
+   "pop2015": 11173
+  }
+ }
+}

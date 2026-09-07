@@ -256,6 +256,26 @@ body.map-expanded .tabs { visibility: hidden; }
 .stale a { font-weight: 700; }
 .empty a { font-weight: 700; }
 
+/* ---------- sufficiency ---------- */
+.suff h3 { font-family: var(--display); font-weight: 400; font-size: 1.15rem; margin: 0 0 10px; }
+.suff-hero .big { font-size: clamp(2.4rem, 9vw, 3.6rem); }
+.suff-hero .big small { font-size: .3em; }
+.lpp { position: relative; height: 12px; border: 2px solid var(--ink); border-radius: 999px; background: var(--paper); margin: 6px 0 4px; }
+.lpp i { display: block; height: 100%; border-radius: 999px; background: var(--muted); }
+.lpp i.bad { background: var(--bad); } .lpp i.warn { background: var(--warn); } .lpp i.ok { background: var(--ok); }
+.lpp b { position: absolute; top: -5px; bottom: -5px; width: 2px; background: var(--ink); opacity: .55; }
+.suff-hero .lpp { height: 16px; margin-top: 10px; }
+.suff-hero .lpp b::after { content: attr(title); position: absolute; top: -16px; left: 50%; transform: translateX(-50%); font-family: var(--mono); font-size: .6rem; color: var(--ink-2); white-space: nowrap; }
+.tbl { overflow-x: auto; margin: 12px 0 6px; }
+.tbl table { width: 100%; border-collapse: collapse; font-size: .88rem; }
+.tbl th, .tbl td { padding: 6px 8px; text-align: left; border-bottom: 1px dashed var(--rule); white-space: nowrap; }
+.tbl th { font-family: var(--mono); font-size: .7rem; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+.tbl .num { text-align: right; font-variant-numeric: tabular-nums; }
+.tbl .barcell { width: 34%; min-width: 120px; }
+.tbl .barcell .lpp { margin: 0; height: 10px; }
+.tbl tr.is-sel td { background: var(--water-soft); }
+.tbl td a { color: inherit; font-weight: 700; text-decoration: none; }
+
 /* ---------- stations ---------- */
 .station { display: grid; grid-template-columns: 1fr auto; gap: 4px 12px; align-items: start; }
 .station .hours { font-family: var(--mono); font-weight: 700; }
