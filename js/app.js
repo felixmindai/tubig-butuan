@@ -80,7 +80,9 @@
       geoOutside: 'Wala ka sa sulod sa Butuan City.', youAreIn: 'Naa ka sa Brgy. {bgy}', geoUnsupported: 'Dili suportado ang GPS sa browser nimo.',
       detailedFail: 'Dili ma-load ang detalyadong mapa. Kinahanglan og internet.',
       expandMap: 'Padak-a ang mapa', collapseMap: 'Isira ang dako nga mapa',
-      phTime: 'oras sa Butuan'
+      phTime: 'oras sa Butuan',
+      seeSource: 'Tan-awa ang eksaktong teksto sa advisory',
+      sourceHint: 'Kung morag blangko ang page sa BCWD, i-highlight ang teksto (Ctrl+A o long-press) aron mabasa: puti ang kolor sa ilang teksto.'
     },
     en: {
       offline: 'You are offline. Showing the last saved data.',
@@ -149,7 +151,9 @@
       geoOutside: 'You are outside Butuan City.', youAreIn: 'You are in Brgy. {bgy}', geoUnsupported: 'Your browser does not support GPS.',
       detailedFail: 'Could not load the detailed map. It needs internet.',
       expandMap: 'Expand map', collapseMap: 'Close the large map',
-      phTime: 'Butuan time'
+      phTime: 'Butuan time',
+      seeSource: "See the advisory's exact wording",
+      sourceHint: 'If the BCWD page looks blank, highlight the text (Ctrl+A or long-press) to read it: their site prints it in white.'
     }
   };
   const MONTHS = { ceb: ['Enero', 'Pebrero', 'Marso', 'Abril', 'Mayo', 'Hunyo', 'Hulyo', 'Agosto', 'Septyembre', 'Oktubre', 'Nobyembre', 'Disyembre'], en: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'] };
@@ -271,7 +275,8 @@
     if (s.affectedBarangays) facts.push('<div><b>' + s.affectedBarangays + '</b>' + t('factBgy') + '</div>');
     if (s.affectedResidents) facts.push('<div><b>' + fmtNum(s.affectedResidents) + '</b>' + t('factRes') + '</div>');
     if (s.calamity && s.calamitySince) facts.push('<div><b>' + fmtDate(s.calamitySince) + '</b>' + t('factCal') + (s.resolution ? ' · ' + esc(s.resolution) : '') + '</div>');
-    if (s.source) facts.push('<div class="src">' + t('factSrc') + ': ' + (s.sourceUrl ? '<a href="' + esc(s.sourceUrl) + '" target="_blank" rel="noopener">' + esc(s.source) + '</a>' : esc(s.source)) + '</div>');
+    if (Array.isArray(s.sources) && s.sources.length) facts.push('<div class="src">' + t('factSrc') + ': ' + s.sources.map((x) => (x.url ? '<a href="' + esc(x.url) + '" target="_blank" rel="noopener">' + esc(x.label) + ' ↗</a>' : esc(x.label))).join(' · ') + '</div>');
+    else if (s.source) facts.push('<div class="src">' + t('factSrc') + ': ' + (s.sourceUrl ? '<a href="' + esc(s.sourceUrl) + '" target="_blank" rel="noopener">' + esc(s.source) + ' ↗</a>' : esc(s.source)) + '</div>');
     $('#facts').innerHTML = facts.join('');
   }
   function renderBgySelect() {
@@ -332,7 +337,8 @@
         '<div class="hours">' + esc(t('hours')) + ': ' + esc(hoursText(x)) + '</div>' +
         (x.type === 'fetch' ? '<ul>' + rules.map((li) => '<li>' + esc(li) + '</li>').join('') + '</ul>' : '') +
         ((x.approx || x.lat == null || x.lng == null) ? '<div class="note" style="grid-column:1/-1">' + esc(x.locNote ? pick(x.locNote) : t('approxNote')) + '</div>' : '') +
-        (srcUrl ? '<div class="note mono" style="grid-column:1/-1;font-size:.72rem">' + esc(t('factSrc')) + ': <a href="' + esc(srcUrl) + '" target="_blank" rel="noopener">' + esc(x.source || sc.source || srcUrl) + ' ↗</a></div>' : '') +
+        (srcUrl ? '<div class="note" style="grid-column:1/-1;font-size:.78rem"><span class="mono" style="font-size:.72rem">' + esc(t('factSrc')) + ': <a href="' + esc(srcUrl) + '" target="_blank" rel="noopener">' + esc(x.source || sc.source || srcUrl) + ' ↗</a></span>' +
+          ((x.sourceQuote || (x.type === 'fetch' && sc.rulesQuote)) ? '<details class="quote"><summary>' + esc(t('seeSource')) + '</summary><blockquote>' + esc(x.sourceQuote || '') + (x.type === 'fetch' && sc.rulesQuote ? '<br><br>' + esc(sc.rulesQuote) : '') + '</blockquote><p class="note">' + esc(t('sourceHint')) + '</p></details>' : '') + '</div>' : '') +
         '<div class="row"><a class="btn sm ghost" href="' + esc(gmapsUrl(x)) + '" target="_blank" rel="noopener">' + esc(t('directions')) + '</a>' +
         (bgyId ? '<button type="button" class="btn sm ghost" data-zoom="' + bgyId + '">' + esc(t('showOnMap')) + '</button>' : '') + '</div>' +
         '</div>';

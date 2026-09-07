@@ -22,7 +22,7 @@ Kini ang pinakasagad nga i-update, matag adlaw human mo-post ang PIO. This is th
 {
   "updated": "2026-09-08",
   "source": "Butuan City PIO, Sept 8, 2026",
-  "sourceUrl": "https://www.facebook.com/ButuanCityPIO",
+  "sourceUrl": "https://www.facebook.com/butuancitypioofficial/",
   "stops": [
     { "date": "2026-09-08", "barangay": "Lumbocan", "where": "Purok 1, atbang sa chapel", "start": "09:00", "end": "09:40", "tanker": "Equiparco Tanker 2", "lat": null, "lng": null },
     { "date": "2026-09-08", "barangay": "Masao", "where": "Barangay hall", "start": "13:50", "end": "14:25", "tanker": "Equiparco Tanker 2", "lat": null, "lng": null },

@@ -18,6 +18,7 @@
       "Practice strict water conservation"
     ]
   },
+  "rulesQuote": "Requirements & Guidelines for Residential Consumers • Limit: Maximum of 1 cubic meter (1 cu. m.) or one fetch per day per account to minimize congestion. • Active Accounts: Present an updated Statement of Account (SOA), water bill, or official receipt to personnel on-site. • Inactive Accounts: Visit the BCWD Commercial Office on Gov. J.A. Rosales Avenue for reactivation prior to fetching. […] • Boil Water Advisory: Boil all fetched or stored water before using it for drinking or cooking.",
   "stations": [
     {
       "id": "ps1",
@@ -28,6 +29,7 @@
       "hours": [["06:00", "18:00"]],
       "source": "BCWD advisory, Aug 24, 2026",
       "sourceUrl": "https://bcwd.gov.ph/services_news_article.php?a=781",
+      "sourceQuote": "Fetching Stations & Operating Hours • Pump Station No. 1, Alviola Village: 6:00 AM – 6:00 PM (Residential Consumers)",
       "lat": 8.95912,
       "lng": 125.5871,
       "approx": true,
@@ -43,6 +45,7 @@
       "hours": [["18:00", "22:00"]],
       "source": "BCWD advisory, Aug 24, 2026",
       "sourceUrl": "https://bcwd.gov.ph/services_news_article.php?a=781",
+      "sourceQuote": "Fetching Stations & Operating Hours • Barangay Buhangin Station: 6:00 PM – 10:00 PM (Residential Consumers)",
       "lat": 8.94644,
       "lng": 125.54939,
       "approx": true,
@@ -51,17 +54,19 @@
     },
     {
       "id": "ps17",
-      "name": "Pump Station No. 17 – near Filtration Plant",
+      "name": "Pump Station No. 17 – beside the BCWD Filtration Plant",
       "barangay": "Taguibo",
+      "address": "Beside the BCWD Filtration Plant",
       "type": "bulk",
       "hours": [],
       "source": "BCWD advisory, Aug 24, 2026",
       "sourceUrl": "https://bcwd.gov.ph/services_news_article.php?a=781",
+      "sourceQuote": "BULK WATER SALES • Process: Pay at the BCWD Main Office, then present the Official Receipt at Pump Station No. 17 (beside the BCWD Filtration Plant, Brgy. Taguibo).",
       "lat": 8.97816,
       "lng": 125.62596,
       "approx": true,
       "locNote": { "ceb": "Pin: sentro sa Brgy. Taguibo. Ang filtration plant naa sa may Taguibo River.", "en": "Pin: centre of Brgy. Taguibo. The filtration plant is along the Taguibo River." },
-      "note": { "ceb": "Bulk water sales (pangnegosyo, dili sag-ob)", "en": "Bulk water sales (commercial, not fetching)" }
+      "note": { "ceb": "Bulk water sales: bayad una sa BCWD Main Office, dayon ipakita ang Official Receipt dinhi", "en": "Bulk water sales: pay at the BCWD Main Office first, then present the Official Receipt here" }
     }
   ]
 }

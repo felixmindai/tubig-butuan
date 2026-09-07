@@ -12,6 +12,9 @@
   "affectedBarangays": 58,
   "affectedResidents": 91425,
   "affectedList": [],
-  "source": "BCWD report of Sept 4, 2026 (as published by Inquirer and Manila Times); BCWD advisory of Aug 24, 2026 for the dam level",
-  "sourceUrl": "https://newsinfo.inquirer.net/2300086/butuan-declares-state-of-calamity-as-water-crisis-worsens"
+  "sources": [
+    { "label": "Supply 37.36 MLD, 58 barangays, 91,425 residents: BCWD report of Sept 4 via Inquirer, Sept 6, 2026", "url": "https://newsinfo.inquirer.net/2300086/butuan-declares-state-of-calamity-as-water-crisis-worsens" },
+    { "label": "State of Calamity, Resolution 17-444-2026: Manila Times, Sept 6, 2026", "url": "https://www.manilatimes.net/2026/09/06/regions/butuan-city-declares-state-of-calamity-over-water-crisis/2419351" },
+    { "label": "Dam level 3.58 m: BCWD advisory, Aug 24, 2026", "url": "https://bcwd.gov.ph/services_news_article.php?a=781" }
+  ]
 }

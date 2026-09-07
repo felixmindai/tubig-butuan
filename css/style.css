@@ -284,3 +284,6 @@ footer .disc { font-weight: 700; color: var(--ink-2); }
 .toast.show { opacity: 1; transform: translate(-50%, 0); }
 .share-box { font-family: var(--mono); font-size: .8rem; white-space: pre-wrap; background: var(--paper); border: 1px dashed var(--rule); padding: 10px; border-radius: var(--radius); margin: 10px 0; max-height: 220px; overflow: auto; }
 details summary { cursor: pointer; font-weight: 700; }
+details.quote { margin-top: 4px; }
+details.quote summary { font-weight: 600; font-size: .8rem; color: var(--water); }
+details.quote blockquote { margin: 6px 0; padding: 8px 12px; border-left: 3px solid var(--water); background: var(--paper); font-size: .82rem; color: var(--ink-2); font-style: italic; }
