@@ -180,8 +180,8 @@ label { display: block; font-weight: 700; font-size: .88rem; margin: 8px 0 4px; 
   user-select: none; -webkit-user-select: none;
 }
 @media (min-width: 960px) { .map-wrap { height: calc(100% - 44px); } }
-.map-wrap svg { width: 100%; height: 100%; display: block; cursor: grab; }
-.map-wrap svg.dragging { cursor: grabbing; }
+.map-wrap > svg { width: 100%; height: 100%; display: block; cursor: grab; } /* direct child only: Leaflet's own SVGs must keep their size */
+.map-wrap > svg.dragging { cursor: grabbing; }
 .bgy { fill: var(--paper); stroke: var(--ink); stroke-width: .7; vector-effect: non-scaling-stroke; transition: fill .15s; cursor: pointer; }
 .bgy:hover { fill: var(--paper-2); }
 .bgy.has-stops { fill: var(--water-map); }
