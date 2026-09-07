@@ -26,15 +26,28 @@
       "barangay": "Baan KM 3",
       "address": "Km. 5, Alviola Village",
       "type": "fetch",
-      "hours": [["06:00", "18:00"]],
+      "hours": [
+        [
+          "06:00",
+          "18:00"
+        ]
+      ],
       "source": "BCWD advisory, Aug 24, 2026",
       "sourceUrl": "https://bcwd.gov.ph/services_news_article.php?a=781",
       "sourceQuote": "Fetching Stations & Operating Hours • Pump Station No. 1, Alviola Village: 6:00 AM – 6:00 PM (Residential Consumers)",
       "lat": 8.95912,
       "lng": 125.5871,
       "approx": true,
-      "locNote": { "ceb": "Pin: BCWD compound sa Km. 5, Alviola Village, kung asa sab ang BCWD property office ug supply warehouse. Amihanan nga kilid sa highway, mga 300 m sa kasadpan sa Bombo Radyo. Kumpirmaha ang eksaktong gate.", "en": "Pin: the BCWD compound at Km. 5, Alviola Village, which also holds the BCWD property office and supply warehouse. North side of the highway, about 300 m west of Bombo Radyo. Confirm the exact gate." },
-      "note": { "ceb": "Para sa residential consumers", "en": "For residential consumers" }
+      "locNote": {
+        "ceb": "Pin: BCWD compound sa Km. 5, Alviola Village, kung asa sab ang BCWD property office ug supply warehouse. Amihanan nga kilid sa highway, mga 300 m sa kasadpan sa Bombo Radyo. Kumpirmaha ang eksaktong gate.",
+        "en": "Pin: the BCWD compound at Km. 5, Alviola Village, which also holds the BCWD property office and supply warehouse. North side of the highway, about 300 m west of Bombo Radyo. Confirm the exact gate."
+      },
+      "note": {
+        "ceb": "Para sa residential consumers",
+        "en": "For residential consumers"
+      },
+      "archiveUrl": "https://web.archive.org/web/20260907073540/https://bcwd.gov.ph/services_news_article.php?a=781",
+      "archivedAt": "2026-09-07"
     },
     {
       "id": "buhangin",
@@ -42,15 +55,28 @@
       "barangay": "Buhangin",
       "address": "Purok 4, Buhangin Barangay Hall (probable)",
       "type": "fetch",
-      "hours": [["18:00", "22:00"]],
+      "hours": [
+        [
+          "18:00",
+          "22:00"
+        ]
+      ],
       "source": "BCWD advisory, Aug 24, 2026",
       "sourceUrl": "https://bcwd.gov.ph/services_news_article.php?a=781",
       "sourceQuote": "Fetching Stations & Operating Hours • Barangay Buhangin Station: 6:00 PM – 10:00 PM (Residential Consumers)",
       "lat": 8.94644,
       "lng": 125.54939,
       "approx": true,
-      "locNote": { "ceb": "Pin: Buhangin Barangay Hall, Purok 4, duol sa Magsaysay Bridge. Wala ihatag sa BCWD ang eksaktong lugar; ang barangay hall ang pinakaposible nga fetching point. Pangutan-a ang barangay.", "en": "Pin: Buhangin Barangay Hall, Purok 4, near Magsaysay Bridge. BCWD gives no address for this station; the barangay hall is the most likely fetching point. Ask the barangay to confirm." },
-      "note": { "ceb": "Para sa residential consumers", "en": "For residential consumers" }
+      "locNote": {
+        "ceb": "Pin: Buhangin Barangay Hall, Purok 4, duol sa Magsaysay Bridge. Wala ihatag sa BCWD ang eksaktong lugar; ang barangay hall ang pinakaposible nga fetching point. Pangutan-a ang barangay.",
+        "en": "Pin: Buhangin Barangay Hall, Purok 4, near Magsaysay Bridge. BCWD gives no address for this station; the barangay hall is the most likely fetching point. Ask the barangay to confirm."
+      },
+      "note": {
+        "ceb": "Para sa residential consumers",
+        "en": "For residential consumers"
+      },
+      "archiveUrl": "https://web.archive.org/web/20260907073540/https://bcwd.gov.ph/services_news_article.php?a=781",
+      "archivedAt": "2026-09-07"
     },
     {
       "id": "ps17",
@@ -65,8 +91,18 @@
       "lat": 8.97816,
       "lng": 125.62596,
       "approx": true,
-      "locNote": { "ceb": "Pin: sentro sa Brgy. Taguibo. Ang filtration plant naa sa may Taguibo River.", "en": "Pin: centre of Brgy. Taguibo. The filtration plant is along the Taguibo River." },
-      "note": { "ceb": "Bulk water sales: bayad una sa BCWD Main Office, dayon ipakita ang Official Receipt dinhi", "en": "Bulk water sales: pay at the BCWD Main Office first, then present the Official Receipt here" }
+      "locNote": {
+        "ceb": "Pin: sentro sa Brgy. Taguibo. Ang filtration plant naa sa may Taguibo River.",
+        "en": "Pin: centre of Brgy. Taguibo. The filtration plant is along the Taguibo River."
+      },
+      "note": {
+        "ceb": "Bulk water sales: bayad una sa BCWD Main Office, dayon ipakita ang Official Receipt dinhi",
+        "en": "Bulk water sales: pay at the BCWD Main Office first, then present the Official Receipt here"
+      },
+      "archiveUrl": "https://web.archive.org/web/20260907073540/https://bcwd.gov.ph/services_news_article.php?a=781",
+      "archivedAt": "2026-09-07"
     }
-  ]
+  ],
+  "archiveUrl": "https://web.archive.org/web/20260907073540/https://bcwd.gov.ph/services_news_article.php?a=781",
+  "archivedAt": "2026-09-07"
 }

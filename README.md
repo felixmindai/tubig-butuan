@@ -37,6 +37,16 @@ Everything a volunteer needs to change lives in `data/`. See [EDITING.md](EDITIN
 | `data/hotlines.json` | phone numbers | a number changes |
 | `data/barangays.json` | barangay boundaries (generated, do not hand-edit) | never |
 
+## Archived copies of every source
+
+Official pages move, go blank, or get deleted. `tools/archive-sources.py` saves every `sourceUrl` in `data/` to the Wayback Machine and writes the snapshot address back as `archiveUrl`, which the site shows as an "archived copy" link beside the live one.
+
+```bash
+python tools/archive-sources.py
+```
+
+`--dry-run` only reports, `--force` re-archives everything. The GitHub Actions workflow in `.github/workflows/archive-sources.yml` runs it automatically whenever a data file changes on `main` and every Monday morning, committing any new links back. Facebook URLs are skipped because the archive only captures a login wall.
+
 ## Deploy (Cloudflare Pages)
 
 1. Push this folder to a GitHub repository. Put it under a shared organization, not a personal account, so it can be handed over later.

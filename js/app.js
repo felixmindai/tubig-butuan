@@ -81,6 +81,7 @@
       detailedFail: 'Dili ma-load ang detalyadong mapa. Kinahanglan og internet.',
       expandMap: 'Padak-a ang mapa', collapseMap: 'Isira ang dako nga mapa',
       phTime: 'oras sa Butuan',
+      archive: 'kopya sa archive',
       seeSource: 'Tan-awa ang eksaktong teksto sa advisory',
       sourceHint: 'Kung morag blangko ang page sa BCWD, i-highlight ang teksto (Ctrl+A o long-press) aron mabasa: puti ang kolor sa ilang teksto.'
     },
@@ -152,6 +153,7 @@
       detailedFail: 'Could not load the detailed map. It needs internet.',
       expandMap: 'Expand map', collapseMap: 'Close the large map',
       phTime: 'Butuan time',
+      archive: 'archived copy',
       seeSource: "See the advisory's exact wording",
       sourceHint: 'If the BCWD page looks blank, highlight the text (Ctrl+A or long-press) to read it: their site prints it in white.'
     }
@@ -241,6 +243,7 @@
     return 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent('Barangay ' + (o.barangay || '') + ', Butuan City');
   }
   const bcwdGroup = () => ((state.hotlines && state.hotlines.groups) || []).find((g) => g.id === 'bcwd');
+  const archiveLink = (url) => (url ? ' · <a href="' + esc(url) + '" target="_blank" rel="noopener" title="Wayback Machine">' + esc(t('archive')) + ' ↗</a>' : '');
   const pioUrl = () => (state.hotlines && state.hotlines.pioUrl) || (state.schedule && state.schedule.sourceUrl) || 'https://www.facebook.com/';
 
   /* ---------------- render ---------------- */
@@ -275,8 +278,8 @@
     if (s.affectedBarangays) facts.push('<div><b>' + s.affectedBarangays + '</b>' + t('factBgy') + '</div>');
     if (s.affectedResidents) facts.push('<div><b>' + fmtNum(s.affectedResidents) + '</b>' + t('factRes') + '</div>');
     if (s.calamity && s.calamitySince) facts.push('<div><b>' + fmtDate(s.calamitySince) + '</b>' + t('factCal') + (s.resolution ? ' · ' + esc(s.resolution) : '') + '</div>');
-    if (Array.isArray(s.sources) && s.sources.length) facts.push('<div class="src">' + t('factSrc') + ': ' + s.sources.map((x) => (x.url ? '<a href="' + esc(x.url) + '" target="_blank" rel="noopener">' + esc(x.label) + ' ↗</a>' : esc(x.label))).join(' · ') + '</div>');
-    else if (s.source) facts.push('<div class="src">' + t('factSrc') + ': ' + (s.sourceUrl ? '<a href="' + esc(s.sourceUrl) + '" target="_blank" rel="noopener">' + esc(s.source) + ' ↗</a>' : esc(s.source)) + '</div>');
+    if (Array.isArray(s.sources) && s.sources.length) facts.push('<div class="src">' + t('factSrc') + ': ' + s.sources.map((x) => (x.url ? '<a href="' + esc(x.url) + '" target="_blank" rel="noopener">' + esc(x.label) + ' ↗</a>' + archiveLink(x.archiveUrl) : esc(x.label))).join('<br>') + '</div>');
+    else if (s.source) facts.push('<div class="src">' + t('factSrc') + ': ' + (s.sourceUrl ? '<a href="' + esc(s.sourceUrl) + '" target="_blank" rel="noopener">' + esc(s.source) + ' ↗</a>' + archiveLink(s.archiveUrl) : esc(s.source)) + '</div>');
     $('#facts').innerHTML = facts.join('');
   }
   function renderBgySelect() {
@@ -337,14 +340,14 @@
         '<div class="hours">' + esc(t('hours')) + ': ' + esc(hoursText(x)) + '</div>' +
         (x.type === 'fetch' ? '<ul>' + rules.map((li) => '<li>' + esc(li) + '</li>').join('') + '</ul>' : '') +
         ((x.approx || x.lat == null || x.lng == null) ? '<div class="note" style="grid-column:1/-1">' + esc(x.locNote ? pick(x.locNote) : t('approxNote')) + '</div>' : '') +
-        (srcUrl ? '<div class="note" style="grid-column:1/-1;font-size:.78rem"><span class="mono" style="font-size:.72rem">' + esc(t('factSrc')) + ': <a href="' + esc(srcUrl) + '" target="_blank" rel="noopener">' + esc(x.source || sc.source || srcUrl) + ' ↗</a></span>' +
+        (srcUrl ? '<div class="note" style="grid-column:1/-1;font-size:.78rem"><span class="mono" style="font-size:.72rem">' + esc(t('factSrc')) + ': <a href="' + esc(srcUrl) + '" target="_blank" rel="noopener">' + esc(x.source || sc.source || srcUrl) + ' ↗</a>' + archiveLink(x.archiveUrl || (x.sourceUrl ? null : sc.archiveUrl)) + '</span>' +
           ((x.sourceQuote || (x.type === 'fetch' && sc.rulesQuote)) ? '<details class="quote"><summary>' + esc(t('seeSource')) + '</summary><blockquote>' + esc(x.sourceQuote || '') + (x.type === 'fetch' && sc.rulesQuote ? '<br><br>' + esc(sc.rulesQuote) : '') + '</blockquote><p class="note">' + esc(t('sourceHint')) + '</p></details>' : '') + '</div>' : '') +
         '<div class="row"><a class="btn sm ghost" href="' + esc(gmapsUrl(x)) + '" target="_blank" rel="noopener">' + esc(t('directions')) + '</a>' +
         (bgyId ? '<button type="button" class="btn sm ghost" data-zoom="' + bgyId + '">' + esc(t('showOnMap')) + '</button>' : '') + '</div>' +
         '</div>';
     }).join('');
     $('#stationsClock').textContent = nowClock() + ' ' + t('phTime');
-    $('#stationsSource').innerHTML = sc.source ? t('stationsSource', { src: sc.sourceUrl ? '<a href="' + esc(sc.sourceUrl) + '" target="_blank" rel="noopener">' + esc(sc.source) + ' ↗</a>' : esc(sc.source), date: fmtDate(sc.updated) }) : '';
+    $('#stationsSource').innerHTML = sc.source ? t('stationsSource', { src: sc.sourceUrl ? '<a href="' + esc(sc.sourceUrl) + '" target="_blank" rel="noopener">' + esc(sc.source) + ' ↗</a>' + archiveLink(sc.archiveUrl) : esc(sc.source), date: fmtDate(sc.updated) }) : '';
     $$('#stationsList [data-zoom]').forEach((b) => b.addEventListener('click', () => { selectBgy(b.dataset.zoom, true); $('#map').scrollIntoView({ behavior: 'smooth', block: 'start' }); }));
   }
   function renderHotlines() {

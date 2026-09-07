@@ -85,6 +85,7 @@ Pag-kuha og coordinates / Getting coordinates: sa Google Maps, i-long-press ang 
 
 - `source` ug `sourceUrl` — ngalan ug link sa BCWD advisory diin gikan ang oras. Makita kini isip link sa matag estasyon. Name and link of the BCWD advisory the hours came from; shown as a link on each station card.
 - `rules` (sa taas sa file) — ang mga lagda sa pagsag-ob, gikopya gikan sa advisory, sa Bisaya ug English. The fetching rules, copied from the advisory, in Bisaya and English.
+- `archiveUrl` ug `archivedAt` — awtomatik kining gipuno sa archiver (kopya sa Wayback Machine). Ayaw usba; kung nag-usab ka og `sourceUrl`, kuhaa lang kining duha ug mapuno ra usab. Filled automatically by the archiver; do not hand-edit. If you change a `sourceUrl`, delete these two fields and they will be refilled.
 - `type` — `"fetch"` para sa sag-ob, `"bulk"` para sa bulk sales.
 - `hours` — listahan sa mga oras nga abli, pananglitan `[["06:00","12:00"],["14:00","18:00"]]`. Wala nga hours = "sumala sa kasabotan".
 - Kung naa kay tukma nga `lat`/`lng`, ibutang aron sakto ang pin sa mapa ug ang "Direksyon". Add exact coordinates when known so the pin and the Directions link are accurate.
