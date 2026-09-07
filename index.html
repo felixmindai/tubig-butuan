@@ -95,6 +95,13 @@
       <section id="schedule">
         <h2><span data-i18n="schedTitle">Iskedyul sa tanker</span> <span class="today" id="todayLabel"></span></h2>
         <div class="card">
+          <div class="daynav">
+            <button type="button" id="dayPrev" class="daybtn" aria-label="Previous day">‹</button>
+            <input type="date" id="dayPick" aria-label="Pick a date">
+            <button type="button" id="dayNext" class="daybtn" aria-label="Next day">›</button>
+            <button type="button" id="dayToday" class="btn sm ghost" data-i18n="dayToday">Karon</button>
+          </div>
+          <div class="daysum" id="daySummary"></div>
           <label for="bgySelect" data-i18n="pickBgy">Pilia ang imong barangay</label>
           <select id="bgySelect"></select>
           <div id="schedBody"></div>

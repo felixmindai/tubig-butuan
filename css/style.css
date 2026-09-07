@@ -230,6 +230,13 @@ body.map-expanded .tabs { visibility: hidden; }
 #expandMap svg[hidden] { display: none; }
 
 /* ---------- schedule ---------- */
+.daynav { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; margin-bottom: 8px; }
+.daynav input[type=date] { flex: 1; min-width: 150px; width: auto; padding: 8px 10px; font-family: var(--mono); font-weight: 700; }
+.daybtn { width: 40px; height: 40px; border: 2px solid var(--ink); border-radius: 6px; background: var(--paper); color: var(--ink); font-size: 1.3rem; font-weight: 800; cursor: pointer; line-height: 1; }
+.daybtn[disabled] { opacity: .35; cursor: not-allowed; }
+.daysum { font-family: var(--mono); font-size: .78rem; color: var(--ink-2); margin: 0 0 8px; padding: 6px 10px; border: 1px dashed var(--rule); border-radius: var(--radius); }
+.daysum b { color: var(--water); }
+.daysum span + span::before { content: ' · '; color: var(--muted); }
 .today { font-family: var(--mono); font-size: .8rem; color: var(--muted); }
 .stops { list-style: none; margin: 8px 0 0; padding: 0; }
 .stop { display: grid; grid-template-columns: auto 1fr; gap: 2px 14px; padding: 10px 8px; border-bottom: 1px dashed var(--rule); border-radius: 4px; }
