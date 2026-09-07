@@ -12,7 +12,11 @@
         { "label": "Landline", "tel": "0858176635" },
         { "label": "Landline", "tel": "0858176736" }
       ],
-      "source": "BCWD advisory, Aug 24, 2026"
+      "links": [
+        { "label": "Facebook", "url": "https://www.facebook.com/butuancwd/" },
+        { "label": "bcwd.gov.ph", "url": "https://bcwd.gov.ph/" }
+      ],
+      "source": "BCWD advisory, Aug 24, 2026; BCWD rationing advisory, Sept 6, 2026"
     },
     {
       "id": "cdrrmd",

@@ -28,7 +28,11 @@
       tabMap: 'Mapa', tabSchedule: 'Iskedyul', tabStations: 'Estasyon', tabHotlines: 'Hotline', tabGuide: 'Giya', tabReport: 'Isumbong',
       mapTitle: 'Mapa sa Butuan', loading: 'Nagkarga sa mapa…',
       mapHint: 'I-tap ang barangay aron makita ang iskedyul niini. Pinch o scroll aron mo-zoom.',
-      legStops: 'Naay tanker karon', legAff: 'Apektado (BCWD)', legSel: 'Napili', legSt: 'Sag-ob station', legTk: 'Tanker stop',
+      legStops: 'Naay tanker karon', legStopsLast: 'Tanker sa kataposang iskedyul', legAff: 'Apektado (BCWD)', legSel: 'Napili', legSt: 'Sag-ob station', legTk: 'Tanker stop',
+      staleSched: 'Wala pay iskedyul nga na-post para karong adlawa. Gipakita ang kataposang na-post: {date}.',
+      noSchedBgyLast: 'Walay tanker stop para sa Brgy. {bgy} sa kataposang iskedyul ({date}).',
+      stopsInBgyLast: '{n} ka tanker stop sa iskedyul sa {date}',
+      shareSchedLast: 'Kataposang iskedyul sa tanker ({date}), Brgy. {bgy}:',
       directions: 'Direksyon', showOnMap: 'Ipakita sa mapa', viewSched: 'Tan-awa ang iskedyul',
       stopsInBgy: '{n} ka tanker stop karong adlawa', noStopsInBgy: 'Walay tanker stop nga na-post karong adlawa',
       schedTitle: 'Iskedyul sa tanker', pickBgy: 'Pilia ang imong barangay', pickPlaceholder: '— Pilia ang barangay —',
@@ -100,7 +104,11 @@
       tabMap: 'Map', tabSchedule: 'Schedule', tabStations: 'Stations', tabHotlines: 'Hotlines', tabGuide: 'Guide', tabReport: 'Report',
       mapTitle: 'Butuan map', loading: 'Loading map…',
       mapHint: 'Tap a barangay to see its schedule. Pinch or scroll to zoom.',
-      legStops: 'Tanker today', legAff: 'Affected (BCWD)', legSel: 'Selected', legSt: 'Fetching station', legTk: 'Tanker stop',
+      legStops: 'Tanker today', legStopsLast: 'Tanker in the last schedule', legAff: 'Affected (BCWD)', legSel: 'Selected', legSt: 'Fetching station', legTk: 'Tanker stop',
+      staleSched: 'No schedule has been posted for today yet. Showing the last one posted: {date}.',
+      noSchedBgyLast: 'No tanker stop for Brgy. {bgy} in the last schedule ({date}).',
+      stopsInBgyLast: '{n} tanker stop(s) in the {date} schedule',
+      shareSchedLast: 'Last tanker schedule ({date}), Brgy. {bgy}:',
       directions: 'Directions', showOnMap: 'Show on map', viewSched: 'View schedule',
       stopsInBgy: '{n} tanker stop(s) today', noStopsInBgy: 'No tanker stop posted for today',
       schedTitle: 'Tanker schedule', pickBgy: 'Choose your barangay', pickPlaceholder: '— Choose a barangay —',
@@ -221,14 +229,27 @@
     try { const r = await fetch(path, { cache: 'no-cache' }); if (!r.ok) throw new Error(r.status); return await r.json(); }
     catch (e) { return fallback; }
   }
-  function todaysStops() {
-    const key = todayKey(), dow = DOW[nowPH().getDay()];
+  function stopsForDate(key) {
+    const dow = DOW[nowPH().getDay()];
     return ((state.schedule && state.schedule.stops) || [])
       .map((st) => Object.assign({}, st, { _bgy: resolveBgy(st.barangay) }))
-      .filter((st) => st._bgy && st.start && (st.date === key || st.repeat === 'daily' || (Array.isArray(st.days) && st.days.map((x) => String(x).toLowerCase().slice(0, 3)).includes(dow))))
+      .filter((st) => st._bgy && st.start && (st.date === key || (key === todayKey() && (st.repeat === 'daily' || (Array.isArray(st.days) && st.days.map((x) => String(x).toLowerCase().slice(0, 3)).includes(dow))))))
       .sort((a, b) => toMin(a.start) - toMin(b.start));
   }
-  const stopStatus = (st) => { const now = nowMin(), a = toMin(st.start), b = st.end ? toMin(st.end) : a + 30; return now > b ? 'past' : (now >= a ? 'now' : ''); };
+  // What the schedule section shows: today's stops if any were posted, otherwise the most
+  // recent published day, clearly labelled as such. Before the day's post is keyed in,
+  // yesterday's routes are still the best guide people have.
+  function displaySchedule() {
+    const key = todayKey();
+    const today = stopsForDate(key);
+    if (today.length) return { key, stops: today, isToday: true };
+    const dates = ((state.schedule && state.schedule.stops) || []).map((s) => s.date).filter((d) => d && d <= key).sort();
+    if (!dates.length) return { key, stops: [], isToday: true };
+    const last = dates[dates.length - 1];
+    return { key: last, stops: stopsForDate(last), isToday: false };
+  }
+  const todaysStops = () => displaySchedule().stops;
+  const stopStatus = (st) => { if (!displaySchedule().isToday) return ''; const now = nowMin(), a = toMin(st.start), b = st.end ? toMin(st.end) : a + 30; return now > b ? 'past' : (now >= a ? 'now' : ''); };
   function isOpen(x) {
     const now = nowMin();
     return (x.hours || []).some(([a, b]) => { const A = toMin(a), B = toMin(b); return B >= A ? (now >= A && now < B) : (now >= A || now < B); });
@@ -289,17 +310,18 @@
     sel.value = state.selected || '';
   }
   function renderSchedule() {
-    const body = $('#schedBody'), sel = state.selected, stops = todaysStops();
+    const body = $('#schedBody'), sel = state.selected, ds = displaySchedule(), stops = ds.stops;
     $('#todayLabel').textContent = fmtDate(todayKey(), true) + ' · ' + nowClock() + ' ' + t('phTime');
+    const stale = ds.isToday ? '' : '<div class="stale">' + esc(t('staleSched', { date: fmtDate(ds.key, true) })) + ' <a href="' + esc(pioUrl()) + '" target="_blank" rel="noopener">' + esc(t('checkPio')) + '</a></div>';
     if (!sel) {
-      body.innerHTML = '<div class="empty">' + esc(t('pickFirst')) + '</div>';
+      body.innerHTML = stale + '<div class="empty">' + esc(t('pickFirst')) + '</div>';
     } else {
       const mine = stops.filter((st) => st._bgy === sel);
       if (!mine.length) {
-        body.innerHTML = '<div class="empty">' + esc(t(stops.length ? 'noSchedBgy' : 'noSchedAll', { bgy: bgyName(sel) })) +
+        body.innerHTML = stale + '<div class="empty">' + esc(t(stops.length ? (ds.isToday ? 'noSchedBgy' : 'noSchedBgyLast') : 'noSchedAll', { bgy: bgyName(sel), date: fmtDate(ds.key) })) +
           '<br><a href="' + esc(pioUrl()) + '" target="_blank" rel="noopener">' + esc(t('checkPio')) + '</a></div>';
       } else {
-        body.innerHTML = '<ul class="stops">' + mine.map((st) => {
+        body.innerHTML = stale + '<ul class="stops">' + mine.map((st) => {
           const cls = stopStatus(st);
           const meta = [st.tanker, cls === 'now' ? t('stopNow') : (cls === 'past' ? t('stopPast') : ''), (st.lat == null || st.lng == null) ? t('stopApprox') : ''].filter(Boolean).join(' · ');
           return '<li class="stop ' + cls + '"><time>' + fmtRange(st.start, st.end) + '</time><span class="where">' + esc(st.where || '') + '</span><span class="meta">' + esc(meta) + '</span></li>';
@@ -312,10 +334,10 @@
   }
   function buildShareText() {
     const lines = ['💧 TUBIG BUTUAN · ' + fmtDate(todayKey(), true)];
-    const sel = state.selected, stops = todaysStops(), s = state.status;
+    const sel = state.selected, ds = displaySchedule(), stops = ds.stops, s = state.status;
     if (sel) {
       const mine = stops.filter((st) => st._bgy === sel);
-      lines.push(t('shareSched', { bgy: bgyName(sel) }));
+      lines.push(t(ds.isToday ? 'shareSched' : 'shareSchedLast', { bgy: bgyName(sel), date: fmtDate(ds.key, true) }));
       if (mine.length) mine.forEach((st) => lines.push('• ' + fmtRange(st.start, st.end) + ' ' + (st.where || '') + (st.tanker ? ' (' + st.tanker + ')' : '')));
       else lines.push('• ' + t('shareNoSched'));
     }
@@ -356,6 +378,7 @@
       (g.note ? '<p class="note">' + esc(pick(g.note)) + '</p>' : '') +
       (g.numbers || []).map((n) => '<div class="num"><span><a class="tel" href="tel:' + esc(n.tel) + '">' + esc(fmtTel(n.tel)) + '</a><br><small>' + esc(pick(n.label)) + '</small></span><span class="row">' +
         (n.sms ? '<a class="btn sm ghost" href="sms:' + esc(n.tel) + '">' + esc(t('sms')) + '</a>' : '') + '<a class="btn sm" href="tel:' + esc(n.tel) + '">' + esc(t('call')) + '</a></span></div>').join('') +
+      ((g.links || []).length ? '<div class="row" style="margin-top:8px">' + g.links.map((l) => '<a class="btn sm ghost" href="' + esc(l.url) + '" target="_blank" rel="noopener">' + esc(l.label) + ' ↗</a>').join('') + '</div>' : '') +
       (g.source ? '<p class="note mono" style="font-size:.68rem;margin-top:8px">' + esc(g.source) + '</p>' : '') + '</div>').join('');
     const hall = '<div class="card"><h3>' + esc(t('hallTitle')) + '</h3><p class="note">' + esc(t('hallHint')) + '</p>' +
       (state.hall ? '<div class="num"><span><a class="tel" href="tel:' + esc(state.hall) + '">' + esc(fmtTel(state.hall)) + '</a><br><small>' + esc(state.selected ? bgyName(state.selected) : '') + '</small></span><span class="row"><a class="btn sm" href="tel:' + esc(state.hall) + '">' + esc(t('call')) + '</a></span></div>' : '') +
@@ -385,7 +408,7 @@
     $('#reportCall').href = smsNum ? 'tel:' + smsNum.tel : '#';
   }
   function renderLegend() {
-    $('#legend').innerHTML = '<span><i class="stops"></i>' + esc(t('legStops')) + '</span><span><i class="aff"></i>' + esc(t('legAff')) + '</span><span><i class="sel"></i>' + esc(t('legSel')) + '</span><span><i class="st"></i>' + esc(t('legSt')) + '</span><span><i class="tk"></i>' + esc(t('legTk')) + '</span>';
+    $('#legend').innerHTML = '<span><i class="stops"></i>' + esc(t(displaySchedule().isToday ? 'legStops' : 'legStopsLast')) + '</span><span><i class="aff"></i>' + esc(t('legAff')) + '</span><span><i class="sel"></i>' + esc(t('legSel')) + '</span><span><i class="st"></i>' + esc(t('legSt')) + '</span><span><i class="tk"></i>' + esc(t('legTk')) + '</span>';
   }
   function renderFooter() {
     const dates = [state.status && state.status.updated, state.schedule && state.schedule.updated, state.stations && state.stations.updated, state.hotlines && state.hotlines.updated].filter(Boolean).sort();
@@ -399,8 +422,8 @@
       return;
     }
     if (!state.selected) { box.innerHTML = '<span>' + esc(t('mapHint')) + '</span>'; return; }
-    const n = todaysStops().filter((st) => st._bgy === state.selected).length;
-    box.innerHTML = '<b>' + esc(bgyName(state.selected)) + '</b>' + esc(n ? t('stopsInBgy', { n }) : t('noStopsInBgy')) +
+    const ds = displaySchedule(), n = ds.stops.filter((st) => st._bgy === state.selected).length;
+    box.innerHTML = '<b>' + esc(bgyName(state.selected)) + '</b>' + esc(n ? t(ds.isToday ? 'stopsInBgy' : 'stopsInBgyLast', { n, date: fmtDate(ds.key) }) : t('noStopsInBgy')) +
       '<br><button type="button" class="btn sm water" id="goSched">' + esc(t('viewSched')) + '</button>';
     $('#goSched').addEventListener('click', () => $('#schedule').scrollIntoView({ behavior: 'smooth', block: 'start' }));
   }
@@ -518,8 +541,9 @@
     $('#reportWhere').addEventListener('input', updateReport);
     window.addEventListener('online', setOnline); window.addEventListener('offline', setOnline); setOnline();
     watchTabs();
-    setInterval(() => { renderSchedule(); renderStations(); if (mapReady) { updateMapLayers(); renderMapInfo(); } }, 30000);
-    document.addEventListener('visibilitychange', () => { if (!document.hidden) { renderSchedule(); renderStations(); if (mapReady) { updateMapLayers(); renderMapInfo(); } } });
+    const tick = () => { renderSchedule(); renderStations(); renderLegend(); if (mapReady) { updateMapLayers(); renderMapInfo(); } };
+    setInterval(tick, 30000);
+    document.addEventListener('visibilitychange', () => { if (!document.hidden) tick(); });
     if ('serviceWorker' in navigator && location.protocol !== 'file:' && !window.TB_DATA) navigator.serviceWorker.register('sw.js').catch(() => { });
   }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot); else boot();

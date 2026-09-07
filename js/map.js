@@ -103,7 +103,16 @@
   /* ---------- overlays (pins + label keep constant screen size) ---------- */
   function layoutOverlays() {
     const k = unitsPerPx();
-    for (const p of pinList) p.el.setAttribute('transform', `translate(${p.x} ${p.y}) scale(${k})`);
+    // pins that share a spot (stops pinned at the same barangay centre) fan out in a ring
+    const groups = new Map();
+    for (const p of pinList) { const key = p.x.toFixed(1) + ',' + p.y.toFixed(1); const g = groups.get(key) || []; g.push(p); groups.set(key, g); }
+    for (const g of groups.values()) {
+      g.forEach((p, i) => {
+        let dx = 0, dy = 0;
+        if (g.length > 1) { const r = 14 + 6 * Math.floor(i / 8), a = (i % 8) / 8 * Math.PI * 2 - Math.PI / 2; dx = Math.cos(a) * r; dy = Math.sin(a) * r; }
+        p.el.setAttribute('transform', `translate(${p.x + dx * k} ${p.y + dy * k}) scale(${k})`);
+      });
+    }
     if (mePin) mePin.el.setAttribute('transform', `translate(${mePin.x} ${mePin.y}) scale(${k})`);
     if (labelEl && selectedId && F[selectedId]) {
       const [cx, cy] = F[selectedId].centroid;

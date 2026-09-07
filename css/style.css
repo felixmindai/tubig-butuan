@@ -241,6 +241,8 @@ body.map-expanded .tabs { visibility: hidden; }
 .stop.now time { color: var(--water); }
 .stop.past { opacity: .55; }
 .empty { padding: 14px; border: 2px dashed var(--rule); border-radius: var(--radius); text-align: center; color: var(--muted); font-size: .92rem; }
+.stale { margin: 10px 0 4px; padding: 8px 12px; border-left: 4px solid var(--warn); background: var(--paper); font-size: .86rem; color: var(--ink-2); border-radius: 0 var(--radius) var(--radius) 0; }
+.stale a { font-weight: 700; }
 .empty a { font-weight: 700; }
 
 /* ---------- stations ---------- */

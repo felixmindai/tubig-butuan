@@ -1,11 +1,54 @@
 {
   "updated": "2026-09-07",
-  "source": "Butuan City PIO / BCWD",
-  "sourceUrl": "https://www.facebook.com/butuancitypioofficial/",
+  "source": "BCWD Water Rationing Advisory, as of September 6, 2026 (Sunday), posted on the BCWD Facebook page",
+  "sourceUrl": "https://www.facebook.com/butuancwd/",
   "operatingHours": "08:00-17:00",
   "note": {
-    "ceb": "Ang iskedyul sa tanker gi-post matag adlaw sa Butuan City PIO. Gibanabana ang oras; mahimong malangan ang tanker.",
-    "en": "Tanker schedules are posted daily by the Butuan City PIO. Times are estimates; tankers can run late."
+    "ceb": "Gibanabana ang oras; mahimong malangan ang tanker. Ang iskedyul gi-post matag adlaw sa BCWD ug Butuan City PIO sa Facebook.",
+    "en": "Times are estimates; tankers can run late. Schedules are posted daily by BCWD and the Butuan City PIO on Facebook."
   },
-  "stops": []
+  "tankers": {
+    "CDRRMD Tanker": "loads at PS1 9:00 AM",
+    "Chinese Tanker": "loads at PS1 8:00 AM",
+    "BCWD Tanker": "loads at PS1 8:00 AM",
+    "EPCC Tanker 1": "loads at PS1 9:00 AM",
+    "EPCC 2": "loads at PS1 9:00 AM",
+    "EPCC 3": "loads at PS1 9:00 AM"
+  },
+  "stops": [
+    { "date": "2026-09-06", "barangay": "Lumbocan", "where": "Station Purok 4 & 5", "start": "10:10", "end": "10:20", "tanker": "CDRRMD Tanker", "lat": null, "lng": null },
+    { "date": "2026-09-06", "barangay": "Lumbocan", "where": "Station 2, Purok 2", "start": "10:30", "end": "10:40", "tanker": "CDRRMD Tanker", "lat": null, "lng": null },
+    { "date": "2026-09-06", "barangay": "Lumbocan", "where": "Station 5, Purok 2, 3 & 3A", "start": "10:50", "end": "11:00", "tanker": "CDRRMD Tanker", "lat": null, "lng": null },
+    { "date": "2026-09-06", "barangay": "Lumbocan", "where": "Station Purok 7, 8 & 10", "start": "11:10", "end": "11:20", "tanker": "CDRRMD Tanker", "lat": null, "lng": null },
+
+    { "date": "2026-09-06", "barangay": "Ambago", "where": "Station 1 – Brgy Hall", "start": "09:30", "end": "09:40", "tanker": "Chinese Tanker", "lat": null, "lng": null },
+    { "date": "2026-09-06", "barangay": "Ambago", "where": "Station 3, Purok 5 Suatan", "start": "09:50", "end": "10:00", "tanker": "Chinese Tanker", "lat": null, "lng": null },
+    { "date": "2026-09-06", "barangay": "Masao", "where": "Station 1 – Purok 1 (Castulo residence)", "start": "10:10", "end": "10:20", "tanker": "Chinese Tanker", "lat": null, "lng": null },
+    { "date": "2026-09-06", "barangay": "Masao", "where": "Station 2 – Purok 2 & 3 (Domu residence)", "start": "10:30", "end": "10:40", "tanker": "Chinese Tanker", "lat": null, "lng": null },
+    { "date": "2026-09-06", "barangay": "Masao", "where": "Station 3 – Purok 4 (waiting shed)", "start": "10:50", "end": "11:00", "tanker": "Chinese Tanker", "lat": null, "lng": null },
+    { "date": "2026-09-06", "barangay": "Masao", "where": "Station 5 – near Catheral Carcia", "start": "11:10", "end": "11:20", "tanker": "Chinese Tanker", "lat": null, "lng": null },
+    { "date": "2026-09-06", "barangay": "Masao", "where": "Station 7 – near Noli Otic", "start": "11:30", "end": "11:40", "tanker": "Chinese Tanker", "lat": null, "lng": null },
+
+    { "date": "2026-09-06", "barangay": "San Vicente", "where": "Station 1 – New Barangay Hall", "start": "09:10", "end": "09:20", "tanker": "BCWD Tanker", "lat": null, "lng": null },
+    { "date": "2026-09-06", "barangay": "San Vicente", "where": "Station 2 – Old Brgy Hall", "start": "09:30", "end": "09:40", "tanker": "BCWD Tanker", "lat": null, "lng": null },
+    { "date": "2026-09-06", "barangay": "San Vicente", "where": "Station 5 – Purok 16A", "start": "10:10", "end": "10:20", "tanker": "BCWD Tanker", "lat": null, "lng": null },
+    { "date": "2026-09-06", "barangay": "San Vicente", "where": "Station 5 – Purok 18", "start": "10:30", "end": "11:00", "tanker": "BCWD Tanker", "lat": null, "lng": null },
+    { "date": "2026-09-06", "barangay": "San Vicente", "where": "Station 3 – Purok 13A", "start": "13:00", "end": "13:10", "tanker": "BCWD Tanker", "lat": null, "lng": null },
+    { "date": "2026-09-06", "barangay": "Bit-os", "where": "Station 1 – Brgy Hall", "start": "13:20", "end": "13:30", "tanker": "BCWD Tanker", "lat": null, "lng": null },
+
+    { "date": "2026-09-06", "barangay": "Villa Kananga", "where": "Station 1 – Barangay Hall, Purok 1-6", "start": "10:10", "end": "10:20", "tanker": "EPCC Tanker 1", "lat": null, "lng": null },
+    { "date": "2026-09-06", "barangay": "Villa Kananga", "where": "Station 2 – Montevista", "start": "10:30", "end": "10:42", "tanker": "EPCC Tanker 1", "lat": null, "lng": null },
+    { "date": "2026-09-06", "barangay": "Villa Kananga", "where": "Station 3 – Teachers Village", "start": "13:00", "end": "13:12", "tanker": "EPCC Tanker 1", "lat": null, "lng": null },
+    { "date": "2026-09-06", "barangay": "Villa Kananga", "where": "Camella", "start": "13:30", "end": "14:00", "tanker": "EPCC Tanker 1", "lat": null, "lng": null },
+
+    { "date": "2026-09-06", "barangay": "Bancasi", "where": "Brgy Hall", "start": "10:10", "end": "10:20", "tanker": "EPCC 2", "lat": null, "lng": null },
+    { "date": "2026-09-06", "barangay": "Bonbon", "where": "New Station 2 – Purok 5A", "start": "10:30", "end": "10:34", "tanker": "EPCC 2", "lat": null, "lng": null },
+    { "date": "2026-09-06", "barangay": "Bonbon", "where": "New Station 1 – Purok 5", "start": "11:00", "end": "11:04", "tanker": "EPCC 2", "lat": null, "lng": null },
+    { "date": "2026-09-06", "barangay": "Libertad", "where": "Station 2 – Mercado", "start": "11:10", "end": "11:30", "tanker": "EPCC 2", "lat": null, "lng": null },
+    { "date": "2026-09-06", "barangay": "Libertad", "where": "Station 1 – Barangay Hall", "start": "11:35", "end": "11:55", "tanker": "EPCC 2", "lat": null, "lng": null },
+
+    { "date": "2026-09-06", "barangay": "Pangabugan", "where": "Station 1 – Brgy Hall (Lawaan A & B)", "start": "10:10", "end": "10:20", "tanker": "EPCC 3", "lat": null, "lng": null },
+    { "date": "2026-09-06", "barangay": "Cabcabon", "where": "Station 1 – Purok 4", "start": "10:30", "end": "10:40", "tanker": "EPCC 3", "lat": null, "lng": null },
+    { "date": "2026-09-06", "barangay": "Cabcabon", "where": "Station 2 – Purok 1-2, Barangay Hall", "start": "11:00", "end": "11:10", "tanker": "EPCC 3", "lat": null, "lng": null }
+  ]
 }
