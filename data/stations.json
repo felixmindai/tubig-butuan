@@ -20,12 +20,13 @@
       "id": "buhangin",
       "name": "Barangay Buhangin Station",
       "barangay": "Buhangin",
+      "address": "Purok 4, Buhangin Barangay Hall (probable)",
       "type": "fetch",
       "hours": [["18:00", "22:00"]],
-      "lat": 8.94616,
-      "lng": 125.54944,
+      "lat": 8.94644,
+      "lng": 125.54939,
       "approx": true,
-      "locNote": { "ceb": "Pin: sentro sa Brgy. Buhangin. Wala pa mahibal-i ang eksaktong lugar sa estasyon.", "en": "Pin: centre of Brgy. Buhangin. The exact station spot is not yet known." },
+      "locNote": { "ceb": "Pin: Buhangin Barangay Hall, Purok 4, duol sa Magsaysay Bridge. Wala ihatag sa BCWD ang eksaktong lugar; ang barangay hall ang pinakaposible nga fetching point. Pangutan-a ang barangay.", "en": "Pin: Buhangin Barangay Hall, Purok 4, near Magsaysay Bridge. BCWD gives no address for this station; the barangay hall is the most likely fetching point. Ask the barangay to confirm." },
       "note": { "ceb": "Para sa residential consumers", "en": "For residential consumers" }
     },
     {
