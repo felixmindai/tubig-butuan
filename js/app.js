@@ -399,10 +399,10 @@
     const row = (r, cls) => '<tr class="' + cls + (r.id === state.selected ? ' is-sel' : '') + '"><td><a href="#schedule" data-bgy="' + r.id + '">' + esc(bgyName(r.id)) + '</a></td><td class="num">' + (r.pop ? fmtNum(r.pop) : '—') + '</td>';
     const table = '<div class="tbl"><table><thead><tr><th>' + esc(t('thBgy')) + '</th><th class="num">' + esc(t('thPop')) + '</th><th class="num">cu.m</th><th class="num">' + esc(t('thLpp')) + '</th><th></th></tr></thead><tbody>' +
       rows.map((r) => row(r, '') + '<td class="num">' + (r.logged ? Math.round(r.cum * 10) / 10 : '<span class="note">' + esc(t('notLogged')) + '</span>') + '</td><td class="num">' + (r.lpp != null ? '<b>' + (Math.round(r.lpp * 10) / 10) + '</b>' : '—') + '</td><td class="barcell">' + lppBar(r.lpp) + '</td></tr>').join('') +
-      '</tbody><tbody id="unservedRows"' + (state.showAll ? '' : ' hidden') + '>' +
-      unserved.map((r) => row(r, 'unserved') + '<td class="num">0</td><td class="num"><b>0</b></td><td class="barcell"><span class="note">' + esc(t('noTanker')) + '</span></td></tr>').join('') +
       '</tbody></table></div>' +
-      (unserved.length ? '<button type="button" class="btn sm ghost" id="toggleUnserved">' + esc(t(state.showAll ? 'hideUnserved' : 'showUnserved', { n: unserved.length })) + '</button>' : '');
+      (unserved.length ? '<button type="button" class="btn sm ghost" id="toggleUnserved">' + esc(t(state.showAll ? 'hideUnserved' : 'showUnserved', { n: unserved.length })) + '</button>' +
+        '<div class="unserved-cloud" id="unservedRows"' + (state.showAll ? '' : ' hidden') + '>' +
+        unserved.map((r) => '<a href="#schedule" class="chip' + (r.id === state.selected ? ' sel' : '') + '" data-bgy="' + r.id + '">' + esc(bgyName(r.id)) + (r.pop ? ' <b>' + fmtNum(r.pop) + '</b>' : '') + '</a>').join('') + '</div>' : '');
     box.innerHTML = head + share + table + '<p class="note">' + esc(t('suffNote')) + ' ' + esc(t('factSrc')) + ': <a href="' + esc(state.population.sourceUrl) + '" target="_blank" rel="noopener">' + esc(state.population.source) + ' ↗</a></p>';
     $$('#suffBody a[data-bgy]').forEach((a) => a.addEventListener('click', (e) => { e.preventDefault(); selectBgy(a.dataset.bgy, true); }));
     const tg = $('#toggleUnserved'); if (tg) tg.addEventListener('click', () => { state.showAll = !state.showAll; renderSufficiency(ds); });

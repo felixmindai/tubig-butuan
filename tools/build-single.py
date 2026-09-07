@@ -34,6 +34,8 @@ if fragment:
     m = re.search(r'<head>(.*?)</head>.*?<body>(.*?)</body>', html, re.S)
     head, body = m.group(1), m.group(2)
     head = re.sub(r'\s*<meta (charset|name="viewport")[^>]*>', '', head)
+    # the html tag is dropped in fragment mode; carry its no-translate intent on the body content instead
+    body = '<div translate="no" class="notranslate">' + body + '</div>'
     head = re.sub(r'<title>.*?</title>', '<title>Tubig Butuan</title>', head)
     # artifact hosts block third-party stylesheets and map tiles: hide the street-map toggle
     body = body.replace('<script>window.TB_DATA=', '<script>window.TB_NO_TILES=true;window.TB_DATA=', 1)

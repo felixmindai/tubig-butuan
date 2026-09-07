@@ -268,8 +268,11 @@ body.map-expanded .tabs { visibility: hidden; }
 .chip.ok b, .chip.warn b, .chip.bad b { color: inherit; }
 .bgy-facts .lpp { margin-top: 8px; }
 .share-line { font-size: .88rem; margin: 8px 0 0; padding: 8px 12px; border-left: 4px solid var(--water); background: var(--paper); border-radius: 0 var(--radius) var(--radius) 0; }
-.tbl tr.unserved td { color: var(--muted); }
-.tbl tbody[hidden] { display: none; }
+.unserved-cloud { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
+.unserved-cloud[hidden] { display: none; }
+.unserved-cloud .chip { text-decoration: none; color: var(--muted); }
+.unserved-cloud .chip b { color: var(--ink-2); font-weight: 600; }
+.unserved-cloud .chip.sel { border-color: var(--water); color: var(--water); }
 .suff .btn { margin-top: 6px; }
 
 /* ---------- sufficiency ---------- */
