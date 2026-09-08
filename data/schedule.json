@@ -2245,8 +2245,8 @@
     },
     {
       "date": "2026-09-08",
-      "barangay": "Emenvil",
-      "where": "Station 1",
+      "barangay": "Ambago",
+      "where": "Emenville Subdivision – Station 1",
       "start": "10:20",
       "end": "11:00",
       "tanker": "EPCC Tanker 3",
@@ -2441,8 +2441,8 @@
     },
     {
       "date": "2026-09-08",
-      "barangay": "Emenvil",
-      "where": "Station 2",
+      "barangay": "Ambago",
+      "where": "Emenville Subdivision – Station 2",
       "start": "11:00",
       "end": "12:00",
       "tanker": "EPCC Tanker 3",
@@ -2635,8 +2635,8 @@
     },
     {
       "date": "2026-09-08",
-      "barangay": "Emenvil",
-      "where": "Station 3",
+      "barangay": "Ambago",
+      "where": "Emenville Subdivision – Station 3",
       "start": "13:00",
       "end": "13:50",
       "tanker": "EPCC Tanker 3",
@@ -3139,5 +3139,5 @@
       "refill": "Pump Station No. 14 (Amamaylan)"
     }
   ],
-  "importedAt": "2026-09-08 11:32"
+  "importedAt": "2026-09-08 07:34"
 }

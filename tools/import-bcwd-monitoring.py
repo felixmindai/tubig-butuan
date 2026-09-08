@@ -153,6 +153,25 @@ def load_barangay_names():
         return {re.sub(r"[^a-z0-9]", "", b["name"].lower().replace("ñ", "n")) for b in json.load(f)["features"]}
 
 
+_landmarks = None
+def landmarks():
+    """(normalised landmark name, barangay id, display name) from data/landmarks.json."""
+    global _landmarks
+    if _landmarks is None:
+        path = os.path.join(ROOT, "data", "landmarks.json")
+        rows = load(path, {"landmarks": []})["landmarks"]
+        _landmarks = [(re.sub(r"[^a-z0-9]", "", l["name"].lower()), l["bgy"], l["name"]) for l in rows]
+    return _landmarks
+
+
+def barangay_display(bgy_id):
+    with open(os.path.join(ROOT, "data", "barangays.json"), encoding="utf-8") as f:
+        for b in json.load(f)["features"]:
+            if b["id"] == bgy_id:
+                return b["name"]
+    return bgy_id
+
+
 def fix_barangay(stop, known):
     key = re.sub(r"[^a-z0-9]", "", stop["barangay"].lower())
     if key in known or key in ("villakanangga", "baan", "stonino"):
@@ -161,6 +180,15 @@ def fix_barangay(stop, known):
         if rx.search(stop["where"]):
             stop["where"] = (stop["barangay"] + " – " + stop["where"]).replace("Vcdu", "VCDU")
             stop["barangay"] = bgy
+            return True
+    # a subdivision or sitio used as the "barangay": look it up among known landmarks
+    if len(key) >= 4:
+        hits = [(n, b, disp) for n, b, disp in landmarks() if n.startswith(key) or key.startswith(n[: max(4, len(n) - 6)])]
+        bgys = {b for _, b, _ in hits}
+        if len(bgys) == 1:
+            b = bgys.pop()
+            stop["where"] = (hits[0][2] + (" – " + stop["where"] if stop["where"] else ""))
+            stop["barangay"] = barangay_display(b)
             return True
     return False
 
