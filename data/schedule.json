@@ -2395,7 +2395,7 @@
       "delivered": 1.5,
       "balance": 5.0,
       "tankCap": 1500,
-      "remarks": "Divert to Pk5 Lumbocan due to Pk3 No Tanke deployed",
+      "remarks": "Divert to Pk5 Lumbocan due to Pk3 No Tanker deployed",
       "lat": null,
       "lng": null,
       "src": "bcwd-monitoring",
@@ -2553,7 +2553,8 @@
       "tanker": "EPCC Tanker 4",
       "actualStart": "12:10",
       "actualEnd": "12:43",
-      "balance": 10.0,
+      "delivered": 1.5,
+      "balance": 8.5,
       "tankCap": 1000,
       "lat": null,
       "lng": null,
@@ -2709,7 +2710,7 @@
       "actualStart": "13:08",
       "actualEnd": "13:20",
       "delivered": 1.5,
-      "balance": 8.5,
+      "balance": 7.0,
       "tankCap": 1000,
       "lat": null,
       "lng": null,
@@ -2744,7 +2745,7 @@
       "tanker": "EPCC Tanker 4",
       "actualStart": "13:25",
       "actualEnd": "13:30",
-      "balance": 8.5,
+      "balance": 7.0,
       "tankCap": 1000,
       "remarks": "cancelled due to damage static tank",
       "lat": null,
@@ -2930,7 +2931,7 @@
       "start": "15:10",
       "end": "15:30",
       "tanker": "EPCC Tanker 4",
-      "balance": 8.5,
+      "balance": 7.0,
       "tankCap": 0,
       "remarks": "cancelled due to damage cluster booster",
       "lat": null,
@@ -2979,7 +2980,7 @@
       "start": "15:40",
       "end": "16:00",
       "tanker": "EPCC Tanker 4",
-      "balance": 8.5,
+      "balance": 7.0,
       "tankCap": 0,
       "remarks": "cancelled due to damage cluster booster",
       "lat": null,
@@ -3139,5 +3140,5 @@
       "refill": "Pump Station No. 14 (Amamaylan)"
     }
   ],
-  "importedAt": "2026-09-08 07:34"
+  "importedAt": "2026-09-08 13:26"
 }
