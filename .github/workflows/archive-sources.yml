@@ -2,6 +2,7 @@ name: Archive sources to the Wayback Machine
 
 # Runs whenever a data file changes on main, plus once a week, and on demand.
 # Saves a snapshot of every source URL and commits the archive links back.
+# Actions are pinned to full commit SHAs, as the repository policy requires.
 on:
   push:
     branches: [main]
@@ -21,12 +22,9 @@ jobs:
   archive:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
-        with:
-          python-version: "3.12"
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
       - name: Archive source URLs
-        run: python tools/archive-sources.py
+        run: python3 tools/archive-sources.py
       - name: Commit archive links
         run: |
           git config user.name "tubig-butuan-archiver"

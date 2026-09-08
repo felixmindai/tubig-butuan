@@ -3,6 +3,7 @@ name: Import BCWD tanker monitoring
 # Pulls BCWD's hourly tanker monitoring sheet into data/schedule.json every
 # 30 minutes during rationing hours (6 AM to 8 PM Butuan time = 22:00-12:00 UTC),
 # so the site shows scheduled and actual stops without anyone retyping posters.
+# Actions are pinned to full commit SHAs, as the repository policy requires.
 on:
   schedule:
     - cron: "*/30 22-23 * * *"
@@ -20,12 +21,9 @@ jobs:
   import:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
-        with:
-          python-version: "3.12"
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
       - name: Import monitoring sheet
-        run: python tools/import-bcwd-monitoring.py
+        run: python3 tools/import-bcwd-monitoring.py
       - name: Commit schedule
         run: |
           git config user.name "tubig-butuan-importer"
