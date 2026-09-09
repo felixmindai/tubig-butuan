@@ -466,14 +466,14 @@
       "date": "2026-09-09",
       "tanker": "CDRRMD Tanker",
       "name": "CDRRMD September 9, 2026",
-      "stops": 4,
-      "incomplete": true
+      "stops": 3,
+      "incomplete": false
     },
     "1498820768": {
       "date": "2026-09-09",
       "tanker": "BCWD Tanker",
       "name": "BCWD September 9, 2026",
-      "stops": 7,
+      "stops": 9,
       "incomplete": false
     },
     "1267120874": {
@@ -481,7 +481,7 @@
       "tanker": "VCDU Tanker",
       "name": "VCDU September 9, 2026",
       "stops": 3,
-      "incomplete": true
+      "incomplete": false
     },
     "2035890609": {
       "date": "2026-09-09",
@@ -502,7 +502,7 @@
       "tanker": "EPCC Tanker 3",
       "name": "39Equiparco September 9, 2026 ",
       "stops": 7,
-      "incomplete": true
+      "incomplete": false
     },
     "654155873": {
       "date": "2026-09-09",
@@ -516,7 +516,7 @@
       "tanker": "DSWD",
       "name": "DSWD September 9, 2026",
       "stops": 3,
-      "incomplete": false
+      "incomplete": true
     },
     "373863166": {
       "date": "2026-09-09",
