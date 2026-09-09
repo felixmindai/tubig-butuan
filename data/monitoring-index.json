@@ -488,14 +488,14 @@
       "tanker": "ADFIL",
       "name": " ADFIL September 9, 2026",
       "stops": 4,
-      "incomplete": true
+      "incomplete": false
     },
     "1643245819": {
       "date": "2026-09-09",
       "tanker": "EPCC Tanker 2",
       "name": "29Equiparco September 9, 2026 ",
       "stops": 7,
-      "incomplete": true
+      "incomplete": false
     },
     "854164833": {
       "date": "2026-09-09",
@@ -516,7 +516,7 @@
       "tanker": "DSWD",
       "name": "DSWD September 9, 2026",
       "stops": 3,
-      "incomplete": true
+      "incomplete": false
     },
     "373863166": {
       "date": "2026-09-09",
