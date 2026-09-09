@@ -474,7 +474,7 @@
       "tanker": "BCWD Tanker",
       "name": "BCWD September 9, 2026",
       "stops": 7,
-      "incomplete": true
+      "incomplete": false
     },
     "1267120874": {
       "date": "2026-09-09",
@@ -494,36 +494,36 @@
       "date": "2026-09-09",
       "tanker": "EPCC Tanker 2",
       "name": "29Equiparco September 9, 2026 ",
-      "stops": 5,
-      "incomplete": false
+      "stops": 7,
+      "incomplete": true
     },
     "854164833": {
       "date": "2026-09-09",
       "tanker": "EPCC Tanker 3",
       "name": "39Equiparco September 9, 2026 ",
-      "stops": 6,
-      "incomplete": false
+      "stops": 7,
+      "incomplete": true
     },
     "654155873": {
       "date": "2026-09-09",
       "tanker": "EPCC Tanker 4",
       "name": "49Equiparco September 9, 2026 ",
-      "stops": 9,
+      "stops": 8,
       "incomplete": true
     },
     "462389889": {
       "date": "2026-09-09",
       "tanker": "DSWD",
       "name": "DSWD September 9, 2026",
-      "stops": 5,
-      "incomplete": false
+      "stops": 3,
+      "incomplete": true
     },
     "373863166": {
       "date": "2026-09-09",
       "tanker": "SJIT",
       "name": "SJIT September 9, 2026",
-      "stops": 5,
-      "incomplete": false
+      "stops": 4,
+      "incomplete": true
     },
     "1996672833": {
       "date": null,
