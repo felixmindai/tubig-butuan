@@ -579,7 +579,7 @@
       "tanker": "EPCC Tanker 2",
       "name": "2.10Equiparco September 10, 2026 ",
       "stops": 7,
-      "incomplete": true
+      "incomplete": false
     },
     "2031662681": {
       "date": "2026-09-10",
