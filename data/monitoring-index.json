@@ -550,22 +550,22 @@
       "date": "2026-09-10",
       "tanker": "BCWD Tanker",
       "name": "BCWD September 10, 2026",
-      "stops": 7,
-      "incomplete": true
+      "stops": 8,
+      "incomplete": false
     },
     "350128905": {
       "date": "2026-09-10",
       "tanker": "VCDU Tanker",
       "name": "VCDU September 10, 2026",
       "stops": 4,
-      "incomplete": true
+      "incomplete": false
     },
     "1107641170": {
       "date": "2026-09-10",
       "tanker": "ADFIL",
       "name": "ADFIL September 10, 2026",
       "stops": 4,
-      "incomplete": true
+      "incomplete": false
     },
     "1965250460": {
       "date": "2026-09-10",
@@ -586,7 +586,7 @@
       "tanker": "EPCC Tanker 3",
       "name": "3.10Equiparco September 10, 2026 ",
       "stops": 6,
-      "incomplete": true
+      "incomplete": false
     },
     "1100500180": {
       "date": "2026-09-10",
@@ -600,7 +600,7 @@
       "tanker": "DSWD",
       "name": "DSWD September 10, 2026",
       "stops": 3,
-      "incomplete": true
+      "incomplete": false
     },
     "823838820": {
       "date": "2026-09-10",
