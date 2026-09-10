@@ -538,6 +538,83 @@
       "name": "TANKER ASSIGNMENTS September 5 2026",
       "stops": 0,
       "incomplete": true
+    },
+    "1326309072": {
+      "date": "2026-09-10",
+      "tanker": "CDRRMD Tanker",
+      "name": "CDRRMD September 10, 2026",
+      "stops": 5,
+      "incomplete": true
+    },
+    "1997906686": {
+      "date": "2026-09-10",
+      "tanker": "BCWD Tanker",
+      "name": "BCWD September 10, 2026",
+      "stops": 7,
+      "incomplete": true
+    },
+    "350128905": {
+      "date": "2026-09-10",
+      "tanker": "VCDU Tanker",
+      "name": "VCDU September 10, 2026",
+      "stops": 4,
+      "incomplete": true
+    },
+    "1107641170": {
+      "date": "2026-09-10",
+      "tanker": "ADFIL",
+      "name": "ADFIL September 10, 2026",
+      "stops": 4,
+      "incomplete": true
+    },
+    "1965250460": {
+      "date": "2026-09-10",
+      "tanker": "EPCC Tanker 1",
+      "name": "1.10Equiparco September 10, 2026 ",
+      "stops": 5,
+      "incomplete": true
+    },
+    "2024617408": {
+      "date": "2026-09-10",
+      "tanker": "EPCC Tanker 2",
+      "name": "2.10Equiparco September 10, 2026 ",
+      "stops": 7,
+      "incomplete": true
+    },
+    "2031662681": {
+      "date": "2026-09-10",
+      "tanker": "EPCC Tanker 3",
+      "name": "3.10Equiparco September 10, 2026 ",
+      "stops": 6,
+      "incomplete": true
+    },
+    "1100500180": {
+      "date": "2026-09-10",
+      "tanker": "EPCC Tanker 4",
+      "name": "4.10Equiparco September 10, 2026 ",
+      "stops": 7,
+      "incomplete": true
+    },
+    "268582928": {
+      "date": "2026-09-10",
+      "tanker": "DSWD",
+      "name": "DSWD September 10, 2026",
+      "stops": 3,
+      "incomplete": true
+    },
+    "823838820": {
+      "date": "2026-09-10",
+      "tanker": "PEO",
+      "name": "PEO September 10, 2026",
+      "stops": 4,
+      "incomplete": true
+    },
+    "1374143551": {
+      "date": "2026-09-10",
+      "tanker": "BFP",
+      "name": "BFP ADN September 10, 2026",
+      "stops": 4,
+      "incomplete": true
     }
   }
 }
