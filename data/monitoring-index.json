@@ -621,7 +621,7 @@
       "tanker": "CDRRMD Tanker",
       "name": "CDRRMD September 11, 2026",
       "stops": 5,
-      "incomplete": true
+      "incomplete": false
     },
     "1479346472": {
       "date": "2026-09-11",
@@ -641,15 +641,15 @@
       "date": "2026-09-11",
       "tanker": "BCWD Tanker",
       "name": "BCWD September 11, 2026",
-      "stops": 8,
+      "stops": 9,
       "incomplete": false
     },
     "696760227": {
       "date": "2026-09-11",
       "tanker": "ADFIL",
       "name": "ADFIL September 11, 2026",
-      "stops": 4,
-      "incomplete": true
+      "stops": 6,
+      "incomplete": false
     },
     "1093934223": {
       "date": "2026-09-11",
@@ -669,15 +669,15 @@
       "date": "2026-09-11",
       "tanker": "EPCC Tanker 2",
       "name": "2.11Equiparco September 11, 2026 ",
-      "stops": 7,
-      "incomplete": true
+      "stops": 5,
+      "incomplete": false
     },
     "246618533": {
       "date": "2026-09-11",
       "tanker": "EPCC Tanker 3",
       "name": "3.11Equiparco September 11, 2026 ",
-      "stops": 6,
-      "incomplete": true
+      "stops": 4,
+      "incomplete": false
     },
     "523262996": {
       "date": "2026-09-11",
@@ -705,6 +705,13 @@
       "tanker": "EPCC Tanker 1",
       "name": "19Equiparco September 9, 2026 ",
       "stops": 5,
+      "incomplete": true
+    },
+    "1849613014": {
+      "date": null,
+      "tanker": "AVAILABILITY",
+      "name": "TANKER SUMMARY",
+      "stops": 0,
       "incomplete": true
     }
   }
