@@ -628,7 +628,7 @@
       "tanker": "REX TANKER",
       "name": "REX TANKER September 11, 2026",
       "stops": 2,
-      "incomplete": true
+      "incomplete": false
     },
     "719746141": {
       "date": "2026-09-11",
@@ -641,7 +641,7 @@
       "date": "2026-09-11",
       "tanker": "BCWD Tanker",
       "name": "BCWD September 11, 2026",
-      "stops": 9,
+      "stops": 10,
       "incomplete": false
     },
     "696760227": {
@@ -656,7 +656,7 @@
       "tanker": "DSWD",
       "name": "DSWD September 11, 2026",
       "stops": 4,
-      "incomplete": true
+      "incomplete": false
     },
     "436006270": {
       "date": "2026-09-11",
