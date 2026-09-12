@@ -718,15 +718,15 @@
       "date": "2026-09-12",
       "tanker": "CDRRMD Tanker",
       "name": "CDRRMD September 12, 2026",
-      "stops": 5,
-      "incomplete": true
+      "stops": 7,
+      "incomplete": false
     },
     "1933543690": {
       "date": "2026-09-12",
       "tanker": "BCWD Tanker",
       "name": "BCWD September 12, 2026",
       "stops": 7,
-      "incomplete": true
+      "incomplete": false
     },
     "1498985312": {
       "date": "2026-09-12",
@@ -754,14 +754,14 @@
       "tanker": "SJIT",
       "name": "SJIT September 12, 2026",
       "stops": 7,
-      "incomplete": true
+      "incomplete": false
     },
     "774827786": {
       "date": "2026-09-12",
       "tanker": "EPCC Tanker 1",
       "name": "1.12Equiparco September 12, 2026 ",
       "stops": 4,
-      "incomplete": true
+      "incomplete": false
     },
     "1166277270": {
       "date": "2026-09-12",
