@@ -713,6 +713,69 @@
       "name": "TANKER SUMMARY",
       "stops": 0,
       "incomplete": true
+    },
+    "1060019451": {
+      "date": "2026-09-12",
+      "tanker": "CDRRMD Tanker",
+      "name": "CDRRMD September 12, 2026",
+      "stops": 5,
+      "incomplete": true
+    },
+    "1933543690": {
+      "date": "2026-09-12",
+      "tanker": "BCWD Tanker",
+      "name": "BCWD September 12, 2026",
+      "stops": 5,
+      "incomplete": true
+    },
+    "1498985312": {
+      "date": "2026-09-12",
+      "tanker": "REX TANKER",
+      "name": "REX TANKER September 12, 2026",
+      "stops": 2,
+      "incomplete": true
+    },
+    "239651251": {
+      "date": "2026-09-12",
+      "tanker": "VCDU Tanker",
+      "name": "VCDU September 12, 2026",
+      "stops": 4,
+      "incomplete": true
+    },
+    "1976657198": {
+      "date": "2026-09-12",
+      "tanker": "DSWD",
+      "name": "DSWD September 12, 2026",
+      "stops": 4,
+      "incomplete": true
+    },
+    "1051371153": {
+      "date": "2026-09-12",
+      "tanker": "SJIT",
+      "name": "SJIT September 12, 2026",
+      "stops": 7,
+      "incomplete": true
+    },
+    "774827786": {
+      "date": "2026-09-12",
+      "tanker": "EPCC Tanker 1",
+      "name": "1.12Equiparco September 12, 2026 ",
+      "stops": 4,
+      "incomplete": true
+    },
+    "1166277270": {
+      "date": "2026-09-12",
+      "tanker": "EPCC Tanker 3",
+      "name": "3.12Equiparco September 12, 2026 ",
+      "stops": 10,
+      "incomplete": true
+    },
+    "225041355": {
+      "date": "2026-09-12",
+      "tanker": "EPCC Tanker 4",
+      "name": "4.12Equiparco September 12, 2026 ",
+      "stops": 7,
+      "incomplete": true
     }
   }
 }
