@@ -725,29 +725,29 @@
       "date": "2026-09-12",
       "tanker": "BCWD Tanker",
       "name": "BCWD September 12, 2026",
-      "stops": 5,
+      "stops": 7,
       "incomplete": true
     },
     "1498985312": {
       "date": "2026-09-12",
       "tanker": "REX TANKER",
       "name": "REX TANKER September 12, 2026",
-      "stops": 2,
-      "incomplete": true
+      "stops": 3,
+      "incomplete": false
     },
     "239651251": {
       "date": "2026-09-12",
       "tanker": "VCDU Tanker",
       "name": "VCDU September 12, 2026",
       "stops": 4,
-      "incomplete": true
+      "incomplete": false
     },
     "1976657198": {
       "date": "2026-09-12",
       "tanker": "DSWD",
       "name": "DSWD September 12, 2026",
       "stops": 4,
-      "incomplete": true
+      "incomplete": false
     },
     "1051371153": {
       "date": "2026-09-12",
@@ -767,8 +767,8 @@
       "date": "2026-09-12",
       "tanker": "EPCC Tanker 3",
       "name": "3.12Equiparco September 12, 2026 ",
-      "stops": 10,
-      "incomplete": true
+      "stops": 7,
+      "incomplete": false
     },
     "225041355": {
       "date": "2026-09-12",
