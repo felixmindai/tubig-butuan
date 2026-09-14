@@ -789,21 +789,21 @@
       "tanker": "VCDU Tanker",
       "name": "VCDU September 14, 2026",
       "stops": 4,
-      "incomplete": true
+      "incomplete": false
     },
     "895149629": {
       "date": "2026-09-14",
       "tanker": "ADFIL",
       "name": "ADFIL September 14, 2026",
       "stops": 5,
-      "incomplete": true
+      "incomplete": false
     },
     "139485321": {
       "date": "2026-09-14",
       "tanker": "EPCC Tanker 4",
       "name": "EPCC 4 Sept. 14, 2026",
       "stops": 7,
-      "incomplete": true
+      "incomplete": false
     },
     "1220696100": {
       "date": "2026-09-14",
@@ -817,7 +817,7 @@
       "tanker": "EPCC Tanker 2",
       "name": "EPCC 2 Sept. 14, 2026",
       "stops": 6,
-      "incomplete": true
+      "incomplete": false
     },
     "2046044413": {
       "date": "2026-09-14",
@@ -831,7 +831,7 @@
       "tanker": "PEO",
       "name": "PEO September 14, 2026",
       "stops": 4,
-      "incomplete": true
+      "incomplete": false
     },
     "1665347211": {
       "date": "2026-09-14",
@@ -845,7 +845,7 @@
       "tanker": "SJIT",
       "name": "SJIT September 14, 2026",
       "stops": 6,
-      "incomplete": true
+      "incomplete": false
     },
     "1991031656": {
       "date": "2026-09-14",
@@ -887,6 +887,13 @@
       "tanker": "EPCC Tanker 4",
       "name": "4.13Equiparco September 13, 2026 ",
       "stops": 6,
+      "incomplete": false
+    },
+    "1183576315": {
+      "date": "2026-09-14",
+      "tanker": "BCWD Tanker",
+      "name": "BCWD September 14, 2026",
+      "stops": 2,
       "incomplete": false
     }
   }
