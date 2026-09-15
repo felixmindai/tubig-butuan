@@ -8453,14 +8453,14 @@
     {
       "date": "2026-09-15",
       "barangay": "Masao",
-      "where": "Station 3- Purok 4 (Waiting Shed)",
+      "where": "Station 2- Purok 2 & 3 (Domu Residence)",
       "start": "13:20",
       "end": "13:40",
       "tanker": "PEO",
       "actualStart": "09:32",
       "actualEnd": "12:00",
-      "delivered": 4.0,
-      "balance": 2.0,
+      "delivered": 2.0,
+      "balance": 4.0,
       "tankCap": 2000,
       "lat": null,
       "lng": null,
@@ -9532,5 +9532,5 @@
       "refill": "Pump Station No. 17"
     }
   ],
-  "importedAt": "2026-09-15 09:34"
+  "importedAt": "2026-09-15 14:46"
 }
