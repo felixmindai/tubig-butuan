@@ -995,39 +995,39 @@
       "incomplete": false
     },
     "1532120296": {
-      "date": "2026-09-15",
+      "date": "2026-09-16",
       "tanker": "REX TANKER",
       "name": "REX September 16, 2026",
       "stops": 6,
       "incomplete": true
     },
     "1604907001": {
-      "date": "2026-09-15",
+      "date": "2026-09-16",
       "tanker": "VCDU Tanker",
       "name": "VCDU September 16, 2026",
       "stops": 5,
       "incomplete": true
     },
     "1188915605": {
-      "date": "2026-09-15",
-      "tanker": "ADFIL",
-      "name": "ADFIL September 16, 2026",
+      "date": "2026-09-16",
+      "tanker": "SJIT",
+      "name": "SJIT September 16, 2026",
       "stops": 9,
       "incomplete": true
     },
     "807778874": {
-      "date": "2026-09-15",
+      "date": "2026-09-16",
       "tanker": "CDRRMD Tanker",
       "name": "CDRRMD September 16, 2026",
-      "stops": 6,
+      "stops": 7,
       "incomplete": true
     },
     "1266021329": {
-      "date": "2026-09-15",
+      "date": "2026-09-16",
       "tanker": "PEO",
       "name": "PEO September 16, 2026",
       "stops": 3,
-      "incomplete": false
+      "incomplete": true
     },
     "1670928362": {
       "date": "2026-09-15",
@@ -1037,32 +1037,39 @@
       "incomplete": false
     },
     "35299031": {
-      "date": "2026-09-15",
+      "date": "2026-09-16",
       "tanker": "EPCC Tanker 2",
       "name": "EPPC 2 September 16, 2026",
-      "stops": 10,
+      "stops": 7,
       "incomplete": true
     },
     "1359008045": {
-      "date": "2026-09-15",
+      "date": "2026-09-16",
       "tanker": "EPCC Tanker 3",
       "name": "EPPC 3 September 16, 2026",
-      "stops": 9,
+      "stops": 10,
       "incomplete": true
     },
     "46900505": {
-      "date": "2026-09-15",
+      "date": "2026-09-16",
       "tanker": "EPCC Tanker 4",
       "name": "EPCC 4 September 16, 2026",
-      "stops": 8,
-      "incomplete": false
+      "stops": 7,
+      "incomplete": true
     },
     "101323935": {
-      "date": "2026-09-15",
+      "date": "2026-09-16",
       "tanker": "DSWD",
       "name": "DSWD September 16, 2026",
       "stops": 3,
-      "incomplete": false
+      "incomplete": true
+    },
+    "1568197736": {
+      "date": "2026-09-16",
+      "tanker": "BCWD Tanker",
+      "name": "BCWD September 16, 2026",
+      "stops": 6,
+      "incomplete": true
     }
   }
 }
