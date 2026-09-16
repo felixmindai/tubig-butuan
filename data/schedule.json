@@ -10574,7 +10574,8 @@
       "tanker": "SJIT",
       "actualStart": "16:04",
       "actualEnd": "16:12",
-      "balance": 8.8,
+      "delivered": 2.0,
+      "balance": 6.8,
       "tankCap": 2000,
       "lat": null,
       "lng": null,
@@ -10620,7 +10621,7 @@
       "start": "16:50",
       "end": "17:00",
       "tanker": "SJIT",
-      "balance": 8.8,
+      "balance": 6.8,
       "remarks": "cancelled due to limited operational time",
       "lat": null,
       "lng": null,
@@ -10629,5 +10630,5 @@
       "refill": "Pump Station No. 17"
     }
   ],
-  "importedAt": "2026-09-16 09:28"
+  "importedAt": "2026-09-16 14:20"
 }
