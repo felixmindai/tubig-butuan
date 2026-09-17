@@ -1075,22 +1075,22 @@
       "date": "2026-09-17",
       "tanker": "CDRRMD Tanker",
       "name": "CDRRMD September 17, 2026",
-      "stops": 6,
-      "incomplete": true
+      "stops": 8,
+      "incomplete": false
     },
     "1919393101": {
       "date": "2026-09-17",
       "tanker": "BCWD Tanker",
       "name": " BCWD September 17, 2026",
       "stops": 8,
-      "incomplete": true
+      "incomplete": false
     },
     "568973022": {
       "date": "2026-09-17",
       "tanker": "VCDU Tanker",
       "name": " VCDU September 17, 2026",
       "stops": 5,
-      "incomplete": true
+      "incomplete": false
     },
     "1040765700": {
       "date": "2026-09-17",
@@ -1104,7 +1104,7 @@
       "tanker": "EPCC Tanker 1",
       "name": "  EPPC 1 September 17, 2026",
       "stops": 5,
-      "incomplete": true
+      "incomplete": false
     },
     "1408619966": {
       "date": "2026-09-17",
@@ -1117,7 +1117,7 @@
       "date": "2026-09-17",
       "tanker": "EPCC Tanker 3",
       "name": " EPPC 3 September 17, 2026",
-      "stops": 9,
+      "stops": 11,
       "incomplete": false
     },
     "462970589": {
@@ -1132,21 +1132,21 @@
       "tanker": "DSWD",
       "name": " DSWD September 17, 2026",
       "stops": 3,
-      "incomplete": true
+      "incomplete": false
     },
     "190790155": {
       "date": "2026-09-17",
       "tanker": "PEO",
       "name": "PEO September 17, 2026",
-      "stops": 3,
-      "incomplete": true
+      "stops": 4,
+      "incomplete": false
     },
     "637089105": {
       "date": "2026-09-17",
       "tanker": "SJIT",
       "name": " SJIT September 17, 2026",
       "stops": 9,
-      "incomplete": true
+      "incomplete": false
     }
   }
 }
