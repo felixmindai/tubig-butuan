@@ -1181,7 +1181,7 @@
       "tanker": "EPCC Tanker 1",
       "name": " EPPC 1 September 18, 2026",
       "stops": 6,
-      "incomplete": true
+      "incomplete": false
     },
     "845461548": {
       "date": "2026-09-18",
@@ -1202,21 +1202,21 @@
       "tanker": "EPCC Tanker 4",
       "name": "EPCC 4 September 18, 2026",
       "stops": 2,
-      "incomplete": true
+      "incomplete": false
     },
     "394137814": {
       "date": "2026-09-18",
       "tanker": "DSWD",
       "name": "DSWD September 18, 2026",
       "stops": 3,
-      "incomplete": true
+      "incomplete": false
     },
     "2020726441": {
       "date": "2026-09-18",
       "tanker": "SJIT",
       "name": "SJIT September 18, 2026",
       "stops": 7,
-      "incomplete": true
+      "incomplete": false
     }
   }
 }
