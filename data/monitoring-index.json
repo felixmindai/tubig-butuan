@@ -1153,7 +1153,7 @@
       "tanker": "CDRRMD Tanker",
       "name": "CDRRMD September 18, 2026",
       "stops": 8,
-      "incomplete": true
+      "incomplete": false
     },
     "1896338391": {
       "date": "2026-09-18",
@@ -1195,7 +1195,7 @@
       "tanker": "EPCC Tanker 3",
       "name": "EPPC 3 September 18, 2026",
       "stops": 5,
-      "incomplete": true
+      "incomplete": false
     },
     "1924953746": {
       "date": "2026-09-18",
