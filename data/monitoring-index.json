@@ -1278,15 +1278,15 @@
       "date": "2026-09-20",
       "tanker": "CDRRMD Tanker",
       "name": "CDRRMD September 20, 2026",
-      "stops": 7,
-      "incomplete": true
+      "stops": 6,
+      "incomplete": false
     },
     "682006111": {
       "date": "2026-09-20",
       "tanker": "BCWD Tanker",
       "name": "BCWD September 20, 2026",
       "stops": 3,
-      "incomplete": true
+      "incomplete": false
     },
     "1821840049": {
       "date": "2026-09-20",
@@ -1307,7 +1307,7 @@
       "tanker": "EPCC Tanker 4",
       "name": "EPCC 4 Sept. 20, 2026",
       "stops": 3,
-      "incomplete": true
+      "incomplete": false
     }
   }
 }
