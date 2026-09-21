@@ -1321,14 +1321,14 @@
       "tanker": "PEO",
       "name": "PEO September 21, 2026",
       "stops": 4,
-      "incomplete": true
+      "incomplete": false
     },
     "1988337194": {
       "date": "2026-09-21",
       "tanker": "SJIT",
       "name": "SJIT September 21, 2026",
       "stops": 6,
-      "incomplete": true
+      "incomplete": false
     },
     "1719028753": {
       "date": "2026-09-21",
@@ -1342,7 +1342,7 @@
       "tanker": "EPCC Tanker 2",
       "name": "EPCC 2 September 21, 2026",
       "stops": 5,
-      "incomplete": true
+      "incomplete": false
     },
     "579126211": {
       "date": "2026-09-21",
@@ -1376,8 +1376,8 @@
       "date": "2026-09-21",
       "tanker": "BCWD Tanker",
       "name": "BCWD September 21, 2026",
-      "stops": 4,
-      "incomplete": true
+      "stops": 5,
+      "incomplete": false
     },
     "727974741": {
       "date": "2026-09-21",
