@@ -1391,14 +1391,14 @@
       "tanker": "SJIT",
       "name": "SJIT September 22, 2026",
       "stops": 11,
-      "incomplete": true
+      "incomplete": false
     },
     "36578910": {
       "date": "2026-09-22",
       "tanker": "DSWD",
       "name": "DSWD September 22, 2026",
-      "stops": 3,
-      "incomplete": true
+      "stops": 4,
+      "incomplete": false
     },
     "698237935": {
       "date": "2026-09-22",
@@ -1426,7 +1426,7 @@
       "tanker": "VCDU Tanker",
       "name": "VCDU September 22, 2026",
       "stops": 3,
-      "incomplete": true
+      "incomplete": false
     },
     "955585877": {
       "date": "2026-09-22",
@@ -1439,8 +1439,8 @@
       "date": "2026-09-22",
       "tanker": "PEO",
       "name": "PEO September 22, 2026",
-      "stops": 4,
-      "incomplete": true
+      "stops": 5,
+      "incomplete": false
     },
     "769347034": {
       "date": "2026-09-22",
@@ -1460,8 +1460,8 @@
       "date": "2026-09-22",
       "tanker": "EPCC Tanker 1",
       "name": "EPCC1 September 22, 2026",
-      "stops": 7,
-      "incomplete": true
+      "stops": 4,
+      "incomplete": false
     }
   }
 }
