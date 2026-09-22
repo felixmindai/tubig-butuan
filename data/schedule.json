@@ -15403,24 +15403,6 @@
     },
     {
       "date": "2026-09-22",
-      "barangay": "Bit-os",
-      "where": "Purok 1D",
-      "start": "15:50",
-      "end": "16:10",
-      "tanker": "SJIT",
-      "actualStart": "09:19",
-      "actualEnd": "09:42",
-      "delivered": 2.0,
-      "balance": 0.0,
-      "tankCap": 2000,
-      "lat": null,
-      "lng": null,
-      "src": "bcwd-monitoring",
-      "tankerCapacity": 22.0,
-      "refill": "Pump Station No. 17"
-    },
-    {
-      "date": "2026-09-22",
       "barangay": "Lumbocan",
       "where": "Station 13 Purok 7 (1,000L Tank)",
       "start": "14:00",
@@ -16146,7 +16128,7 @@
       "delivered": 2.0,
       "balance": 0.0,
       "tankCap": 2000,
-      "remarks": "Additional route: The original tanker assigned was from DSWD, but since the DSWD tanker cannot access Purok 2, the delivery will be transferred to a PEO tanker to ensure the area is served.",
+      "remarks": "Additional route: The original tanker assigned was from PEO, but since the DSWD tanker cannot access Purok 2, the delivery will be transferred to a PEO tanker to ensure the area is served.",
       "lat": null,
       "lng": null,
       "src": "bcwd-monitoring",
@@ -16636,5 +16618,5 @@
       "refill": "Pump Station No. 17"
     }
   ],
-  "importedAt": "2026-09-22 09:27"
+  "importedAt": "2026-09-22 14:10"
 }
