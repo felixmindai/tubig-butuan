@@ -1530,8 +1530,8 @@
       "date": "2026-09-24",
       "tanker": "CDRRMD Tanker",
       "name": "CDRRMD September 24, 2026",
-      "stops": 8,
-      "incomplete": true
+      "stops": 9,
+      "incomplete": false
     },
     "1414360004": {
       "date": "2026-09-24",
@@ -1559,21 +1559,21 @@
       "tanker": "EPCC Tanker 1",
       "name": "EPCC 1 September 24, 2026",
       "stops": 6,
-      "incomplete": true
+      "incomplete": false
     },
     "394701951": {
       "date": "2026-09-24",
       "tanker": "EPCC Tanker 3",
       "name": "EPCC 3 Sept. 24, 2026",
-      "stops": 5,
-      "incomplete": true
+      "stops": 6,
+      "incomplete": false
     },
     "985827264": {
       "date": "2026-09-24",
       "tanker": "EPCC Tanker 4",
       "name": "EPCC 4 September 24, 2026",
       "stops": 5,
-      "incomplete": true
+      "incomplete": false
     },
     "2145334360": {
       "date": "2026-09-24",
@@ -1587,7 +1587,7 @@
       "tanker": "DSWD",
       "name": "DSWD September 24, 2026",
       "stops": 7,
-      "incomplete": true
+      "incomplete": false
     },
     "1337118089": {
       "date": "2026-09-24",
