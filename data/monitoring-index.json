@@ -1525,6 +1525,83 @@
       "name": "SJIT September 23, 2026",
       "stops": 10,
       "incomplete": false
+    },
+    "320805647": {
+      "date": "2026-09-24",
+      "tanker": "CDRRMD Tanker",
+      "name": "CDRRMD September 24, 2026",
+      "stops": 8,
+      "incomplete": true
+    },
+    "1414360004": {
+      "date": "2026-09-24",
+      "tanker": "VCDU Tanker",
+      "name": "VCDU September 24, 2026",
+      "stops": 3,
+      "incomplete": true
+    },
+    "790131208": {
+      "date": "2026-09-24",
+      "tanker": "ADFIL",
+      "name": "ADFIL September 24, 2026",
+      "stops": 9,
+      "incomplete": true
+    },
+    "1080079532": {
+      "date": "2026-09-24",
+      "tanker": "BFPA",
+      "name": "BFP September 24, 2026",
+      "stops": 3,
+      "incomplete": true
+    },
+    "311761979": {
+      "date": "2026-09-24",
+      "tanker": "EPCC Tanker 1",
+      "name": "EPCC 1 September 24, 2026",
+      "stops": 6,
+      "incomplete": true
+    },
+    "394701951": {
+      "date": "2026-09-24",
+      "tanker": "EPCC Tanker 3",
+      "name": "EPCC 3 Sept. 24, 2026",
+      "stops": 5,
+      "incomplete": true
+    },
+    "985827264": {
+      "date": "2026-09-24",
+      "tanker": "EPCC Tanker 4",
+      "name": "EPCC 4 September 24, 2026",
+      "stops": 5,
+      "incomplete": true
+    },
+    "2145334360": {
+      "date": "2026-09-24",
+      "tanker": "BCWD Tanker",
+      "name": "BCWD September 24, 2026",
+      "stops": 6,
+      "incomplete": true
+    },
+    "1598288678": {
+      "date": "2026-09-24",
+      "tanker": "DSWD",
+      "name": "DSWD September 24, 2026",
+      "stops": 7,
+      "incomplete": true
+    },
+    "1337118089": {
+      "date": "2026-09-24",
+      "tanker": "SJIT",
+      "name": "SJIT September 24, 2026",
+      "stops": 10,
+      "incomplete": false
+    },
+    "1778428859": {
+      "date": "2026-09-23",
+      "tanker": "CDRRMD Tanker",
+      "name": "CDRRMD September 23, 2026",
+      "stops": 8,
+      "incomplete": false
     }
   }
 }
