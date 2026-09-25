@@ -1608,7 +1608,7 @@
       "tanker": "CDRRMD Tanker",
       "name": "CDRRMD September 25, 2026",
       "stops": 8,
-      "incomplete": true
+      "incomplete": false
     },
     "2039057454": {
       "date": "2026-09-25",
@@ -1622,21 +1622,21 @@
       "tanker": "VCDU Tanker",
       "name": "VCDU September 25, 2026",
       "stops": 2,
-      "incomplete": true
+      "incomplete": false
     },
     "1323709816": {
       "date": "2026-09-25",
       "tanker": "ADFIL",
       "name": "ADFIL September 25, 2026",
       "stops": 3,
-      "incomplete": true
+      "incomplete": false
     },
     "1456062882": {
       "date": "2026-09-25",
       "tanker": "EPCC Tanker 1",
       "name": "EPCC 1 September 25, 2026",
-      "stops": 7,
-      "incomplete": true
+      "stops": 6,
+      "incomplete": false
     },
     "1539050657": {
       "date": "2026-09-25",
@@ -1664,14 +1664,14 @@
       "tanker": "DSWD",
       "name": "DSWD September 25, 2026",
       "stops": 7,
-      "incomplete": true
+      "incomplete": false
     },
     "1014908183": {
       "date": "2026-09-25",
       "tanker": "SJIT",
       "name": "SJIT September 25, 2026",
       "stops": 10,
-      "incomplete": true
+      "incomplete": false
     }
   }
 }
