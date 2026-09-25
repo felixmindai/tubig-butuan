@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-24",
+  "updated": "2026-09-25",
   "source": "BCWD Water Tankers Hourly Monitoring sheet (Google Sheets), linked from the Butuan City PIO rationing post; last day imported 2026-09-24",
   "sourceUrl": "https://docs.google.com/spreadsheets/d/e/2PACX-1vT0s2vnge5UM4HZN6uMQuuNoRHQWTCSHX9S93R8rGPCF21_JmfxgxWVSNJWG3Nk3uYi7634kCTAD64G/pubhtml",
   "operatingHours": "08:00-17:00",
@@ -18837,5 +18837,5 @@
       "refill": "Pump Station No. 1 (Alviola)"
     }
   ],
-  "importedAt": "2026-09-24 14:24"
+  "importedAt": "2026-09-25 00:16"
 }
