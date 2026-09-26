@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-25",
+  "updated": "2026-09-26",
   "source": "BCWD Water Tankers Hourly Monitoring sheet (Google Sheets), linked from the Butuan City PIO rationing post; last day imported 2026-09-25",
   "sourceUrl": "https://docs.google.com/spreadsheets/d/e/2PACX-1vT0s2vnge5UM4HZN6uMQuuNoRHQWTCSHX9S93R8rGPCF21_JmfxgxWVSNJWG3Nk3uYi7634kCTAD64G/pubhtml",
   "operatingHours": "08:00-17:00",
@@ -19869,5 +19869,5 @@
       "refill": "Pump Station No. 14 (Amamaylan)"
     }
   ],
-  "importedAt": "2026-09-25 15:06"
+  "importedAt": "2026-09-26 00:22"
 }
